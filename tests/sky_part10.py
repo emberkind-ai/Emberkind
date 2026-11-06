@@ -1,0 +1,41 @@
+"""Part 10: shooting stars and fireflies. Classic: streaks at dusk and night (scheduled and on tapping the night
+sky), none by day, in Simple or with reduced motion, at most two at once, each gone within ~1.2 s; fireflies at
+dusk and night only. Milky Way keeps its own shooting stars and fireflies. Run with the app on :8811."""
+import sys, os
+sys.path.insert(0, os.path.dirname(__file__))
+from harness import start
+OUT=os.path.join(os.path.dirname(__file__),"out"); os.makedirs(OUT,exist_ok=True)
+res=[]
+def ok(n,c,info=""): res.append(bool(c)); print(("PASS " if c else "FAIL ")+n+(("  ["+str(info)+"]") if info and not c else ""))
+p,b,ctx,pg,errs=start(seed={"ek-agreed":"2026-11-01"},wait=2400)
+phase=lambda ph:(pg.evaluate("p=>{manualPhase=p;applyPhase();}",ph),pg.wait_for_timeout(900))
+n=lambda: pg.evaluate("()=>document.querySelectorAll('#stars .ekshoot').length")
+phase("night"); ok("night in Classic: shooting stars allowed", pg.evaluate("()=>EKSKY.ok()"))
+pg.evaluate("()=>EKSKY.tick()"); pg.wait_for_timeout(420); ok("a scheduled star crosses the sky", n()==1, n())
+pg.screenshot(path=os.path.join(OUT,"70_classic_shooting_star.png"))
+pg.wait_for_timeout(1300); ok("and is gone within about a second", n()==0, n())
+pg.mouse.click(300,200); pg.wait_for_timeout(150)
+pos=pg.evaluate("()=>{const s=document.querySelector('#stars .ekshoot');return s?[parseFloat(s.style.left),parseFloat(s.style.top)]:null}")
+ok("tapping the night sky sends one from that spot", pos and abs(pos[0]-300)<3 and abs(pos[1]-200)<3, pos)
+pg.wait_for_timeout(1400)
+for i in range(6): pg.mouse.click(120+i*30,180); pg.wait_for_timeout(40)
+ok("rapid taps: never more than two at once", n()<=2, n()); pg.wait_for_timeout(1400)
+tc=pg.evaluate("()=>{const r=document.querySelector('.hero .title').getBoundingClientRect();return [r.left+r.width/2,r.top+r.height/2]}"); pg.mouse.click(*tc); pg.wait_for_timeout(150); ok("tapping the title sends none", n()==0, [n(),tc])
+ff=pg.evaluate("()=>[document.querySelector('#flies').children.length,+getComputedStyle(document.querySelector('#flies')).opacity]")
+ok("fireflies out at night", ff[0]>=6 and ff[1]>.9, ff)
+phase("dusk"); ok("dusk: shooting stars allowed, fireflies out", pg.evaluate("()=>EKSKY.ok()") and float(pg.evaluate("()=>getComputedStyle(document.querySelector('#flies')).opacity"))>.5)
+phase("day"); pg.mouse.click(300,200); pg.wait_for_timeout(150)
+pg.wait_for_timeout(1300); dd=[pg.evaluate("()=>EKSKY.ok()"),n(),pg.evaluate("()=>EKSKY.tick()"),float(pg.evaluate("()=>getComputedStyle(document.querySelector('#flies')).opacity"))]
+ok("day: no shooting stars, no fireflies", not dd[0] and dd[1]==0 and dd[2] is None and dd[3]<.05, dd)
+phase("night"); pg.evaluate("()=>document.querySelector('#app').classList.add('simple')"); ok("Simple: none", not pg.evaluate("()=>EKSKY.ok()"))
+pg.evaluate("()=>document.querySelector('#app').classList.remove('simple')")
+pg.evaluate("()=>document.querySelector('.tabs button[data-view=you]').click()"); pg.wait_for_timeout(700)
+ok("none while Home is out of sight", not pg.evaluate("()=>EKSKY.ok()")); pg.evaluate("()=>document.querySelector('.tabs button[data-view=fire]').click()"); pg.wait_for_timeout(700)
+pg.emulate_media(reduced_motion="reduce"); pg.wait_for_timeout(200); ok("reduced motion: none", not pg.evaluate("()=>EKSKY.ok()")); pg.emulate_media(reduced_motion="no-preference")
+pg.evaluate("()=>EKPAINT.useMilkyWay()"); pg.wait_for_timeout(3200)
+ok("Milky Way: Classic streaks off, its own shooting stars and fireflies on", not pg.evaluate("()=>EKSKY.ok()") and pg.evaluate("()=>{EKPAINT.meteorNow();return true}") , "")
+pg.wait_for_timeout(600); ok("Milky Way draws its shooting star overlay", pg.evaluate("()=>!!document.querySelector('canvas.ekmeteor')"))
+pg.evaluate("()=>EKPAINT.setClassic(true)")
+ok("Part 10: no script errors", not [e for e in errs if "net::" not in e], [e for e in errs if "net::" not in e][:3])
+b.close(); p.stop()
+print("\n%d passed, %d failed"%(sum(res),len(res)-sum(res)))

@@ -1,0 +1,27 @@
+{
+ "about": "Psychological safety signals that must stay in the app (DESIGN_PRINCIPLES.md section 4). Shorten one if needed, update this list in the same change, and say so in the release notes. Never delete one silently.",
+ "signals": [
+  "Need a person?",
+  "Welcome home",
+  "Find a seat by the fire.",
+  "Tap a companion to sit with them.",
+  "Not sure who? Start with how it feels",
+  "You can also drag the sun or moon across the sky.",
+  "tap to change",
+  "Stop whenever you need.",
+  "(optional)",
+  "Whatever's here. There's no wrong way to start.",
+  "Prompt me",
+  "Spotify opens alongside Emberkind and the background sound turns to Quiet.",
+  "Saved only on this device.",
+  "Nothing is sent to Soma unless you tap a Soma button",
+  "They aren't a diagnosis or a clinical record.",
+  "a companion sits with you while you do one small thing",
+  "Set a gentle reminder",
+  "AI companion. It can make mistakes and isn't professional advice.",
+  "never instead of them",
+  "Your conversations are private to you.",
+  "For self-inquiry, not medical advice.",
+  "Companions are AI, here alongside the people in your life, never instead of them."
+ ]
+}
