@@ -1,0 +1,50 @@
+/* ===== 3.1.0 ===== */
+/* achievements: the picture shows the level, so the height bars are retired */
+.bstair{display:none!important}
+/* Inner Atlas (Home and Tools): rings ripple from the heart, the points pulse in turn, light flows up the centre */
+.atl3,.tlpage .tool.t-atlas.atl3{background:radial-gradient(90% 130% at 80% 50%,#46290F 0%,#1D120A 58%,#0F0906 100%)!important}
+.amand{position:absolute;inset:0;background:repeating-radial-gradient(circle at 80% 44%,rgba(245,190,120,.09) 0 1px,transparent 1.5px 20px);-webkit-mask-image:radial-gradient(circle at 80% 44%,#000 0 35%,transparent 72%);mask-image:radial-gradient(circle at 80% 44%,#000 0 35%,transparent 72%)}
+.bdy .rip circle{fill:none;stroke:rgba(255,200,130,.6);stroke-width:.9;transform-box:fill-box;transform-origin:center;animation:hxrip 4.8s ease-out infinite}
+.bdy .rip circle:nth-child(2){animation-delay:1.6s}.bdy .rip circle:nth-child(3){animation-delay:3.2s}
+@keyframes hxrip{0%{transform:scale(.1);opacity:.95}100%{transform:scale(1);opacity:0}}
+.bdy .aura{animation:hxaura 4.8s ease-in-out infinite}@keyframes hxaura{0%,100%{opacity:.55}50%{opacity:1}}
+.bdy .chan{fill:none;stroke:#FFE2A8;stroke-width:1.3;stroke-linecap:round;stroke-dasharray:5 9;opacity:.85;animation:hxchan 1.8s linear infinite}@keyframes hxchan{to{stroke-dashoffset:-28}}
+.bdy .out{animation:hxbody 4.8s ease-in-out infinite}@keyframes hxbody{0%,100%{stroke-width:1.2}50%{stroke-width:1.9}}
+.bdy .pt{animation-duration:4.8s!important}
+/* swiping to Regulate: the switch shows at the top as the page slides in; the old in-page switches never show */
+#view-breathe .pswitch,#view-meditate .pswitch{display:none!important}
+#app.app-regpeek .regswitch{display:grid;animation:rgpk .2s ease both}@keyframes rgpk{from{opacity:0}to{opacity:1}}
+/* the companions, in full */
+.ekcomp{display:flex;flex-direction:column;gap:12px;margin:8px 0 4px}
+.ekcp{padding:14px 14px 13px;border-radius:20px;background:radial-gradient(120% 90% at 0% 0%,var(--cg),transparent 62%),rgba(255,255,255,.045);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),inset 3px 0 0 var(--ci)}
+.ekcp header{display:flex;align-items:center;gap:12px}
+.ekav{flex:none;width:62px;height:62px;display:grid;place-items:center;border-radius:50%;background:radial-gradient(circle at 50% 46%,var(--cg),transparent 72%);box-shadow:0 0 0 1.5px var(--ci)}
+.ekav img{width:46px!important;height:auto!important}
+.ekcp header b{display:block;font-size:21px;font-weight:900;line-height:1.1;color:var(--ci)}.ekcp header small{display:block;margin-top:2px;font-size:13px;color:#D9CDBA}
+.ekcp p{margin:8px 0 0!important;font-size:14.5px!important;line-height:1.55!important;color:#E8DCC8!important}
+.ekcp h4{margin:13px 0 6px;font-size:12px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;color:var(--ci)}
+.ektags{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}.ektags li{margin:0!important;padding:5px 10px;border-radius:999px;font-size:13px!important;font-weight:700;color:#F3E9D8!important;background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px var(--ci)}
+.ekwhere{padding:9px 11px;border-radius:12px;background:rgba(255,255,255,.05);font-size:13.5px!important}
+.ektry{display:flex;flex-direction:column;gap:5px;margin:0;padding:0;list-style:none}.ektry li{margin:0!important;padding:7px 11px;border-radius:12px;font-style:italic;font-size:14px!important;color:#F1E6D6!important;background:rgba(0,0,0,.22);border-left:3px solid var(--ci)}
+/* the Embervale builder: warm glass, colour-coded tabs, cards lit by their category, ready ones glowing */
+#evBar{background:radial-gradient(80% 70% at 10% 0%,rgba(255,160,80,.22),transparent 60%),radial-gradient(70% 70% at 90% 0%,rgba(140,110,255,.2),transparent 60%),radial-gradient(60% 60% at 50% 110%,rgba(80,200,170,.14),transparent 70%),linear-gradient(180deg,rgba(30,20,44,.86),rgba(18,13,28,.96))!important;
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 -10px 30px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,214,150,.22)!important}
+.evtab{color:#EFE4D2!important;background:rgba(255,255,255,.07)!important;border:0!important;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)!important;font-weight:800!important}
+.evtab::before{content:"";display:inline-block;width:8px;height:8px;margin-right:7px;border-radius:50%;vertical-align:1px;background:var(--tc);box-shadow:0 0 8px var(--tc)}
+.evtab{--tc:#F5C35A}.evtab[data-tab=paths]{--tc:#8FD8C8}.evtab[data-tab=village]{--tc:#FFB36B}.evtab[data-tab=practice]{--tc:#B99BFF}.evtab[data-tab=nature]{--tc:#8FD27A}.evtab[data-tab=seasonal]{--tc:#FF9EC4}
+.evtab.on{color:#1E1208!important;background:linear-gradient(180deg,rgba(255,255,255,.35),rgba(255,255,255,0)),var(--tc)!important;box-shadow:0 6px 16px rgba(0,0,0,.3),0 0 18px var(--tc)!important}
+.evtab.on::before{background:#1E1208;box-shadow:none}
+.evcard{--cc:245,195,90;position:relative;overflow:hidden;border-radius:20px!important;border:0!important;background:linear-gradient(165deg,rgba(var(--cc),.3) 0%,rgba(28,20,40,.94) 58%)!important;box-shadow:inset 0 0 0 1px rgba(var(--cc),.38),0 8px 20px rgba(0,0,0,.35)!important}
+.evcard[data-cat=paths]{--cc:120,205,190}.evcard[data-cat=village]{--cc:255,170,90}.evcard[data-cat=practice]{--cc:175,140,255}.evcard[data-cat=nature]{--cc:130,210,110}.evcard[data-cat=seasonal]{--cc:255,150,195}
+.evcard .evth{position:relative;border-radius:14px;background:radial-gradient(70% 70% at 50% 62%,rgba(var(--cc),.5),rgba(var(--cc),.08) 70%,transparent)!important}
+.evcard .evth img{filter:drop-shadow(0 6px 8px rgba(0,0,0,.35))}
+.evcard b{color:#FFF6E6!important;font-weight:900!important}.evcard small{color:#FFE2A3!important}
+.evcard:not(.off)::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;box-shadow:inset 0 0 0 1.6px rgba(var(--cc),.95),0 0 20px rgba(var(--cc),.45);opacity:0;animation:evready 3.6s ease-in-out infinite}
+@keyframes evready{0%,100%{opacity:0}50%{opacity:1}}
+.evcard.off{background:linear-gradient(165deg,rgba(var(--cc),.12),rgba(22,17,30,.96) 60%)!important;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)!important}
+.evcard.off .evth img{filter:grayscale(.7) brightness(.72)!important}
+.evcard.off .evth::after{content:"";position:absolute;right:6px;bottom:6px;width:20px;height:20px;border-radius:50%;background:rgba(10,8,16,.7) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23E8D9C0' stroke-width='2.2' stroke-linecap='round'%3E%3Crect x='6' y='11' width='12' height='9' rx='2'/%3E%3Cpath d='M8.5 11V8.5a3.5 3.5 0 0 1 7 0V11'/%3E%3C/svg%3E") center/13px no-repeat}
+.evcard.off small{color:#C8BCD2!important}
+.evci{color:#FFD9A0!important;background:rgba(18,12,28,.7)!important;box-shadow:inset 0 0 0 1px rgba(255,214,150,.5)!important}
+@media (prefers-reduced-motion:reduce){.atl3 *,.evcard::after{animation:none!important}}
+.simple .atl3 *,.simple .evcard::after{animation:none!important}

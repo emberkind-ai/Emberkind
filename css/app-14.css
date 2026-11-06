@@ -1,0 +1,59 @@
+/* ===== 3.3.1: Task buddy setup, tidied into one calm, consistent layout ===== */
+#fSetup[data-tidy]{padding-bottom:4px}
+/* the title on the lamplit room */
+.fhero .fhtext{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:40px 18px 14px;background:linear-gradient(180deg,rgba(8,10,22,0),rgba(8,10,22,.82))}
+.fhero .fhtext h1{margin:0!important;font:900 28px/1.1 var(--round)!important;color:#FFF3DE!important;text-shadow:0 2px 14px rgba(0,0,0,.6)}
+.fhero .fbuddy{left:74%!important;bottom:22px!important}
+#fSetup[data-tidy] .fhero{height:216px}
+#fSetup[data-tidy]>.lede{margin:2px 2px 16px!important;font-size:15px!important;line-height:1.5!important;color:#D9D3E8!important}
+/* companions: a slim row of glowing avatars */
+.fwhorow{margin:0 0 14px}
+.fwhorow .flabel,.fpanel .flabel{display:block;margin:0 0 8px!important;font:800 11.5px/1 var(--round)!important;letter-spacing:.14em!important;text-transform:uppercase;color:rgba(255,226,180,.72)!important}
+#fSetup[data-tidy] #fPick{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:0!important}
+#fSetup[data-tidy] #fPick button{display:flex;flex-direction:column;align-items:center;gap:5px;padding:8px 2px 7px!important;border-radius:18px!important;background:rgba(255,255,255,.035)!important;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)!important;color:rgba(235,228,245,.72)!important;font:700 12.5px var(--round)!important;transform:none}
+#fSetup[data-tidy] #fPick button img{width:44px!important;height:auto!important;opacity:.82;transition:transform .2s,opacity .2s}
+#fSetup[data-tidy] #fPick button[aria-checked="true"]{background:radial-gradient(circle at 50% 30%,rgba(255,214,150,.2),rgba(255,255,255,.04) 70%)!important;box-shadow:inset 0 0 0 1.5px rgba(255,214,150,.85),0 0 18px rgba(255,200,120,.28)!important;color:#FFF3DE!important}
+#fSetup[data-tidy] #fPick button[aria-checked="true"] img{opacity:1;transform:scale(1.08)}
+/* one glass panel */
+.fpanel{margin:0 0 12px;padding:4px 16px;border-radius:24px;background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.025));box-shadow:inset 0 0 0 1px rgba(255,255,255,.09),0 14px 34px rgba(0,0,0,.3)}
+.fsec{padding:16px 0;border-top:1px solid rgba(255,255,255,.07)}.fsec:first-child{border-top:0}
+.ftaskwrap{display:flex;flex-direction:column;gap:8px}
+#fSetup[data-tidy] #fTask{margin:0!important;min-height:50px;padding:0 16px!important;font:600 16px var(--round)!important;background:rgba(8,10,24,.45)!important;border:1px solid rgba(255,214,150,.22)!important;border-radius:14px!important;color:#FFF6E6!important}
+#fSetup[data-tidy] #fTask::placeholder{color:rgba(230,222,240,.45)}
+#fSetup[data-tidy] #fBreak{align-self:flex-start;display:inline-flex;align-items:center;gap:7px;min-height:36px;padding:0 12px!important;border-radius:999px!important;border:0!important;background:rgba(255,214,150,.08)!important;box-shadow:none!important;color:#FFD9A0!important;font:800 13.5px var(--round)!important}
+#fSetup[data-tidy] #fBreak::before{content:"";width:14px;height:14px;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l2.2 6.8L21 11l-6.8 2.2L12 20l-2.2-6.8L3 11l6.8-2.2z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l2.2 6.8L21 11l-6.8 2.2L12 20l-2.2-6.8L3 11l6.8-2.2z'/%3E%3C/svg%3E") center/contain no-repeat}
+#fSetup[data-tidy] #fSteps:not(:empty){margin:10px 0 0!important}
+/* time: big value, warm slider */
+#fSetup[data-tidy] .fbrow{display:flex;align-items:baseline;justify-content:space-between;margin:0 0 6px!important}
+#fSetup[data-tidy] .fbrow .flabel{margin:0!important}
+#fSetup[data-tidy] #fLenVal{font:900 20px var(--round)!important;color:#FFF3DE!important}
+#view-focus .slider::-webkit-slider-runnable-track,#view-focus .volrange::-webkit-slider-runnable-track{height:6px;border-radius:6px;background:linear-gradient(90deg,#F2A04A var(--fill,50%),rgba(255,255,255,.12) var(--fill,50%))!important}
+#view-focus .slider::-webkit-slider-thumb,#view-focus .volrange::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;margin-top:-9px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#FFF8E8,#FFD08A);border:0!important;box-shadow:0 0 0 4px rgba(242,160,74,.22),0 0 16px rgba(255,200,120,.6)!important}
+#view-focus .slider::-moz-range-progress,#view-focus .volrange::-moz-range-progress{background:#F2A04A}
+#view-focus .slider::-moz-range-thumb,#view-focus .volrange::-moz-range-thumb{background:#FFE2B0;border:0;box-shadow:0 0 14px rgba(255,200,120,.6)}
+/* sound: one swipeable row of icon chips; volume only while a sound is on */
+#fSetup[data-tidy] #fSnd{display:flex;flex-wrap:nowrap;gap:8px;overflow-x:auto;margin:0 -16px!important;padding:2px 16px 4px;scrollbar-width:none;scroll-snap-type:x proximity}
+#fSetup[data-tidy] #fSnd::-webkit-scrollbar{display:none}
+#fSetup[data-tidy] #fSnd button{flex:none;display:inline-flex;align-items:center;gap:7px;min-height:42px;padding:0 15px!important;border-radius:999px!important;scroll-snap-align:start;background:rgba(255,255,255,.05)!important;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)!important;color:rgba(240,234,248,.82)!important;font:700 14px var(--round)!important;white-space:nowrap}
+#fSetup[data-tidy] #fSnd button svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+#fSetup[data-tidy] #fSnd button[aria-pressed="true"]{background:linear-gradient(180deg,#FFD08A,#F2A04A)!important;color:#2A160B!important;box-shadow:0 6px 18px rgba(242,160,74,.35)!important}
+#fSetup[data-tidy] .fs-sound .volrow{display:flex;align-items:center;gap:12px;margin:12px 0 0!important;max-height:60px;overflow:hidden;transition:max-height .25s,opacity .25s,margin .25s}
+#fSetup[data-tidy] .fs-sound.silent .volrow{max-height:0;opacity:0;margin:0!important}
+#fSetup[data-tidy] .fs-sound .volrow .flabel{margin:0!important}
+#fSetup[data-tidy] .fs-sound .volctl{flex:1;display:flex;align-items:center;gap:10px}
+#fSetup[data-tidy] .fs-sound .volbtn{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.06)!important;box-shadow:inset 0 0 0 1px rgba(255,214,150,.25)!important;color:#FFD9A0!important}
+/* Spotify: one compact line */
+#fSetup[data-tidy] .fs-spot .fspot{display:flex;align-items:center;flex-wrap:wrap;gap:6px 14px;margin:0!important}
+#fSetup[data-tidy] #fSpot{min-height:40px;padding:0 14px!important;font:800 14px var(--round)!important;border-radius:999px!important}
+#fSetup[data-tidy] #fSpotSet{font:700 13.5px var(--round)!important;color:#FFD9A0!important;text-decoration:none!important;border:0!important;padding:6px 0!important}
+#fSetup[data-tidy] #fSpotN{margin:8px 0 0!important;font-size:12.5px!important;line-height:1.45!important;color:rgba(220,214,232,.6)!important}
+/* start, pinned to the bottom */
+.fstartbar{position:sticky;bottom:0;z-index:5;margin:0 -2px;padding:16px 2px calc(env(safe-area-inset-bottom,0px) + 10px);background:linear-gradient(180deg,rgba(14,15,30,0),rgba(14,15,30,.92) 36%)}
+.fstartbar #fStart{width:100%;margin:0!important;box-shadow:0 10px 26px rgba(242,160,74,.35)!important}
+.fstartbar .quiet{margin:8px 0 0!important;text-align:center;font-size:12.5px!important;color:rgba(220,214,232,.62)!important}
+#fSetup[data-tidy] .fs-sound.silent .volrow{visibility:hidden}
+/* 3.4.0: weather never shows in Simple display; after a card closes, nothing else in Embervale can be pressed for a moment */
+.simple .ekwx{display:none!important}
+#valeWrap.evguard button:not(#evInfo button){pointer-events:none!important}
+/* Simple display: check-ins, entries and the new scenes rest completely, on a single still image */
+.simple #ciFlow *,.simple #ciFlow *::before,.simple #ciFlow *::after,.simple #entryView *,.simple .ekskycard *,.simple .tcard.ekpaper *,.simple #tJList *{animation:none!important;transition:none!important}

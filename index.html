@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<script>try{var L=localStorage,D=document.documentElement;if(L.getItem("ek-agreed"))D.classList.add("ek-back");
+/* Home opens in Classic unless the person chose Milky Way (ek-look, see js/ek-home.js). Only then are its paintings preloaded. */
+if(L.getItem("ek-look")==="milkyway"){D.style.setProperty("--ekpre",'url("img/home/bg-milkyway.webp")');D.style.setProperty("--eklq",'url("data:image/webp;base64,UklGRhABAABXRUJQVlA4IAQBAADwBgCdASobADAAPu1orFEppaQiqrgKATAdiWIAnQAIF8mnyRIwh69/Tr9DbWYRVidRDpzwfIXkjRk/2BFNNWAAAP7w3alg8ddMogMySHIpdSFZY4FM2888DIRPCBclvwN0TORwoqDJSzzywPYoO8JSBSRZVuChwL5wbqVg+ZqC3Swgx9e0QkbzKBAhDMPp4kPSVrrf58eOp7fkZanrQBBs0HAEybZoVy47/CLmFH6Gp+9g/kxnGZaIW0GfFNR1TFrsl8d2esXAxs1guma3hvFFF0a90Dm/XrY7lhk8XyTMVERQvcE+WNc/jzoz/Nvoe4YsY9V6A4Nz3VoaXs4gEFwf9waAAA==")');
+["img/home/bg-milkyway.webp","img/home/bg-milkyway-nofire.webp","img/home/soma.webp","img/home/siro.webp","img/home/ava.webp","img/home/orra.webp"].forEach(function(u){var l=document.createElement("link");l.rel="preload";l.as="image";l.href=u;l.fetchPriority=u.indexOf("img/home/bg")===0?"high":"auto";document.head.appendChild(l);});}}catch(e){}</script>
+<style>html.ek-back #welcome{opacity:0!important;pointer-events:none!important;transition:none!important}html.ek-back .app-welcome .tabs,html.ek-back .app-welcome .person{display:flex!important}#app.ekpaint:not(.ekready) .scenewrap{background:var(--ekpre) center/cover no-repeat,var(--eklq) center/cover no-repeat,#0b0d1a!important}html.ekpre-z #app.ekpaint:not(.ekready) .scenewrap{background-size:auto 120%,auto 120%!important;background-position:center 67%,center 67%!important}</style>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B1222">
+<title>Emberkind</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="icon-48.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="description" content="Emberkind: breathwork, meditation, check-ins and four gentle AI companions. A quiet place to land.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Emberkind">
+<meta property="og:title" content="Emberkind: a quiet place to land">
+<meta property="og:description" content="Gentle breathwork, meditation, check-ins and four AI companions by one fire. A quiet place to land.">
+<meta property="og:url" content="https://emberkind.emberkindai.workers.dev/">
+<meta property="og:image" content="https://emberkind.emberkindai.workers.dev/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="css/fonts.css?v=3.9.3">
+<link rel="stylesheet" href="css/images.css?v=3.9.3">
+<link rel="stylesheet" href="css/app-01.css?v=3.9.3">
+<link rel="stylesheet" href="css/app-02.css?v=3.9.3">
+<link rel="stylesheet" href="css/app-03.css?v=3.9.3">
+<link rel="stylesheet" href="css/app-04.css?v=3.9.3">
+<link rel="stylesheet" href="css/app-05.css?v=3.9.3">
+<link rel="stylesheet" href="css/app-06.css?v=3.9.3">
+<link rel="stylesheet" href="css/app-07.css?v=3.9.3">
+<link rel="stylesheet" href="css/app-08.css?v=3.9.3">
+<link rel="stylesheet" href="css/app-09.css?v=3.9.3">
+<link rel="stylesheet" href="css/app-10.css?v=3.9.3">
+<link rel="stylesheet" href="css/app-11.css?v=3.9.3">
+<link rel="stylesheet" href="css/app-12.css?v=3.9.3">
+<link rel="stylesheet" href="css/app-13.css?v=3.9.3">
+<link rel="stylesheet" href="css/app-14.css?v=3.9.3">
+<link rel="stylesheet" href="css/app-15.css?v=3.9.3">
+<link rel="stylesheet" href="css/app-16.css?v=3.9.3"><link rel="stylesheet" href="css/app-17.css?v=3.9.3">
+<link rel="stylesheet" href="css/app-18.css?v=3.9.3">
+<link rel="stylesheet" href="css/ek-nav.css?v=3.9.3">
+<script src="js/boot.js?v=3.9.3"></script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute;width:0;height:0" aria-hidden="true" focusable="false"><defs><radialGradient id="ms" cx="40%" cy="35%"><stop offset="0" stop-color="#FFF6C8"/><stop offset=".6" stop-color="#FFD25A"/><stop offset="1" stop-color="#F5A623"/></radialGradient><radialGradient id="mg1"><stop offset="0" stop-color="#FFE08A"/><stop offset="1" stop-color="#FFE08A" stop-opacity="0"/></radialGradient><radialGradient id="mg2"><stop offset="0" stop-color="#FFF2B0"/><stop offset="1" stop-color="#FFF2B0" stop-opacity="0"/></radialGradient></defs></svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  
+  
+  <filter id="bark" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+    <feTurbulence type="fractalNoise" baseFrequency="0.018 0.42" numOctaves="3" seed="9" result="n"/>
+    <feColorMatrix in="n" type="matrix" values=".33 .33 .33 0 0  .33 .33 .33 0 0  .33 .33 .33 0 0  0 0 0 0 1" result="g"/>
+    <feComponentTransfer in="g" result="g2"><feFuncR type="linear" slope="1.1" intercept=".25"/><feFuncG type="linear" slope="1.1" intercept=".25"/><feFuncB type="linear" slope="1.1" intercept=".25"/></feComponentTransfer>
+    <feComposite in="g2" in2="SourceGraphic" operator="in" result="g3"/>
+    <feBlend in="SourceGraphic" in2="g3" mode="multiply"/>
+  </filter>
+  <filter id="glowf" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <filter id="ao" x="-30%" y="-100%" width="160%" height="300%"><feGaussianBlur stdDeviation="3.2"/></filter>
+  <filter id="dof" x="-5%" y="-5%" width="110%" height="110%"><feGaussianBlur stdDeviation="2.4"/></filter>
+  <filter id="dof2" x="-5%" y="-5%" width="110%" height="110%"><feGaussianBlur stdDeviation="1.4"/></filter>
+</svg>
+
+<div id="app" data-phase="night">
+<script>try{if((localStorage.getItem("ek-homemode")||"painted")!=="classic")document.getElementById("app").classList.add("ekpaint")}catch(e){}</script>
+  <button class="person" id="helpBtn">Need a person?</button>
+  <main>
+    <!-- FIRE -->
+    <section class="view active" id="view-fire" aria-label="The fire">
+      <div class="simplehead" aria-hidden="true">
+        <h1>Emberkind</h1><p>Choose who you'd like to sit with, or start with how it feels.</p>
+        <button class="sfeel" id="feelBtn2">Start with how it feels</button>
+      </div>
+      <div class="scenewrap" id="scenewrap">
+        <div class="skyx" aria-hidden="true"><i class="sk dawn"></i><i class="sk day"></i><i class="sk dusk"></i><i class="sk night"></i></div>
+        <div class="stars" id="stars"></div>
+        <button class="orbit" id="orbit" aria-label="Time of day. Tap or drag to change it"><span class="o-sun"></span><span class="o-moon"></span></button>
+        <button class="nowBtn" id="nowBtn" hidden>Back to real time</button>
+        <div class="hero"><h1 class="title">Emberkind</h1><span class="greet" id="greet">Welcome home</span><span class="sub">Find a seat by the fire.</span></div>
+        <p class="ekinvite">Tap a companion to sit with them.</p>
+        <div class="stage" id="scene">
+          <svg class="forest" id="forest" viewBox="0 0 400 220" preserveAspectRatio="none" aria-hidden="true"></svg>
+          <div class="mist"></div>
+          <div class="flies" id="flies"></div>
+          <div class="ground"></div>
+          <div class="soil" id="soil" aria-hidden="true"></div>
+          <svg class="grassH" id="grassH" viewBox="0 0 400 200" preserveAspectRatio="none" aria-hidden="true"></svg>
+          <div class="ring" id="ring"></div>
+          <div class="nighthug" aria-hidden="true"></div>
+          <div class="firelight"></div>
+          <div class="pit"><canvas id="fireCanvas" aria-hidden="true"></canvas><button class="firetap" id="fireTap" aria-label="Fire sound on. Tap to quiet it"></button></div>
+        </div>
+        <div class="names" id="names"></div>
+        <div class="homectl">
+          <button class="hc" id="hcSound" aria-pressed="true"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path class="on" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a7.5 7.5 0 0 1 0 11"/><path class="off" d="M17 10l4 4M21 10l-4 4"/></svg><span><b id="hcSoundT">Sound on</b><small>tap to quiet</small></span></button>
+          <button class="hc" id="hcTime"><svg viewBox="0 0 24 24"><g class="sunI"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></g><path class="moonI" d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><span><b id="hcTimeT">Night</b><small>tap to change</small></span></button>
+          <button class="hc" id="hcNow" hidden><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg><span><b>Now</b></span></button>
+        </div>
+        <p class="hcTip">You can also drag the sun or moon across the sky.</p>
+        <div class="fadeout"></div>
+        <div class="under"><button class="soft" id="feelBtn">Not sure who? Start with how it feels</button><p class="ekainote">Companions are AI, here alongside the people in your life, never instead of them.</p></div>
+      </div>
+      <div class="homemore">
+        <p class="eyebrow">Explore</p>
+        <h2 class="hh">What would help right now?</h2>
+        <button class="fy" id="forYou" data-k="air"><span class="fyart" id="fyArt" aria-hidden="true"></span><span class="fytx"><small class="fyk">For you right now</small><b class="fyt">Breathe with the sky</b><small class="fyd">An easy reset for the middle of the day.</small><span class="fyg">Begin &#8594;</span></span></button>
+        <div class="hinst" id="homeInstall" hidden><img class="insti" src="icon-192.png" alt="" aria-hidden="true" width="44" height="44" loading="lazy"><span class="hit"><b>Install Emberkind</b></span><button class="hig" id="homeInstallGo">Install</button><button class="hix" id="homeInstallX" aria-label="Hide this for now">&#215;</button></div>
+        <p class="hsec">Regulate</p>
+        <div class="hgrid">
+          <button class="hx x-breathe" id="breatheCard"><span class="hi"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h10a3 3 0 1 0-3-3M4 13h14a3 3 0 1 1-3 3M4 17h6"/></svg></span><b>Breathe</b><small>Five nature practices to settle or energise.</small></button>
+          <button class="hx x-med" id="medCard"><span class="hi"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5c2 2.5 2 5 0 7-2-2-2-4.5 0-7z"/><path d="M4 13c3 0 6 1 8 4 2-3 5-4 8-4-1 4-4 6-8 6s-7-2-8-6z"/></svg></span><b>Meditate</b><small>Eyes closed, guided by gentle bells.</small></button>
+        </div>
+        <p class="hsec">Tools</p>
+        <div class="hgrid">
+          <button class="hx x-check" id="checkCard"><span class="hi"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a4 4 0 0 1-.5-8A5.5 5.5 0 0 1 17 8.5 4.5 4.5 0 0 1 17.5 18z"/><path d="M12 3v2M5 6l1.4 1.4M19 6l-1.4 1.4"/></svg></span><b>Check-in</b><small>Mood, energy and what helps.</small></button>
+          <button class="hx x-journal" id="journalCard"><span class="hi"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h11a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6z"/><path d="M6 3v18M9 8h7M9 12h7M9 16h4"/></svg></span><b>Journal</b><small>Write freely, privately.</small></button>
+          <button class="hx x-buddy" id="focusCard"><span class="hi"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5"/><path d="M15 11l2 2 4-4"/></svg></span><b>Task buddy</b><small>Company for hard-to-start things.</small></button>
+          <button class="hx x-atlas" id="atlasCard"><span class="hi"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg></span><b>Inner Atlas</b><small class="atldesc">Explore how body, mind &amp; emotions connect. Tap where you feel it &amp; explore your inner patterns.</small><small class="atlnote">For self-inquiry, not medical advice.</small></button>
+        </div>
+        <p class="hsec">Your world</p>
+        <button class="valecard" id="valeOpen" aria-label="Visit Embervale"><span class="vtw"><canvas id="valeThumb" aria-hidden="true"></canvas><span class="vdecor" id="valeThumbDecor"></span></span><span class="vc-in"><b>Embervale</b><span id="valeHomeLine"></span><small id="valeHomeNext"></small><em>Visit Embervale</em></span></button>
+      </div>
+      <div class="homemore aevumhome">
+        <p class="eyebrow">The teachings</p>
+        <h2 class="hh">The academy behind the fire</h2>
+        <div class="axshow">
+          <div class="axbg" style="background-image:var(--img6)"></div>
+          <div class="axshow-in">
+            <span class="axcrest sm" style="background-image:var(--img3)" aria-hidden="true"></span>
+            <b>Aevum Academy</b>
+            <p>Emberkind is built on the teachings of Aevum Awareness Academy, where healing and awakening are taught together.</p>
+            <div class="axshow-btns"><button class="axbtn glass" id="homeAbout">What Aevum is</button><button class="axbtn glass" id="homeVision">The vision</button></div>
+            <button class="axbtn gold wide" id="homeAcademy">Explore the Academy <svg viewBox="0 0 24 24" aria-hidden="true" class=""><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          </div>
+        </div>
+        <button class="hcomm" id="homeCommunity"><span class="hci"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="9" r="3"/><circle cx="16" cy="9" r="3"/><path d="M3 19c.8-3 2.8-4.5 5-4.5s4.2 1.5 5 4.5M11 19c.8-3 2.8-4.5 5-4.5s4.2 1.5 5 4.5"/></svg></span><span class="hct"><b>Community</b><small>Others sitting by the same fire. Share what's real, gently.</small></span><span class="hcg">&#8250;</span></button>
+        <div class="hquotes">
+          <blockquote>"We're all just walking each other home."<cite>Ram Dass</cite></blockquote>
+        </div>
+        <p class="closing2">You're always welcome here.</p>
+      </div>
+    </section>
+
+    <!-- EMBERVALE -->
+    <section class="view" id="view-vale" aria-label="Embervale">
+      <div class="page vpage">
+                <h1>Embervale</h1>
+        <p class="lede">Every practice helps your world grow. Nothing here ever fades, and you can never fall behind.</p>
+        <div class="vwrap" id="valeWrap"><canvas id="valeCanvas" class="valecanvas" role="img" aria-label="Your Embervale"></canvas><div class="vdecor" id="valeDecor"></div></div>
+        <button class="link varr" id="valeArrange">Arrange decorations</button>
+        <p class="vcount" id="valeCount"></p>
+        <button class="vgo" id="valeBreathe">Breathe to help it grow</button>
+        <div id="valeSeason"></div>
+        <div id="valeList"></div>
+        <button class="link vprev" id="valePrev"></button>
+      </div>
+    </section>
+
+    <!-- SAFETY, PRIVACY AND TERMS -->
+    <div id="slot-legal"></div><script src="js/views-legal.js?v=3.9.3"></script>
+
+    <!-- FOCUS TOGETHER -->
+    <section class="view" id="view-focus" aria-label="Task buddy">
+      <div class="page fpage">
+        <button class="back2" id="focusBack">&#8249; Back</button>
+        <div id="fSetup">
+          <h1>Task buddy</h1>
+          <p class="lede">Some things are easier with someone beside you. This is body doubling: a companion sits with you while you do one small thing, breaks it into easy steps and checks in gently along the way.</p>
+          <span class="flabel">Who sits with you</span>
+          <div class="fpick" id="fPick" role="radiogroup" aria-label="Who sits with you"></div>
+          <label class="flabel" for="fTask">What's the one thing?</label>
+          <input class="ftask" id="fTask" maxlength="80" placeholder="Reply to one email, fold the washing..." autocomplete="off">
+          <button class="fbreak" id="fBreak">Help me break it down</button>
+          <div class="fsteps" id="fSteps"></div>
+          <div class="brow fbrow"><span class="flabel">How long?</span><span class="bval" id="fLenVal">25 minutes</span></div>
+          <input type="range" class="slider fslider" id="fLen" min="5" max="120" step="5" value="25" aria-label="Session length in minutes">
+          <span class="flabel">Background sound</span>
+          <div class="chipsel fsnd" id="fSnd" role="radiogroup" aria-label="Background sound"><button role="radio" data-s="quiet" aria-pressed="true">Quiet</button><button role="radio" data-s="fire" aria-pressed="false">Fireside</button><button role="radio" data-s="rain" aria-pressed="false">Soft rain</button><button role="radio" data-s="ocean" aria-pressed="false">Ocean waves</button><button role="radio" data-s="forest" aria-pressed="false">Forest</button><button role="radio" data-s="brown" aria-pressed="false">Deep hum</button></div>
+          <div class="volrow"><span class="flabel">Volume</span><div class="volctl open fixed" id="volSetup"><button class="volbtn" type="button" aria-label="App volume" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path class="w1" d="M16 9.5a3.5 3.5 0 0 1 0 5"/><path class="w2" d="M18.5 7a7 7 0 0 1 0 10"/><path class="mx" d="M17 10l4 4M21 10l-4 4"/></svg></button><input type="range" min="0" max="100" step="1" aria-label="App volume" class="volrange"></div></div>
+          <div class="fspot"><a class="spot" id="fSpot" href="https://open.spotify.com/playlist/18xHmCULBOhn15XDd4xoMr" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></svg>Play our playlist on Spotify</a><button class="link" id="fSpotSet">Use my own playlist</button></div>
+          <label class="fspauto" id="fSpotAutoRow" hidden><input type="checkbox" id="fSpotAuto" checked><span>Play my playlist when I start</span></label>
+          <p class="fspotn" id="fSpotN">Spotify opens alongside Emberkind and the background sound turns to Quiet. Your session keeps time while you listen.</p>
+          <button class="vgo" id="fStart">Start together</button>
+          <p class="quiet" id="fReward">Stop whenever you need. Two minutes or more lights a lantern on Embervale's path.</p>
+        </div>
+        <div id="fRun" hidden>
+          <div class="fav"><span id="fAv"></span><svg class="fnote" viewBox="0 0 40 30" aria-hidden="true"><rect x="2" y="4" width="36" height="24" rx="3" fill="#F4E9D6"/><path d="M20 4v24" stroke="#C9B89A" stroke-width="1.2"/><path d="M6 11h10M6 15h9M6 19h10M24 11h10M24 15h8" stroke="#A8957A" stroke-width="1.1" stroke-linecap="round"/><path class="fpen" d="M30 18l6-10 2 1.2-6 10-2.4 1z" fill="#6B4A2E"/></svg></div>
+          <p class="fwho" id="fWho"></p>
+          <div class="ftime" id="fTime">10:00</div>
+          <div class="bbar fbar"><i id="fBar"></i></div>
+          <p class="fline" id="fLine"></p>
+          <div class="fcheck" id="fCheck" hidden>
+            <p>How's it going?</p>
+            <div class="fbtns"><button data-c="ok">On track</button><button data-c="drift">I drifted</button><button data-c="stuck">I'm stuck</button></div>
+          </div>
+          <div class="freset" id="fReset" hidden><div class="forb" id="fOrb"></div><p id="fResetT">Breathe in</p><button class="blink" id="fResetEnd">Back to it</button></div>
+          <div class="fsteps frun" id="fRunSteps"></div>
+          <div class="fvolrow"><div class="volctl open fixed" id="volRun"><button class="volbtn" type="button" aria-label="App volume" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path class="w1" d="M16 9.5a3.5 3.5 0 0 1 0 5"/><path class="w2" d="M18.5 7a7 7 0 0 1 0 10"/><path class="mx" d="M17 10l4 4M21 10l-4 4"/></svg></button><input type="range" min="0" max="100" step="1" aria-label="App volume" class="volrange"></div></div>
+          <div class="fctl"><button class="vgo2" id="fPause">Pause</button><button class="vgo2" id="fBreath">1-minute reset</button><button class="vgo2" id="fEnd">I'm done</button></div>
+        </div>
+        <div id="fAfter" hidden>
+          <h1 id="fAfterT">Time to rest your eyes</h1>
+          <p class="lede" id="fAfterS"></p>
+          <div class="bfeel fres" id="fRes"><button data-r="done">Finished it</button><button data-r="start">Made a start</button><button data-r="rest">Not today, and that's okay</button></div>
+          <p class="lede" id="fResp"></p>
+          <button class="vgo" id="fAgain">Sit together again</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHECK-IN: mood, journal, insights -->
+    <section class="view" id="view-track" aria-label="Check-in">
+      <div class="page tpage">
+        <button class="back2" id="trackBack">&#8249; Back</button>
+        <h1>Check-in</h1>
+        <div class="seg ttabs" id="tTabs" role="tablist"><button role="tab" data-t="today" aria-checked="true">Today</button><button role="tab" data-t="journal" aria-checked="false">Journal</button><button role="tab" data-t="insights" aria-checked="false">Insights</button></div>
+        <p class="tdata" id="tData" hidden><span id="tDataTxt">Saved only on this device.</span> <button type="button" id="tBackup">Back up</button></p>
+        <div id="tToday">
+          <div class="tcard"><p class="tq" id="tQ">How are you, right now?</p><div class="moods" id="tMoods"></div><p class="tfine">No right answer. A tap is enough.</p></div>
+          <div class="tcard warn" id="tWarn" hidden></div>
+          <h3 class="th3">This week</h3><div class="week" id="tWeek"></div>
+          <h3 class="th3">Today</h3><div id="tTodayList"></div>
+        </div>
+        <div id="tJournal" hidden>
+          <div class="tcard"><p class="tq">Write freely</p><div class="chipsel tprompts" id="tPrompts"></div>
+            <textarea class="tnote" id="tJText" rows="5" placeholder="Whatever's here..."></textarea><button class="vgo" id="tJSave">Keep this entry</button></div>
+          <div id="tJList"></div>
+        </div>
+        <div id="tInsights" hidden>
+          <button class="tcard topen" id="tOpenHist"><span class="tqrow"><p class="tq">Your last 30 days</p><span class="topen-l">Full history &#8250;</span></span><div id="tChart"></div><div class="pix" id="tPix"></div></button>
+          <div class="tcard"><p class="tq">What tends to help</p><div id="tTags"></div></div>
+          <div class="tcard ai" id="tAI"></div>
+        </div>
+        <p class="tfine" style="margin-top:22px">Check-ins are a private space for noticing patterns. They aren't a diagnosis or a clinical record.</p>
+      </div>
+    </section>
+
+    <!-- YOUR ROUTINES -->
+    <section class="view" id="view-routines" aria-label="Your routines">
+      <div class="page rpage">
+        <button class="back2" id="routBack">&#8249; Back</button>
+        <h1>Your routines</h1>
+        <p class="lede">Routines you've made with Siro, saved in one place. Open one to read it or download it as a PDF.</p>
+        <div id="rList"></div>
+        <div id="rOne" hidden><h2 id="rTitle"></h2><div class="rbody" id="rBody"></div>
+          <button class="evsoma rsiro" id="rSiro"><span class="evav" id="rSiroAv"></span><span>Talk it through with Siro</span></button>
+          <div class="fctl"><button class="vgo2" id="rPdf">Download as PDF</button><button class="vgo2" id="rDel">Remove</button></div></div>
+      </div>
+    </section>
+    <div id="printArea" aria-hidden="true"></div>
+
+    <!-- MEDITATE: eyes-closed practice guided by sound -->
+    <section class="view" id="view-meditate" aria-label="Meditate">
+      <div class="page mpage mnew" id="mSetup">
+        <div class="seg pswitch" role="tablist"><button role="tab" data-go="breathe" aria-checked="false">Breathe</button><button role="tab" aria-checked="true">Meditate</button></div>
+        
+        <div class="mgal"><canvas id="mGal" aria-hidden="true"></canvas></div>
+        <div class="mmodes2" id="mModes" role="radiogroup" aria-label="Kind of meditation">
+          <button role="radio" data-m="timer" aria-checked="true">Quiet timer</button>
+          <button role="radio" data-m="scan" aria-checked="false">Body scan</button>
+          <button role="radio" data-m="be" aria-checked="false">Just be</button>
+        </div>
+        <p class="bkick2 mkick" id="mKick"></p>
+        <h3 class="btitle2 mtitle" id="mTitle"></h3>
+        <p class="bctx2 mctx" id="mCtx"></p>
+        <div class="mpick"><span class="mpl">Select minutes</span><div class="mwheel" id="mWheel" role="slider" aria-label="Meditation length in minutes" tabindex="0"></div><i class="mtick" aria-hidden="true"></i></div>
+        <input type="range" id="mLen" min="1" max="45" step="1" value="10" aria-label="Meditation length in minutes" hidden>
+        <span id="mLenVal" hidden></span>
+        <button class="mgo" id="mStart"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c1 3 5 5 5 10a5 5 0 0 1-10 0c0-2.5 1.5-3.5 2-5 1 1.5 1.5 2 2.5 2C11 7.5 11 5 12 3z"/></svg>Begin</button>
+        <button class="msettings" id="mSetBtn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg><span id="mSetSum">Sound and bells</span></button>
+        <div class="bhh mhh" id="mHH"></div>
+        <div class="mcard prog" id="mProg">
+              <div class="progm" id="mMonth" role="button" tabindex="0"><div><p class="mck">This month</p><p class="mbig"><b id="mMonNow">0</b><span id="mMonGoal"> of 150 minutes</span></p><p class="mck2" id="mMonLeft"></p></div><svg class="mring" viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="32" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="7"/><circle id="mRingFill" cx="40" cy="40" r="32" fill="none" stroke="url(#mdg)" stroke-width="7" stroke-linecap="round" stroke-dasharray="201" stroke-dashoffset="201" transform="rotate(-90 40 40)"/><text id="mMonM" x="40" y="45" text-anchor="middle">OCT</text></svg></div>
+              <button class="prognext" id="mNext"><span class="bnextb" id="mNextB"></span><span class="bnextt"><small>Next to earn</small><b id="mNextT"></b><span id="mNextS"></span><span class="pbar"><i id="mNextP"></i></span><span class="bnextv" id="mNextV"></span></span></button>
+            </div>
+            <div class="mcard mci"><p class="mck">Check-in</p><h3 id="mCiT">How are you, really?</h3><p class="mck3">Tap the weather that matches your inside right now.</p><div class="mciw" id="mCiW"></div><button class="mlink" id="mCiTl">See your patterns &#8594;</button></div>
+        <p class="quiet mfoot">A ten-second settling moment comes first. Tap the screen anytime to pause or end.</p>
+
+      </div>
+      <div class="mrun" id="mRun" hidden>
+        <div class="morb" id="mOrb"></div>
+        <p class="mcue" id="mCue">Settle in</p>
+        <p class="mtime" id="mTime"></p>
+        <div class="mctl" id="mCtl"><button class="vgo2" id="mPause">Pause</button><button class="vgo2" id="mEnd">End</button></div>
+      </div>
+      <div class="page mpage" id="mAfter" hidden>
+        <h1 id="mAfterT">Welcome back</h1>
+        <p class="lede" id="mAfterS"></p>
+        <button class="vgo" id="mCheck">Check in</button>
+        <button class="bback" id="mAgain">Back to Meditate</button>
+      </div>
+    </section>
+
+    <!-- YOU: AWARDS, PATTERNS, EMBERS -->
+    <section class="view" id="view-awards" aria-label="Awards"><div class="page ypage"><button class="back2" data-back="you">&#8249; You</button>
+      <div class="yh"><h1>Achievements</h1><button class="ychip" id="awPrev">Preview all</button></div><p class="quiet" id="awSummary"></p>
+      <div class="lvlcard" id="lvlCard"></div>
+      <h2 class="awh">Closest to earning</h2><div class="pbrow brow2" id="closeRow"></div>
+      <h2 class="awh">Personal bests</h2><div class="pbrow" id="pbRow"></div>
+      <h2 class="awh">Monthly goals</h2><div class="hexrow" id="hexRow"></div>
+      <h2 class="awh">Badges</h2><div id="awards"></div></div></section>
+    <section class="view" id="view-patterns" aria-label="Your patterns"><div class="page ypage"><button class="back2" data-back="you">&#8249; You</button>
+      <h1>Your patterns</h1><div id="patterns"></div></div></section>
+    <section class="view" id="view-embers" aria-label="Embers"><div class="page ypage"><button class="back2" data-back="you">&#8249; You</button>
+      <h1>Embers</h1><p class="quiet">Small things worth carrying. When live conversations open, tap Keep this in any conversation and it lands here.</p><div id="sparkList"></div></div></section>
+
+    <!-- TOOLS -->
+    <section class="view" id="view-chats" aria-label="Chats">
+      <div class="page ckpage">
+        <h1 class="ck-title">Chats</h1>
+        <div class="ck-who" id="ckWho" role="group" aria-label="Companions"></div>
+        <button type="button" class="ck-feel">Not sure who? Start with how it feels</button>
+        <div class="ck-list" id="ckList" aria-live="polite"></div>
+        <p class="ck-note">Your conversations are private to you. Companions are AI, here alongside the people in your life, never instead of them.</p>
+      </div>
+    </section>
+
+    <!-- MOOD HISTORY -->
+    <section class="view" id="view-moods" aria-label="Your mood history"><div class="page mhist">
+      <button class="back2" data-back="track">&#8249; Check-in</button>
+      <h1>Your patterns</h1>
+      <div class="seg mhseg" id="mhSeg" role="tablist"><button data-r="week" aria-checked="false">Week</button><button data-r="month" aria-checked="true">Month</button><button data-r="all" aria-checked="false">All time</button></div>
+      <div class="mhnav"><button id="mhPrev" aria-label="Earlier">&#8249;</button><b id="mhLabel"></b><button id="mhNext" aria-label="Later">&#8250;</button></div>
+      <div class="mhbody" id="mhBody"></div>
+      <div class="mhstats" id="mhStats"></div>
+      <div class="mhday" id="mhDay"></div>
+    </div></section>
+
+    <!-- CHAT -->
+    <section class="view" id="view-chat" aria-label="Conversation">
+      <div class="chat-head" id="chatHead">
+        <button class="back" id="backBtn" aria-label="Back to the fire">&#8249;</button>
+        <span class="head-av" id="headAv"></span>
+        <div class="who"><b id="whoName"></b><small id="whoRole"></small></div>
+        <button class="head-btn" id="carryBtn">Keep this</button>
+        <button class="head-btn" id="freshBtn" aria-label="Start a fresh conversation">Fresh</button>
+      </div>
+      <div class="msgs" id="msgs" aria-live="polite"></div>
+      <div class="chips" id="chips"></div>
+      <div class="connectBar soon" id="connectBar">
+        <p><b>Companions aren't connected right now.</b> They can still introduce themselves, and everything else in Emberkind works fully. Nothing you type here is sent anywhere.</p>
+        <div class="soonacts"><button class="mpill" id="soonCheck">Check in</button><button class="mpill" id="soonBreathe">Breathe</button></div>
+      </div>
+      <p class="aiNote">AI companion. It can make mistakes and isn't professional advice. <button id="aiNoteMore">Details</button></p>
+      <form class="composer" id="composer">
+        <textarea id="box" rows="1" placeholder="Say whatever's there..." aria-label="Your message"></textarea>
+        <button class="send" id="sendBtn" type="submit" aria-label="Send"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+      </form>
+    </section>
+
+    <!-- BREATHE -->
+    <section class="view" id="view-breathe" aria-label="Breathe" data-scene="fire" data-mode="idle">
+      <div class="bscene" id="bscene">
+        <div class="firelayers">
+        <div class="sky"></div>
+        <div class="stars" id="stars2"></div>
+        <div class="moon" aria-hidden="true"></div>
+        <svg class="forest" id="forest2" viewBox="0 0 400 220" preserveAspectRatio="none" aria-hidden="true" style="bottom:40%;height:260px"></svg>
+        <div class="mist" style="bottom:38%"></div>
+        <div class="ground"></div>
+        <div class="bwarm"></div>
+        <div class="bglow"></div>
+        <div class="flies" id="flies2"></div>
+        <div class="bpit"><canvas id="bCanvas" aria-hidden="true"></canvas><button class="firetap" id="fireTap2" aria-label="Fire sound on. Tap to turn off"></button></div>
+        <div class="bhalo" id="bHalo" aria-hidden="true"></div>
+        </div>
+        <canvas class="elcanvas" id="elCanvas" aria-hidden="true"></canvas>
+        <canvas class="fxcanvas" id="fxCanvas" aria-hidden="true"></canvas>
+        <div class="bside bin" id="bIn" aria-hidden="true"><b>Breathe in</b><span>through the nose</span><span class="bsub2" id="bInS"></span><i id="bInN">4</i></div>
+        <div class="bside bout" id="bOut" aria-hidden="true"><b>Breathe out</b><span>through the mouth</span><span class="bsub2" id="bOutS"></span><i id="bOutN">6</i></div>
+        <div class="bguide" id="bGuide"><p id="bGuideT"></p></div>
+        <span class="sr" id="bLive" aria-live="polite"></span>
+        <div class="vig"></div>
+        <header class="bhead">
+          <p class="bkick" id="bKicker"></p>
+          <h2 class="btitle" id="bTitle"></h2>
+          <p class="bctx" id="bCtx"></p>
+        </header>
+        <div class="bpanel">
+          <div id="bSetup"><span class="bhandle" aria-hidden="true"></span>
+            <div class="seg pswitch" role="tablist"><button role="tab" aria-checked="true">Breathe</button><button role="tab" data-go="meditate" aria-checked="false">Meditate</button></div>
+            <div class="bscenes" id="bScenes" role="radiogroup" aria-label="Choose a scene">
+              <button role="radio" data-s="fire"><i class="th th-fire"><svg viewBox="0 0 24 24"><path d="M12 3c1 3 5 5 5 10a5 5 0 0 1-10 0c0-2.5 1.5-3.5 2-5 1 1.5 1.5 2 2.5 2C11 7.5 11 5 12 3z"/></svg></i><span>Fire</span></button>
+              <button role="radio" data-s="water"><i class="th th-water"><svg viewBox="0 0 24 24"><path d="M3 10c2-2 4-2 6 0s4 2 6 0 4-2 6 0M3 15c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/></svg></i><span>River</span></button>
+              <button role="radio" data-s="air"><i class="th th-air"><svg viewBox="0 0 24 24"><path d="M7 18a4 4 0 0 1-.5-8A5.5 5.5 0 0 1 17 8.5 4.5 4.5 0 0 1 17.5 18z"/></svg></i><span>Sky</span></button>
+              <button role="radio" data-s="earth"><i class="th th-earth"><svg viewBox="0 0 24 24"><path d="M12 21V11M12 11c0-4 3-6 7-6 0 4-3 6-7 6zM12 13c0-3-2.5-5-6-5 0 3 2.5 5 6 5z"/></svg></i><span>Earth</span></button>
+              <button role="radio" data-s="space"><i class="th th-space"><svg viewBox="0 0 24 24"><path d="M12 3l2 6.5L20.5 12 14 14l-2 7-2-7-6.5-2L10 9.5z"/></svg></i><span>Space</span></button>
+            </div>
+            <p class="bkick2" id="bKick2"></p>
+            <h3 class="btitle2" id="bTitle2"></h3>
+            <input type="range" class="slider" id="bLen" min="5" max="30" step="1" value="5" aria-label="Practice length in minutes" hidden>
+            <div class="mpick bpick"><span class="mpl">Select minutes</span><div class="mwheel" id="bWheel" role="slider" aria-label="Practice length in minutes" tabindex="0"></div><i class="mtick" aria-hidden="true"></i></div>
+            <p class="bbreaths" id="bLenVal"></p>
+            <button class="bstart bbig" id="bStart"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c1 3 5 5 5 10a5 5 0 0 1-10 0c0-2.5 1.5-3.5 2-5 1 1.5 1.5 2 2.5 2C11 7.5 11 5 12 3z"/></svg>Begin</button>
+            <button class="msettings bsettings" id="bSetBtn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg><span id="bSetSum">Sound and vibration</span></button>
+            <p class="bctx2" id="bCtx2"></p>
+            <div class="bhh" id="bHH"></div>
+            <div class="mmodes2 bpace" id="bPace" role="radiogroup" aria-label="Pace"><button role="radio" data-p="rec" aria-checked="true" id="bRec">4 in, 6 out</button><button role="radio" data-p="gentle" aria-checked="false">Gentler 3, 5</button><button role="radio" data-p="watch" aria-checked="false">Just watch</button></div>
+            <div class="mcard prog" id="bProg">
+              <div class="progm" id="bMonth" role="button" tabindex="0"><div><p class="mck">This month</p><p class="mbig"><b id="bMonNow">0</b><span id="bMonGoal"> of 150 minutes</span></p><p class="mck2" id="bMonLeft"></p></div><svg class="mring" viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="32" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="7"/><circle id="bRingFill" cx="40" cy="40" r="32" fill="none" stroke="var(--ac)" stroke-width="7" stroke-linecap="round" stroke-dasharray="201" stroke-dashoffset="201" transform="rotate(-90 40 40)"/><text id="bMonM" x="40" y="45" text-anchor="middle">OCT</text></svg></div>
+              <button class="prognext" id="bNext"><span class="bnextb" id="bNextB"></span><span class="bnextt"><small>Next to earn</small><b id="bNextT"></b><span id="bNextS"></span><span class="pbar"><i id="bNextP"></i></span><span class="bnextv" id="bNextV"></span></span></button>
+            </div>
+            <div class="mcard mci bci"><p class="mck">Check-in</p><h3 id="bCiT">How are you, really?</h3><p class="mck3">Notice how you feel before or after you breathe.</p><div class="mciw" id="bCiW"></div><button class="mlink" id="bCiTl">See your patterns &#8594;</button></div>
+            <p class="bnote">Stop anytime. Any amount counts. If you feel lightheaded, let your breath return to its own rhythm. <button class="bsafe" id="bSafety">Breathwork safety</button></p>
+
+          </div>
+          <div id="bRun" hidden>
+            <div class="bbar" role="progressbar" aria-label="Practice progress" aria-valuemin="0" aria-valuemax="100" id="bBarWrap"><i id="bBar"></i></div>
+            <div class="bmeta"><span id="bCount"></span><span id="bLeft"></span></div>
+                        <div class="bctrl">
+              <button class="ic" id="bPause" aria-label="Pause"><svg viewBox="0 0 24 24"><path class="pz" d="M9 6v12M15 6v12"/><path class="pl" d="M8 5.5v13l11-6.5z"/></svg><span>Pause</span></button>
+              <button class="ic" id="bEnd" aria-label="End"><svg viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="2"/></svg><span>End</span></button>
+            </div>
+          </div>
+          <div id="bAfter" hidden>
+            <h3 class="bat" id="bAfterTitle"></h3>
+            <p class="bas" id="bAfterSub"></p>
+            <p class="bq">How does your body feel now?</p>
+            <div class="bfeel" id="bFeel">
+              <button data-f="more" aria-pressed="false"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M9 10v.6M15 10v.6"/><path d="M8.2 15.4c1.2-1 2.5-1 3.8 0s2.6 1 3.8 0"/></svg>Still a lot</button>
+              <button data-f="same" aria-pressed="false"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M9 10v.6M15 10v.6"/><path d="M8.8 15h6.4"/></svg>About the same</button>
+              <button data-f="calmer" aria-pressed="false"><svg viewBox="0 0 24 24"><circle cx="12" cy="5.2" r="2"/><path d="M12 8.2v5.2"/><path d="M12 9.6c-1.8.6-3.2 2-3.9 3.9M12 9.6c1.8.6 3.2 2 3.9 3.9"/><path d="M4.5 17.6c2.4-1.9 4.9-2.6 7.5-2.6s5.1.7 7.5 2.6"/><path d="M7.5 18.6c1.5.7 3 1 4.5 1s3-.3 4.5-1"/></svg>Calmer</button>
+            </div>
+            <p class="bmline" id="bMonthLine"></p>
+            <div class="bgrew" id="bGrew" hidden><p id="bGrewT"></p><button class="bvale" id="bVale"><canvas aria-hidden="true"></canvas><span>Visit Embervale</span></button></div>
+            <p class="bresp" id="bResp"></p>
+            <div class="bnext" id="bAfterNext"></div>
+            <button class="bback" id="bAgain">Back to breathwork</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CIRCLE -->
+    <section class="view" id="view-circle" aria-label="Community">
+      <div class="page">
+        <button class="back2" data-back="fire">&#8249; Home</button>
+        <h1>Community</h1>
+        <p>Others sitting by the same fire. Share what's real, and go gently with each other.</p>
+        <blockquote class="cq">"Healing together is powerful, and healing in community is life-changing."<cite>Leigh, founder of Aevum</cite></blockquote>
+        <p class="question" id="question"></p>
+        <details class="agree"><summary>Community agreements</summary>
+          <p>Speak from your own experience. Listen more than you advise. No selling, no preaching. Don't share anyone's personal details, including your own. This isn't a crisis line: if you're not safe, call 000 or Lifeline on 13 11 14. <button class="link" id="circleRules">Full agreements</button></p>
+        </details>
+        <p style="margin-top:12px"><a class="link" href="https://aevum.mvt.so/" target="_blank" rel="noopener">Join the wider Aevum community</a></p>
+      </div>
+      <div class="feed" id="feed" aria-live="polite"></div>
+      <form class="composer" id="circleForm">
+        <input id="circleBox" maxlength="600" placeholder="Share with the Community..." aria-label="Share with the Community" autocomplete="off">
+        <button class="send" type="submit" aria-label="Share"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+      </form>
+    </section>
+
+    <!-- ACADEMY -->
+    <div id="slot-aevum"></div><script src="js/views-aevum.js?v=3.9.3"></script>
+
+    <!-- YOU -->
+    <section class="view" id="view-you" aria-label="You">
+      <div class="page ypage">
+        <div class="yhead">
+          <span class="yav" id="yAv" aria-hidden="true"></span>
+          <div class="ywho"><input class="name-in" id="nameIn" maxlength="40" placeholder="Add your name" aria-label="Your name"><p class="quiet" id="since"></p><span class="ylvl" id="yLvl"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c1 3 5 5 5 10a5 5 0 0 1-10 0c0-2.5 1.5-3.5 2-5 1 1.5 1.5 2 2.5 2C11 7.5 11 5 12 3z"/></svg>Ember level 1</span></div>
+        </div>
+        <p class="ystats" id="stats" hidden></p>
+        <div class="ystatrow"><div class="st1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c1 3 5 5 5 10a5 5 0 0 1-10 0c0-2.5 1.5-3.5 2-5 1 1.5 1.5 2 2.5 2C11 7.5 11 5 12 3z"/></svg><b id="ysMin">0</b><small>minutes</small></div><div class="st2"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5c2 2.5 2 5 0 7-2-2-2-4.5 0-7zM4 13c3 0 6 1 8 4 2-3 5-4 8-4-1 4-4 6-8 6s-7-2-8-6z"/></svg><b id="ysSes">0</b><small>sessions</small></div><div class="st3"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a4 4 0 0 1-.5-8A5.5 5.5 0 0 1 17 8.5 4.5 4.5 0 0 1 17.5 18z"/></svg><b id="ysCi">0</b><small>check-ins</small></div></div>
+        <button class="ybtn yinst" id="yInstall" hidden>Install Emberkind on this device</button>
+        <button class="yshare" id="yShare">Share my progress <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4M8 8l4-4 4 4"/><path d="M5 12v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7"/></svg></button>
+        <div class="youcards three">
+          <button class="ycard yc-check" id="youCheck"><span class="ycicons" id="ycMoods" aria-hidden="true"></span><b>Check-in</b><small id="ycCheckLine">How are you, right now?</small></button>
+          <button class="ycard yc-journal" id="youJournal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h11a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6z"/><path d="M6 3v18M9 8h7M9 12h7M9 16h4"/></svg><b>Journal</b><small id="ycJournalLine">Write freely, privately</small></button>
+          <button class="ycard yc-rout" id="youRout"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9"/><path d="M12 7v5l3 2M17 3l4 4-4 4"/></svg><b>Routines</b><small id="ycRoutLine">Made with Siro</small></button>
+        </div>
+        <div class="youcards three">
+          <button class="ycard yc-aw" id="youAwards"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="5.5"/><path d="M8.5 13.5L7 21l5-2.5 5 2.5-1.5-7.5"/></svg><b>Achievements</b><small id="ycAwLine">Badges you earn</small></button>
+          <button class="ycard yc-pat" id="youPatterns"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V5M4 19h16"/><path d="M7 15l4-4 3 3 5-6"/></svg><b>Patterns</b><small id="ycPatLine">What helps you</small></button>
+          <button class="ycard yc-emb" id="youEmbers"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c1 3 5 5 5 10a5 5 0 0 1-10 0c0-2.5 1.5-3.5 2-5 1 1.5 1.5 2 2.5 2C11 7.5 11 5 12 3z"/></svg><b>Embers</b><small id="ycEmbLine">Things worth carrying</small></button>
+        </div>
+        <section class="ysec yach"><header><h2>Achievements</h2><button class="yarr" id="yAchAll" aria-label="See all achievements"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button></header><div class="yachrow" id="yAchRow"></div></section>
+        <section class="ysec yinv"><p class="axeye" style="color:#F2B160">Share Emberkind</p><h3>Introduce someone to the fire</h3><p>Know someone who could use a calmer place to land? Send them Emberkind.</p><div class="yinvb"><button class="ygrad ember" id="yInvite">Share <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5l7 7-7 7M21 12H9a6 6 0 0 0-6 6"/></svg></button></div></section>
+        <section class="ysec"><header><h2>Comfort</h2></header>
+          <button class="yset" id="soundToggle" role="switch" aria-checked="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 9a4 4 0 0 1 0 6"/></svg><span><b>Sound</b><small>Fire and nature sounds. You can also tap the fire.</small></span><i class="yswitch"></i></button>
+          <div class="yvol"><span><b>App volume</b><small>Changes Emberkind's sounds only, not your phone.</small></span><div class="volctl open" id="volYou"><button class="volbtn" type="button" aria-label="App volume" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path class="w1" d="M16 9.5a3.5 3.5 0 0 1 0 5"/><path class="w2" d="M18.5 7a7 7 0 0 1 0 10"/><path class="mx" d="M17 10l4 4M21 10l-4 4"/></svg></button><input type="range" min="0" max="100" step="1" aria-label="App volume" class="volrange"></div></div>
+          <button class="yset" id="calmToggle" role="switch" aria-checked="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg><span><b>Low-stim mode</b><small>Calmer visuals and softer sound.</small></span><i class="yswitch"></i></button>
+          <button class="yset" id="simpleToggle" role="switch" aria-checked="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 9h8M8 13h8M8 17h5"/></svg><span><b>Basic Display</b><small>Minimise all visuals.</small></span><i class="yswitch"></i></button>
+        </section>
+        <section class="ysec yfb"><header><h2>Feedback</h2></header>
+          <p class="quiet">Found something that doesn't work, or have an idea? We'd love to hear it.</p>
+          <a class="ybtn yfbbtn" id="feedbackBtn" href="mailto:emberkindai@gmail.com?subject=Emberkind%20feedback" target="_top">Send feedback</a>
+        </section>
+        <section class="ysec"><header><h2>Your data</h2></header>
+          <p id="dataWhere">Everything you create here is saved only on this device. It isn't sent to us and we can't see it, so it isn't backed up either: clearing the app or browser data, or switching device, starts fresh. To keep a copy, tap Back up my data. It saves a file to your device, so keep it somewhere safe, like your Files app, or email it to yourself. Restore a backup loads it back, even on a new phone. Adding Emberkind to your home screen helps keep it safe. No ads, no selling, no tracking.</p>
+          <div class="ybtns"><button class="ybtn" id="legalOpen">Safety, privacy and terms</button><button class="ybtn" id="exportBtn">Back up my data</button><button class="ybtn" id="importBtn">Restore a backup</button><input type="file" id="importFile" accept="application/json,.json" hidden aria-label="Choose a backup file"><a class="ybtn" href="privacy.html" target="_blank" rel="noopener">Privacy policy page</a><a class="ybtn" href="terms.html" target="_blank" rel="noopener">Terms page</a><button class="ybtn danger" id="deleteBtn">Delete my data</button></div>
+        </section>
+        <section class="ysec yai"><header><div id="aiSection">
+        <h2>Connect companions</h2>
+        <p id="aiStatus"></p>
+        <p class="quiet">Your companions connect through Emberkind's secure server. If they can't connect, everything else keeps working: breathwork, meditation, check-ins, your journal and Task buddy.</p>
+        </div></header></section>
+        <section class="ysec yels"><header><h2>Elsewhere</h2></header>
+          <div class="ytiles"><button class="ytile" data-go2="academy"><span class="yti" style="--c:#E8B35A" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.5 6.5C6 5 9 5 12 6.8c3-1.8 6-1.8 8.5-.3v12c-2.5-1.5-5.5-1.5-8.5.3-3-1.8-6-1.8-8.5-.3z"/><path d="M12 6.8v12"/></svg></span><span class="ytx"><b>Aevum Academy</b><small>Courses and teachings</small></span><span class="yarr" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9.5 6l6 6-6 6"/></svg></span></button><button class="ytile" data-go2="circle"><span class="yti" style="--c:#E58A9B" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3"/><path d="M3.5 19c.8-3.2 3-5 5.5-5s4.7 1.8 5.5 5"/><circle cx="17" cy="9.5" r="2.3"/><path d="M15.6 14.3c2.3-.4 4.3 1 4.9 3.7"/></svg></span><span class="ytx"><b>Community</b><small>The circle around the fire</small></span><span class="yarr" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9.5 6l6 6-6 6"/></svg></span></button><button class="ytile" id="aboutBtn2"><span class="yti" style="--c:#8FC28A" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 20v-7.5"/><path d="M12 12.5c0-4.2 3-6.8 7.5-6.8 0 4.2-3 6.8-7.5 6.8z"/><path d="M12 14.5C12 11.4 9.7 9 6 9c0 3.1 2.3 5.5 6 5.5z"/></svg></span><span class="ytx"><b>What Aevum&nbsp;is</b><small>The story and the why</small></span><span class="yarr" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9.5 6l6 6-6 6"/></svg></span></button><a class="ytile" href="https://aevum.mvt.so/" target="_blank" rel="noopener"><span class="yti" style="--c:#7FB6E8" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2.6"/><path d="M11 17.6h2"/></svg></span><span class="ytx"><b>Aevum app</b><small>Classes, events, community</small></span><span class="yarr" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 16L16 8M10 8h6v6"/></svg></span></a><a class="ytile" href="https://www.instagram.com/aevumacademy/" target="_blank" rel="noopener"><span class="yti" style="--c:#B898F0" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="14" rx="3.2"/><circle cx="9" cy="10" r="1.7"/><path d="M5 17.5l4.5-4.5 3 3 2.5-2.5 4 4"/></svg></span><span class="ytx"><b>Instagram</b><small>@aevumacademy</small></span><span class="yarr" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 16L16 8M10 8h6v6"/></svg></span></a><a class="ytile ytLink" target="_blank" rel="noopener"><span class="yti" style="--c:#F08A6C" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><path d="M10.3 8.9l5 3.1-5 3.1z"/></svg></span><span class="ytx"><b>YouTube</b><small>Practices and talks</small></span><span class="yarr" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 16L16 8M10 8h6v6"/></svg></span></a><a class="ytile yspot" id="spotTile" href="https://open.spotify.com/playlist/18xHmCULBOhn15XDd4xoMr" target="_blank" rel="noopener"><span class="yti solid" style="--c:#1DB954" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></svg></span><span class="ytx"><b>Aevum playlist</b><small>Music for safety and calm</small></span><span class="yarr" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 16L16 8M10 8h6v6"/></svg></span></a><button class="ytile help" id="helpBtn2"><span class="yti" style="--c:#F2A04A" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 19.6s-7-4.3-7-9.7A4 4 0 0 1 12 7.6a4 4 0 0 1 7 2.3c0 5.4-7 9.7-7 9.7z"/></svg></span><span class="ytx"><b>Need a person?</b><small>Australian support lines, any time</small></span><span class="yarr" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9.5 6l6 6-6 6"/></svg></span></button></div>
+        </section>
+        <p class="quiet yfoot">Your conversations with companions are private to you. The Community is shared with everyone in it. Emberkind companions are AI, here alongside the people in your life, never instead of them.</p>
+        <p class="yrel">Emberkind Release 3.9.3</p>
+      </div>
+    </section>
+  </main>
+
+  <nav class="tabs" aria-label="Sections">
+    <button type="button" data-view="fire" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.6 20.2v-8.4a7.4 7.4 0 0 1 14.8 0v8.4"/><path d="M2.8 20.2h18.4"/><path d="M12 17.9c-1.8 0-2.9-1.1-2.9-2.6 0-1.4.9-2.3 1.6-3.1.2.9.6 1.4 1.2 1.6-.1-1.4.4-2.6 1.3-3.4.3 1.6 1.7 2.5 1.7 4.4 0 1.9-1.2 3.1-2.9 3.1z"/></svg><span>Home</span></button>
+    <button type="button" data-view="chats"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.6c4.6 0 8.4 3 8.4 6.7S16.6 18 12 18c-1 0-2-.1-2.9-.4l-4 1.9.9-3.3C4.5 15 3.6 13.2 3.6 11.3 3.6 7.6 7.4 4.6 12 4.6z"/><circle cx="8.6" cy="11.3" r=".55"/><circle cx="12" cy="11.3" r=".55"/><circle cx="15.4" cy="11.3" r=".55"/></svg><span>Chats</span></button>
+    <button type="button" data-view="vale"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.6 20.4h18.8"/><path d="M4.4 20.4v-6.1l4.3-3.7 4.3 3.7v6.1"/><path d="M7.4 20.4v-2.8h2.6v2.8"/><path d="M13 14.6l3.4-3 3.4 3v5.8"/><path d="M15.7 16.6h1.4"/><path d="M11 12.4V10"/><path d="M11 8.2c.9-.5.9-1.4.2-1.9s-.6-1.4.3-1.9"/></svg><span>Embervale</span></button>
+    <button type="button" data-view="breathe"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h10a3 3 0 1 0-3-3M4 13h14a3 3 0 1 1-3 3M4 17h6"/></svg><span>Regulate</span></button>
+    <button type="button" data-view="you"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.2-4 4.4-6 8-6s6.8 2 8 6"/></svg><span>You</span></button>
+  </nav>
+
+  <!-- WELCOME -->
+  <div class="welcome ob" id="welcome" role="dialog" aria-modal="true" aria-labelledby="wTitle">
+    <div class="ob-in">
+      <header class="ob-brand">
+        <span class="ob-logo" aria-hidden="true"></span>
+        <p class="ob-by">Emberkind</p>
+        <h1 id="wTitle">Welcome home</h1>
+        <p class="ob-tag">Soft by design, for adults who feel deeply.</p>
+      </header>
+      <p class="ob-lead">A quiet place to land, any hour, with four companions by the fire.</p>
+      <blockquote class="ob-quote">Nothing in you is broken. Every reaction once kept you safe. And beneath it all, awareness is already home.</blockquote>
+      <div class="ob-action">
+        <p class="ob-data" id="obData" hidden><b>Your data stays on this device.</b> Clearing the app's data erases it, so back up from You now and then.</p>
+        <label class="ob-agree"><input type="checkbox" id="wAge"><span>I'm 18 or over, and I agree to the <button type="button" id="wTerms">Terms of use</button> and <button type="button" id="wPriv">Privacy policy</button>.</span></label>
+        <button class="ob-go" id="comeIn" disabled>Sit by the fire</button>
+        <nav class="ob-links" aria-label="More information"><button id="wLegal">Safety and privacy</button><button id="wHelp">Need a person?</button></nav>
+        <p class="ob-fine">Emberkind supports wellbeing, not medical care. Companions are AI and can make mistakes.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="inst" id="instBar" role="dialog" aria-label="Install Emberkind" hidden>
+    <img class="insti" src="icon-192.png" alt="" aria-hidden="true" width="44" height="44" loading="lazy">
+    <div class="instt"><b>Install Emberkind</b><small id="instTxt"></small></div>
+    <button class="instgo" id="instGo">Install</button>
+    <button class="instx" id="instX" aria-label="Not now">&#215;</button>
+  </div>
+  <div id="slot-checkin"></div><script src="js/views-checkin.js?v=3.9.3"></script>
+  <div class="svol" id="sVol" hidden><button class="svbtn" id="sVolBtn" aria-label="Volume" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path class="w1" d="M16 9.5a3.5 3.5 0 0 1 0 5"/><path class="w2" d="M18.5 7a7 7 0 0 1 0 10"/></svg></button>
+    <div class="svpop" id="sVolPop" role="slider" aria-label="Volume" aria-orientation="vertical" aria-valuemin="0" aria-valuemax="100" tabindex="0"><span class="svtrack"><i class="svfill" id="sVolFill"></i><b class="svthumb" id="sVolThumb"></b></span></div></div>
+  <div class="ev" id="entryView" role="dialog" aria-modal="true" aria-label="Journal entry" hidden>
+    <div class="evsky" id="evSky"></div>
+    <header class="cihead"><button class="cibtn" id="evClose" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button><span></span><span></span></header>
+    <div class="evbody"><p class="cik" id="evDate"></p><span class="evart" id="evArt"></span><h2 id="evMood"></h2><p class="evmeta" id="evMeta"></p><div class="evtags" id="evTags"></div><div class="evnote" id="evNote"></div></div>
+    <footer class="cifoot"><button class="evsoma" id="evSoma"><span class="evav" id="evAv"></span><span>Talk it through with Soma</span></button></footer>
+  </div>
+  <div class="scrim" id="scrim"></div>
+  <div id="slot-sheets"></div><script src="js/views-sheets.js?v=3.9.3"></script>
+  <div class="toast" id="toast" role="status"></div>
+</div>
+
+<script src="config.js?v=3.9.3"></script>
+<script src="standalone.js?v=3.9.3"></script>
+<script src="js/art.js?v=3.9.3"></script>
+<script src="js/app-01.js?v=3.9.3"></script>
+<script src="js/app-02.js?v=3.9.3"></script>
+<script src="js/vale-art.js?v=3.9.3"></script>
+<script src="js/vale-world.js?v=3.9.3"></script>
+<script src="js/vale-village.js?v=3.9.3"></script>
+<script src="js/vale-life.js?v=3.9.3"></script>
+<script src="js/vale-sound.js?v=3.9.3"></script>
+<script src="js/vale-events.js?v=3.9.3"></script>
+<script src="js/vale-fauna.js?v=3.9.3"></script>
+<script src="js/ek-catnav.js?v=3.9.3"></script>
+<script src="js/vale.js?v=3.9.3"></script>
+<script src="js/vale-cards.js?v=3.9.3"></script>
+<script src="js/vale-tut.js?v=3.9.3"></script>
+<script src="js/vale-intro.js?v=3.9.3"></script>
+<script src="js/app-03.js?v=3.9.3"></script>
+<script src="js/app-04.js?v=3.9.3"></script>
+<script src="js/app-05.js?v=3.9.3"></script>
+<script src="js/app-06.js?v=3.9.3"></script>
+<script src="js/app-07.js?v=3.9.3"></script>
+<script src="js/app-08.js?v=3.9.3"></script>
+<script src="js/app-09.js?v=3.9.3"></script>
+<script src="js/app-10.js?v=3.9.3"></script>
+<script src="js/app-11.js?v=3.9.3"></script>
+<script src="js/app-12.js?v=3.9.3"></script>
+<script src="js/app-13.js?v=3.9.3"></script>
+<script src="js/world.js?v=3.9.3"></script>
+<script src="js/weather.js?v=3.9.3"></script>
+<script src="js/journey.js?v=3.9.3"></script>
+<script src="js/app-14.js?v=3.9.3"></script>
+<script src="js/ek-cards.js?v=3.9.3"></script>
+<script src="js/ek-badges.js?v=3.9.3"></script>
+<script src="js/ek-companions.js?v=3.9.3"></script>
+<script src="js/ek-immersive.js?v=3.9.3"></script>
+<script src="js/ek-focus.js?v=3.9.3"></script>
+<script src="js/ek-motion.js?v=3.9.3"></script>
+<script src="js/ek-homegl.js?v=3.9.3"></script>
+<script src="js/ek-home.js?v=3.9.3"></script>
+<script src="js/ek-sky.js?v=3.9.3"></script>
+<script src="js/ek-guide.js?v=3.9.3"></script>
+<script src="js/ek-fresh.js?v=3.9.3"></script>
+<script src="js/ek-checkin2.js?v=3.9.3"></script>
+<script src="js/ek-journal.js?v=3.9.3"></script><script src="js/chat-room.js?v=3.9.3"></script><script src="js/chat-attach.js?v=3.9.3"></script><script src="js/chat-sessions.js?v=3.9.3"></script>
+<script src="js/ek-chats.js?v=3.9.3"></script>
+</body>
+</html>

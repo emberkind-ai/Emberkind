@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en-AU"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Delete your Emberkind account</title>
+<link rel="stylesheet" href="css/fonts.css"><link rel="icon" href="icon-48.png">
+<style>body{margin:0;background:#0B1220;color:#F2EADF;font-family:Nunito,system-ui,sans-serif;line-height:1.6}main{max-width:620px;margin:0 auto;padding:32px 22px 48px}
+h1{font-family:Fraunces,Georgia,serif;font-weight:500;font-size:30px;margin:0 0 6px}h2{font-size:17px;margin:26px 0 6px}p,li{color:#D8CFC2;font-size:15.5px}a{color:#F2C38A}
+.card{margin-top:22px;padding:18px;border-radius:18px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1)}#st{min-height:1.6em;color:#F6EEE2}
+#delBtn{margin-top:12px;min-height:48px;padding:0 22px;border:0;border-radius:24px;background:#E0594A;color:#fff;font:inherit;font-weight:700;font-size:15.5px;cursor:pointer}#delBtn[hidden]{display:none}</style></head>
+<body><main><h1>Delete your Emberkind account</h1><p>You can delete your account, and everything stored with it, at any time. There are three ways.</p>
+<h2>1. In the app</h2><p>Open Emberkind, go to <b>You</b>, then <b>Account</b>, and choose <b>Delete my account</b>.</p>
+<h2>2. On this page</h2><div class="card"><p id="st">Loading sign-in&hellip;</p><div id="gbox"></div><button id="delBtn" type="button" hidden>Delete my account</button></div>
+<h2>3. By email</h2><p>Email <a href="mailto:emberkindai@gmail.com?subject=Delete%20my%20Emberkind%20account">emberkindai@gmail.com</a> from the email address on your account. We'll delete it within 7 days and let you know.</p>
+<h2>What gets deleted</h2><ul><li>Your name, email address, Google account identifier and profile photo</li><li>Everything saved to your account (check-ins, journal, practice, Embervale, settings and conversations)</li><li>Your sign-in sessions</li></ul>
+<h2>How long it takes</h2><p>Deletion happens straight away. Our hosting provider's automatic recovery backups may keep a copy for up to 30 days, after which it expires. Reports you sent about a reply are kept for up to 90 days, then deleted automatically.</p>
+<p>To delete your data but keep your account, see <a href="delete-data.html">Delete your Emberkind data</a>.</p>
+<p><a href="privacy.html">Privacy policy</a></p></main>
+<script src="config.js"></script>
+<script>
+(async()=>{const API=String((window.EK_CONFIG||{}).apiBase||"").replace(/\/+$/,""),st=document.getElementById("st"),box=document.getElementById("gbox"),del=document.getElementById("delBtn");let token=null;const say=t=>{st.textContent=t;};
+ try{const c=await(await fetch(API+"/v1/config")).json();if(!c.accounts){say("Sign-in isn't switched on, so there's no account to delete here. If you think you have one, email us.");return;}
+  await new Promise((res,rej)=>{const s=document.createElement("script");s.src="https://accounts.google.com/gsi/client";s.onload=res;s.onerror=rej;document.head.appendChild(s);});
+  say("Sign in with the Google account you used for Emberkind.");
+  google.accounts.id.initialize({client_id:c.googleClientId,ux_mode:"popup",callback:async r=>{const x=await fetch(API+"/v1/auth/google",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({credential:r.credential})});const j=await x.json().catch(()=>({}));
+    if(x.ok&&j.token){token=j.token;say("Signed in as "+(j.user.email||j.user.name)+". Press the button to delete this account.");box.hidden=true;del.hidden=false;}else say("Sign-in didn't work. Please try again.");}});
+  google.accounts.id.renderButton(box,{theme:"filled_black",size:"large",shape:"pill",text:"continue_with"});}
+ catch(e){say("Sign-in couldn't load. You can email us instead.");}
+ del.onclick=async()=>{if(!token)return;del.disabled=true;const x=await fetch(API+"/v1/account/delete",{method:"POST",headers:{authorization:"Bearer "+token}}).catch(()=>null);
+  if(x&&x.ok){say("Your Emberkind account has been deleted.");del.hidden=true;}else{say("That didn't work. Please try again, or email us.");del.disabled=false;}};})();
+</script></body></html>

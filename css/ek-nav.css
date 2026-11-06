@@ -1,0 +1,194 @@
+/* ================= 3.9.0: PRIMARY NAVIGATION, CHATS, CLASSIC COMPANIONS =================
+   One place for the tab bar's active state (the old dot and icon-only rules in app-01/app-02 were removed), the
+   Chats destination, and how Classic companion artwork sits in the companion screen and name tabs.
+   Design rules: warm amber, moss and earth; no heavy drop shadows; a soft glow only marks what is active. */
+
+/* ---------- tab bar: the whole active tab is lit, not just its icon ---------- */
+.tabs button{isolation:isolate;border-radius:16px;transition:color .2s ease}
+.tabs button::before{content:"";position:absolute;inset:3px 3px 4px;z-index:-1;border-radius:15px;pointer-events:none;
+  background:rgba(255,176,90,.13);box-shadow:inset 0 0 0 1px rgba(255,196,128,.24);opacity:0;transition:opacity .25s ease}
+.tabs button[aria-current="page"]{color:var(--ember-hot)}
+.tabs button[aria-current="page"]::before{opacity:1}
+.tabs button[aria-current="page"] svg{filter:drop-shadow(0 0 5px rgba(255,170,80,.45))}
+.simple .tabs button::before,.calm .tabs button::before{transition:none}
+
+/* ---------- Chats ---------- */
+#view-chats{background:radial-gradient(70% 34% at 50% 0%,rgba(255,170,80,.10),transparent 72%),linear-gradient(#1B140F,#130E0B 55%,#0E0A08)}
+.ckpage{padding-top:calc(env(safe-area-inset-top,0px) + 18px)}
+.ck-title{font-family:var(--round);font-weight:800;font-size:30px;line-height:1.1;color:#FFE7C2;margin:6px 0 2px}
+/* the four companions together, as if around a small fire on moss */
+.ck-who{position:relative;display:grid;grid-template-columns:repeat(4,1fr);align-items:end;gap:2px;margin:4px -8px 0;padding:22px 0 30px;isolation:isolate}
+.ck-who::before{content:"";position:absolute;left:-12%;right:-12%;bottom:0;height:72%;z-index:-2;pointer-events:none;
+  background:radial-gradient(58% 56% at 50% 100%,rgba(96,124,60,.40),rgba(62,82,40,.16) 58%,transparent 78%)}
+.ck-ember{position:absolute;left:50%;bottom:34px;width:160px;height:120px;margin-left:-80px;z-index:-1;border-radius:50%;pointer-events:none;
+  background:radial-gradient(closest-side,rgba(255,192,104,.40),rgba(255,140,60,.15) 55%,transparent);animation:ckglow 5s ease-in-out infinite}
+@keyframes ckglow{50%{opacity:.72;transform:scale(.95)}}
+.ck-mate{display:flex;flex-direction:column;align-items:center;gap:1px;min-height:44px;padding:6px 2px 4px;border-radius:18px;color:inherit;text-align:center}
+.ck-m0,.ck-m3{transform:translateY(12px)}/* the outer two sit a little closer: a gentle arc */
+.ck-fig img{display:block;width:clamp(58px,17vw,80px);height:auto;transition:transform .35s ease;
+  filter:drop-shadow(0 0 14px color-mix(in srgb,var(--c) 32%,transparent))}
+.ck-mate:active .ck-fig img{transform:scale(.95)}
+.ck-mate b{margin-top:6px;font-family:var(--round);font-weight:800;font-size:16px;color:var(--c)}
+.ck-mate small{max-width:98px;font-size:11.5px;line-height:1.3;color:rgba(255,236,214,.72)}
+.ck-feel{display:block;margin:4px auto 0;padding:12px 10px;min-height:44px;font-size:14.5px;color:rgba(255,226,186,.86);text-decoration:underline;text-decoration-color:rgba(255,214,160,.35);text-underline-offset:5px}
+.ck-h{margin:22px 2px 10px;font-family:var(--round);font-size:15px;font-weight:800;color:rgba(255,231,194,.86)}
+.ck-rows{display:flex;flex-direction:column;gap:8px}
+.ck-row{display:flex;align-items:center;gap:12px;width:100%;min-height:64px;padding:10px 12px;border-radius:18px;text-align:left;color:inherit;
+  background:rgba(255,236,210,.045);box-shadow:inset 0 0 0 1px rgba(255,214,160,.10);transition:background .2s ease}
+.ck-row:active{background:rgba(255,236,210,.09)}
+.ck-av{flex:none;display:grid;place-items:center;width:46px;height:46px;border-radius:50%;background:radial-gradient(closest-side,color-mix(in srgb,var(--c) 24%,transparent),transparent)}
+.ck-av img{width:36px;height:auto}
+.ck-tx{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.ck-tx b{font-size:15.5px;font-weight:700;color:#FFF1DE;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ck-tx small{font-size:12.5px;color:rgba(255,236,214,.62)}
+.ck-tx small em{font-style:normal;font-weight:700;color:var(--c)}
+.ck-last{font-size:13px;color:rgba(255,236,214,.55);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ck-go{flex:none;width:18px;height:18px;fill:none;stroke:rgba(255,214,160,.5);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ck-empty{margin:26px 12px;text-align:center;font-size:15px;line-height:1.5;color:rgba(255,236,214,.72)}
+.ck-empty p{margin:0 0 12px}
+.ck-retry{min-height:44px;padding:10px 20px;border-radius:999px;color:#2A1A0C;font-weight:800;background:linear-gradient(#FFC983,#F2A04A)}
+.ck-note{margin:30px 10px 14px;text-align:center;font-size:12.5px;line-height:1.5;color:rgba(255,236,214,.5)}
+@media (prefers-reduced-motion:reduce){.ck-ember{animation:none}.ck-fig img{transition:none}}
+.simple .ck-ember,.calm .ck-ember{animation:none}
+.simple .ck-fig img{filter:none}
+
+/* ---------- Classic companion artwork in the companion screen and the name tabs ----------
+   Classic art is a 256 px illustration, so it is shown whole and centred with a soft glow in the companion's colour,
+   never stretched to fill the screen like the realistic portraits. */
+.ekstory.ekcl .ekoart{display:grid;place-items:center;background:radial-gradient(52% 46% at 50% 56%,color-mix(in srgb,var(--c) 26%,transparent),transparent 72%)}
+.ekstory.ekcl .ekoart img{width:min(56vw,240px)!important;height:auto!important;max-height:none!important;object-fit:contain!important;margin:0 auto;
+  filter:drop-shadow(0 0 26px color-mix(in srgb,var(--c) 38%,transparent));-webkit-mask-image:none!important;mask-image:none!important}
+#app.ekclassic .ekct img{object-fit:contain;object-position:50% 40%;background:radial-gradient(closest-side,color-mix(in srgb,var(--c) 26%,transparent),transparent)}
+
+/* Inner Atlas on Home keeps its safety note (it used to live only on the removed Tools page) */
+#atlasCard small.atlnote{display:block!important;margin-top:4px;font-size:12px!important;opacity:.78;-webkit-line-clamp:unset!important}
+
+/* ---------- Part 5: category arrows (js/ek-catnav.js) ---------- */
+.ekcat{display:flex;align-items:center;gap:0;min-width:0}
+.ekcat>.evtabs{flex:1;min-width:0}
+.ekcat-a{flex:none;display:grid;place-items:center;width:40px;height:44px;padding:0;background:none;border:0;color:#F2C27A;transition:opacity .2s ease}
+.ekcat-a svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.ekcat-a:disabled{opacity:.22}
+.ekcat-a:not(:disabled):active{opacity:.6}
+.evcards.ekcat-in{animation:ekcatin .24s ease both}
+@keyframes ekcatin{from{opacity:.25}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.evcards.ekcat-in{animation:none}}
+.simple .evcards.ekcat-in,.calm .evcards.ekcat-in{animation:none}
+
+/* ---------- Part 6B: the invitation sits inside the fire scene, below the companions ---------- */
+.scenewrap .ekinvite{position:absolute;left:0;right:0;z-index:7;margin:0;padding:10px 24px;text-align:center;pointer-events:none;
+  font-family:var(--round);font-size:16px;font-weight:600;line-height:1.3;color:#F6E4BE;text-shadow:0 1px 6px rgba(0,0,0,.85);
+  background:radial-gradient(46% 70% at 50% 50%,rgba(14,10,8,.55),rgba(14,10,8,0) 100%)}
+/* Classic: companions' labels end about 636 px into the scene; the invitation, then Sound and Day/Now, then the
+   sun-and-moon tip, all inside the painting's dark lower edge (the scene is 812 px tall) */
+#app.ekclassic .scenewrap .ekinvite{top:638px}
+/* Milky Way: just above the scene's lower edge, under the companions and the fire */
+#app.ekpaint .scenewrap .ekinvite{top:auto;bottom:calc(var(--ekinvB,86px))}
+/* Home keeps an AI note beside the companions (it used to sit in the removed "Who's by the fire" section) */
+#view-fire .under .ekainote{margin:6px auto 0;max-width:330px;padding:0 16px;text-align:center;font-size:12.5px;line-height:1.45;color:rgba(255,236,214,.55)}
+/* first-visit whispers sit on the scene's lower edge: while one shows, the sun-and-moon tip steps aside for it */
+#app .scenewrap .hcTip{transition:opacity .3s ease}
+#app.ekclassic .scenewrap:has(.ekhint.on) .hcTip{opacity:0}
+#app .scenewrap .ekhint{background:rgba(24,16,10,.88)!important}
+/* Classic has Now beside Day, so the older "Back to real time" pill under the sky is not needed */
+#app.ekclassic .scenewrap .nowBtn{display:none!important}
+
+/* streaks: the "any amount counts" line under the two streak cards (You) */
+.eyany{margin:10px 4px 2px;text-align:center;font-size:13px;line-height:1.45;color:rgba(255,236,214,.66)}
+/* Part 13: Inner Atlas on Home shows its whole description, never clipped */
+#atlasCard small.atldesc{display:block!important;-webkit-line-clamp:unset!important;line-clamp:unset!important;overflow:visible!important;max-height:none!important;white-space:normal!important}
+/* Task buddy: a quiet pencil on each step before starting (reword or remove it) */
+.fstep .fedit{flex:none;margin-left:auto;display:grid;place-items:center;width:44px;height:44px;margin-block:-8px;padding:0;background:none;border:0;color:rgba(255,214,160,.62)}
+.fstep .fedit svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.fstep .fedit:active{color:#FFC983}
+#fSteps .fstep{display:flex!important;align-items:center;gap:10px}
+#fSteps .fstep>span{flex:1;min-width:0}
+
+/* Part 11: companion screens. Thin gold chevrons, light and easy to tap (44 x 72), no background */
+.ekstory .ekmnav{position:fixed;top:42%;z-index:6;display:grid;place-items:center;width:44px;height:72px;margin-top:-36px;padding:0;background:none;border:0;color:#F2C27A;opacity:.85}
+.ekstory .ekmnav.l{left:2px}.ekstory .ekmnav.r{right:2px}
+.ekstory .ekmnav svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 4px rgba(0,0,0,.6))}
+.ekstory .ekmnav:active{opacity:1;color:#FFD08A}
+/* swapping companions: no fade, no vertical lift; the card's own sideways slide is the only motion */
+.ekstory.ekswap{transition:none!important;opacity:1!important;transform:none!important}
+
+/* Part 10: Classic shooting stars (js/ek-sky.js). A thin warm-white streak with a soft head, gone in about a second */
+.stars .ekshoot{position:absolute;width:130px;height:2px;margin:-1px 0 0 -130px;border-radius:2px;pointer-events:none;transform-origin:100% 50%;opacity:0;
+  background:linear-gradient(90deg,rgba(255,246,224,0),rgba(255,246,224,.8) 82%,#FFFDF5);animation:ekshoot 1.15s cubic-bezier(.3,.6,.4,1) forwards}
+.stars .ekshoot::after{content:"";position:absolute;right:-3px;top:-2px;width:6px;height:6px;border-radius:50%;background:radial-gradient(#FFFDF5,rgba(255,240,210,0) 70%)}
+@keyframes ekshoot{0%{opacity:0;transform:rotate(var(--a)) translateX(-30px) scaleX(.25)}14%{opacity:1}72%{opacity:.85}100%{opacity:0;transform:rotate(var(--a)) translateX(150px) scaleX(1)}}
+@media (prefers-reduced-motion:reduce){.stars .ekshoot{display:none}}
+.simple .stars .ekshoot{display:none}
+
+/* Simple mode ("Minimise all visuals"): its text-first Home already leads with "Start with how it feels", so the
+   second link is hidden; Scene changes nothing you can see in Simple, so it waits until Simple is off */
+#app.simple #view-fire .under #feelBtn,#app.simple .ekctrl [data-go="scene"]{display:none!important}
+
+/* ---------- Part 17: responsive and accessible across 320 px phones to desktop ---------- */
+/* Embervale's tool rail scrolls above the builder bar when the screen is short (js/vale.js fitRail) */
+#valeWrap .evrail.evrail-fit{overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none;-webkit-mask-image:linear-gradient(#000 82%,transparent);mask-image:linear-gradient(#000 82%,transparent)}
+#valeWrap .evrail.evrail-fit::-webkit-scrollbar{display:none}
+/* the category chips stay between the arrows, never under them */
+.ekcat>.evtabs{margin-left:0!important;margin-right:0!important}
+.ekcat-a{width:44px}
+/* a companion's screen covers the app, so "Need a person?" moves above it, top left, clear of the close button */
+body:has(.ekstory.on) #helpBtn{z-index:410!important;left:12px!important;right:auto!important;visibility:visible!important;display:inline-flex!important}
+/* readable text: nothing under 11 px */
+.tabs button,.tabs button span{font-size:11.5px!important}
+#app:not(.person-mini):not(.app-reg) #helpBtn.person{display:inline-flex;align-items:center}
+.flabel,.ekjdate,.eybadge{font-size:11px!important}
+#valeWrap .evr small,#evTimeT,#evSeasonT,#evCompleteT,#evSoundT{font-size:11px!important}
+/* touch targets: tiny controls get an invisible larger touch area; everyday controls are at least 44 px tall */
+#hudFire,#hudCoins,#aiNoteMore,.eylink,.who{position:relative}
+#hudFire::after,#hudCoins::after,#aiNoteMore::after,.eylink::after{content:"";position:absolute;inset:-10px -6px}
+.who{min-height:44px}
+#ekLantern,#ekGear{min-width:44px!important;min-height:44px!important}
+.back2,#backBtn,#focusBack,#trackBack,.cbtn,#tBackup,.ekjfocus,.eygo,#feelBtn,.hig,.evtab,.ekochips button,.mmodes2 button,.evci{min-height:44px}
+.evci{min-width:44px}
+/* glossary links in the Classic palette (they were blue) */
+.gl,.bcard .gl{color:#F2C27A!important;text-decoration-color:rgba(242,194,122,.55)!important}
+.gl:focus-visible{outline-color:#F2C27A!important}
+/* clear space between the top-row buttons (44 px tall, from 10 px) and the Emberkind title, at every width */
+#app .scenewrap .hero .title{margin-top:8px!important}
+/* Basic Display has no (i) on Home, so settings takes the corner */
+#app.simple .ekgear{left:12px!important}
+/* (stronger selectors: these lost to more specific older rules on some screens) */
+/* the full "Need a person?" pill: readable and 44 px tall. Its compact form on focused screens (person-mini, Regulate) is
+   a dot whose words are hidden on purpose (font-size 0, label kept for screen readers): that stays, at a true 44 x 44 */
+body #app:not(.person-mini):not(.app-reg) #helpBtn.person{font-size:12.5px!important;min-height:44px!important}
+#app.person-mini #helpBtn.person,#app.app-reg #helpBtn.person{width:44px!important;height:44px!important;min-height:44px!important;font-size:0!important}
+#app .flabel,#app .ekjdate,body .flabel,body .ekjdate{font-size:11px!important}
+
+.back2,#backBtn,#focusBack,#trackBack{min-width:44px}
+/* on a 320 px phone the back-row companions sit close to the cabin: the cabin's own spot is on top, so a tap on the
+   cabin always opens Embervale and the companions keep almost all of their area */
+#scenewrap .ekspot.ekcabin{z-index:12}
+/* You: the tile titles never drop under 11 px on narrow phones */
+@media (max-width:370px){#view-you .yct b{font-size:11px!important}}
+
+/* Part 17 (second pass): the remaining 32-43 px controls, brought to 44 px. Stronger selectors where older
+   rules set a fixed height. The look stays the same; rows get a little more breathing room. */
+body #app .regswitch button{min-height:44px!important}
+body #app .mmodes2 button,body #app .seg button,body #app .chips button,body #app .remlink,body #app #fBreak{min-height:44px!important}
+body #app .mbar .mb{min-width:44px!important;min-height:44px!important}
+body #app #chatsBtn.cbtn,body #app .ekjfocus,body #app #homeInstallX{min-width:44px!important;min-height:44px!important}
+body #app #valeWrap .evr{min-height:44px!important}
+#aiNoteMore::after,.eylink::after{inset:-13px -6px!important}
+/* Breathe | Meditate: keep the 44px tap target but centre it on the capsule, so the words sit in the middle of the pill */
+body #app .regswitch button{margin:-4px 0!important;height:44px!important;display:flex!important;align-items:center;justify-content:center;line-height:1!important;padding:0 6px!important}
+/* 3.9.2: glows on selected chips, cards and buttons are never sliced by the rows they scroll in. Each row gets room
+   for the glow, and a matching negative margin keeps everything exactly where it was. */
+#evTabs.evtabs{padding:18px 18px 24px!important;margin-top:-14px!important;margin-bottom:-16px!important}
+#evCards.evcards{padding:14px 20px 26px!important;margin-top:-12px!important;margin-bottom:-24px!important}
+.chatbar{padding-top:12px!important;padding-bottom:16px!important;padding-left:12px!important;margin-top:-2px!important;margin-bottom:-14px!important;margin-left:-12px!important}
+.ekctabs{padding:16px 16px 26px!important;margin-top:2px!important;margin-bottom:0!important}
+.ekctrl{padding:16px 16px 26px!important;margin-top:2px!important;margin-bottom:-18px!important}
+.ekab-card .tutbtn{margin-left:8px!important;margin-right:8px!important}
+/* Embervale: no arrows beside the categories, so nothing is cut off; swipe the chips instead */
+.ekcat-a{display:none!important}
+/* Embervale view-only: the builder bar tucks away */
+.evbar{transition:transform .32s ease,opacity .32s ease}
+.evbar.ek-tuck{transform:translateY(105%);opacity:0;pointer-events:none}
+@media (prefers-reduced-motion:reduce){.evbar{transition:none}}
+/* 3.9.2: the Breathe and Meditate labels sit dead centre in their pills, whatever font the phone loads */
+#regSwitch button{display:flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;line-height:1.15!important}

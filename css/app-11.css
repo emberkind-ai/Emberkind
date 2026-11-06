@@ -1,0 +1,14 @@
+/* ===== 3.1.1 ===== */
+/* Inner Atlas: one centre. Five stationary rings fade outward; a pulse grows from the centre at a steady speed and
+   fades out exactly at the fifth ring (4.8s to cross, a new pulse every 2.4s); each ring brightens as it passes */
+.amand{display:none!important}
+.bdy .rg{fill:none;stroke:#F5C98A;stroke-width:.8;vector-effect:non-scaling-stroke;opacity:var(--o);animation:hxrg 2.4s ease-out infinite;animation-delay:var(--d)}
+@keyframes hxrg{0%{opacity:calc(var(--o) + .42);stroke-width:1.6}28%,100%{opacity:var(--o);stroke-width:.8}}
+.bdy .pul circle{fill:none;stroke:rgba(255,218,160,.95);stroke-width:1.8;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;opacity:0;
+  filter:drop-shadow(0 0 2px rgba(255,190,110,.9));animation:hxpul 4.8s linear infinite}
+.bdy .pul circle:nth-child(2){animation-delay:2.4s}
+@keyframes hxpul{0%{transform:scale(.01);opacity:.95}100%{transform:scale(1);opacity:0}}
+.bdy .aura{animation:hxaura 2.4s ease-in-out infinite}
+/* Tools: Journal and Task buddy are the same cards as on Home */
+@media (prefers-reduced-motion:reduce){.bdy .rg,.bdy .pul circle,.tlpage .tool.jx3 *,.tlpage .tool.bx3 *{animation:none!important}.bdy .pul circle{opacity:0}}
+.simple .bdy .rg,.simple .bdy .pul circle,.simple .tlpage .tool.jx3 *,.simple .tlpage .tool.bx3 *{animation:none!important}

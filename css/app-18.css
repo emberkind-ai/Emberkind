@@ -1,0 +1,319 @@
+/* ===== 3.5.2: Home, painted ===== */
+.scenewrap>canvas.ekpaintcv{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:0;pointer-events:none}
+/* the old drawn scene steps aside; its buttons stay and move over the painting */
+#app.ekpaint .scenewrap .skyx,#app.ekpaint .scenewrap .stars,#app.ekpaint .stage .mist,#app.ekpaint .stage .flies,#app.ekpaint .stage .ground,#app.ekpaint .stage .soil,
+#app.ekpaint .stage .nighthug,#app.ekpaint .stage .firelight,#app.ekpaint .stage .pit,#app.ekpaint .stage svg.forest,#app.ekpaint .stage svg.grassH{visibility:hidden!important}
+#app.ekpaint #ring .mate{visibility:hidden!important;pointer-events:none!important}
+#app.ekpaint .names,#app.ekpaint .scenewrap .lbl2{display:none!important}
+#app.ekpaint .scenewrap .orbit,#app.ekpaint .scenewrap .nowBtn,#app.ekpaint .scenewrap .hero{position:relative;z-index:5}
+#app.ekpaint .scenewrap .orbit{position:absolute}
+#app.ekpaint .scenewrap .hero .greet,#app.ekpaint .scenewrap .hero .sub,#app.ekpaint .scenewrap .hero .sub2{text-shadow:0 1px 3px rgba(5,10,25,.7),0 0 18px rgba(5,10,25,.55)}
+#app.ekpaint .scenewrap h1.title{text-shadow:0 2px 8px rgba(5,10,25,.55),0 0 24px rgba(5,10,25,.4)}
+.ekhits{position:absolute;inset:0;z-index:3;pointer-events:none}
+.ekhits button{position:absolute;pointer-events:auto;background:transparent;border:0;padding:0;border-radius:44%;-webkit-tap-highlight-color:transparent}
+.ekhits button:focus-visible{outline:2px solid rgba(255,214,150,.8);outline-offset:-6px}
+.scenewrap>.firetap.ekfire{position:absolute;z-index:4;background:transparent}
+/* ---------- the companions' tabs ---------- */
+.ekctabs{display:flex;gap:10px;overflow-x:auto;margin:6px -16px 18px;padding:4px 16px 8px;scrollbar-width:none;scroll-snap-type:x proximity}
+.ekctabs::-webkit-scrollbar{display:none}
+.ekct{flex:none;display:flex;align-items:center;gap:10px;min-height:58px;padding:6px 18px 6px 6px;border-radius:999px;scroll-snap-align:start;cursor:pointer;
+  background:linear-gradient(135deg,color-mix(in srgb,var(--c) 26%,#14162a),color-mix(in srgb,var(--c) 10%,#101222));border:1.5px solid color-mix(in srgb,var(--c) 55%,transparent);
+  box-shadow:0 8px 20px rgba(0,0,0,.3),inset 0 0 18px color-mix(in srgb,var(--c) 14%,transparent);transition:transform .18s}
+.ekct:active{transform:scale(.97)}
+.ekct img{width:44px;height:44px;border-radius:50%;object-fit:cover;background:radial-gradient(circle,color-mix(in srgb,var(--c) 45%,transparent),transparent 70%);box-shadow:0 0 14px color-mix(in srgb,var(--c) 50%,transparent)}
+.ekct span{display:flex;flex-direction:column;text-align:left;line-height:1.2}
+.ekct b{font:900 16px var(--round);color:var(--c)}
+.ekct small{font:600 12px var(--round);color:rgba(236,230,245,.72);max-width:170px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* ---------- a companion's story ---------- */
+.ekstory{position:fixed;inset:0;z-index:400;overflow-y:auto;opacity:0;transform:translateY(24px);transition:opacity .32s ease,transform .32s ease;-webkit-overflow-scrolling:touch}
+.ekstory.on{opacity:1;transform:none}
+.ekobg{position:fixed;inset:0;background:radial-gradient(120% 70% at 50% 18%,color-mix(in srgb,var(--c) 34%,#05060c),#05060c 70%)}
+.ekox{position:fixed;top:calc(env(safe-area-inset-top,0px) + 14px);right:14px;z-index:3;width:44px;height:44px;border-radius:50%;font-size:26px;line-height:1;color:#fff;background:rgba(10,10,20,.55);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.ekoin{position:relative;z-index:2;max-width:560px;margin:0 auto;padding:calc(env(safe-area-inset-top,0px) + 10px) 0 calc(env(safe-area-inset-bottom,0px) + 28px)}
+.ekoart{position:relative;height:min(58vh,560px);overflow:hidden;-webkit-mask-image:linear-gradient(#000 70%,transparent);mask-image:linear-gradient(#000 70%,transparent)}
+.ekoart img{width:100%;height:100%;object-fit:cover;object-position:50% 38%;animation:ekobreath 6s ease-in-out infinite}
+@keyframes ekobreath{0%,100%{transform:scale(1)}50%{transform:scale(1.025)}}
+.ekotx{padding:0 24px;margin-top:-34px;position:relative}
+.ekotx h2{margin:0;font:900 38px/1.05 var(--round);color:var(--c);text-shadow:0 0 30px color-mix(in srgb,var(--c) 45%,transparent)}
+.ekorole{margin:6px 0 16px;font:700 15px var(--round);color:rgba(240,234,248,.82)}
+.ekop{margin:0 0 12px;font:500 16px/1.6 var(--round);color:#ECE6F4}
+.ekow{margin:0 0 18px;font:italic 500 15.5px/1.55 var(--round);color:color-mix(in srgb,var(--c) 55%,#fff)}
+.ekok{margin:0 0 10px;font:800 11.5px var(--round);letter-spacing:.14em;text-transform:uppercase;color:rgba(240,234,248,.6)}
+.ekochips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px}
+.ekochips button{min-height:40px;padding:0 14px;border-radius:999px;font:700 14px var(--round);color:#F4EEF8;background:rgba(255,255,255,.07);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--c) 40%,transparent)}
+.ekogo{display:block;width:100%;min-height:54px;border-radius:999px;font:900 17px var(--round);color:#1A1208;background:linear-gradient(180deg,color-mix(in srgb,var(--c) 70%,#fff),var(--c));box-shadow:0 10px 30px color-mix(in srgb,var(--c) 40%,transparent)}
+.ekono{display:block;width:100%;min-height:46px;margin-top:8px;font:700 15px var(--round);color:rgba(240,234,248,.7);background:none}
+@media (prefers-reduced-motion:reduce){.ekoart img{animation:none}.ekstory{transition:none}}
+.simple .ekoart img,.calm .ekoart img{animation-duration:12s}
+.simple .ekoart img{animation:none}
+
+#app.ekpaint .scenewrap>.ekspot{background:transparent!important;border:0;opacity:1}
+#app.ekpaint .scenewrap>.ekspot>*{visibility:hidden}
+.ekctabs{margin:14px 0 18px;padding:4px 16px 8px}
+.ekctabs{flex:none}
+.ekctabs{scroll-padding-inline:16px}
+/* the fire button and the hotspots stay exactly over the painting (the old scene code positions them too) */
+.scenewrap>.ekpin{position:absolute!important;left:var(--ekl)!important;top:var(--ekt)!important;width:var(--ekw)!important;height:var(--ekh)!important;right:auto!important;bottom:auto!important;transform:none!important;translate:none!important;margin:0!important;z-index:4!important}
+.scenewrap>canvas.ekpaintcv{max-width:none!important;max-height:none!important;margin:0!important;left:0!important;right:0!important}
+/* always night on Home: no sun or moon, no time buttons, no drag hint */
+#app.ekpaint .scenewrap .orbit,#app.ekpaint .scenewrap .nowBtn,#app.ekpaint #hcTime,#app.ekpaint #hcNow,#app.ekpaint .hcTip{display:none!important}
+/* ---------- below the painting: controls, then the companions, then "Not sure who?" ---------- */
+#app.ekpaint .homectl{display:none!important}
+#app.app-home.ekpaint #ekGear{display:none!important}
+.ekctrl{flex:none;display:flex;gap:10px;overflow-x:auto;margin:14px 0 0;padding:4px 16px 8px;scrollbar-width:none;scroll-padding-inline:16px}
+.ekctrl::-webkit-scrollbar{display:none}
+.ekctrl>button{flex:none;display:inline-flex!important;align-items:center;gap:9px;min-height:50px;padding:0 20px 0 16px!important;border-radius:999px!important;
+  background:linear-gradient(135deg,rgba(255,196,120,.16),rgba(150,190,110,.10))!important;border:1.5px solid rgba(255,206,140,.42)!important;color:#FFE9C8!important;
+  box-shadow:0 8px 20px rgba(0,0,0,.3),inset 0 0 16px rgba(255,190,110,.1)!important;font:800 15px var(--round)!important;position:static!important;transform:none!important;width:auto!important;height:auto!important;margin:0!important}
+.ekctrl>button svg{width:21px;height:21px;flex:none;fill:none;stroke:#FFC46B;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 6px rgba(255,180,90,.55))}
+.ekctrl>button:active{transform:scale(.97)!important}
+.ekctrl #hcSound small,.ekctrl #hcSound .hcs{display:none!important}
+.under.ekunder{position:static!important;flex:none;margin:2px 0 18px!important;text-align:center;transform:none!important;inset:auto!important}
+
+/* ---------- the 3D world (a switch on Home; the painting stays the default) ---------- */
+.scenewrap>canvas.ek3dcv{position:absolute;inset:0;width:100%;height:100%;display:none;z-index:1}
+#app.ek3d .scenewrap>canvas.ek3dcv{display:block}
+#app.ek3d .scenewrap>canvas.ekpaintcv,#app.ek3d .ekhits,#app.ek3d .scenewrap>.ekspot.ekstar{display:none!important}
+#app.ek3d .scenewrap .stage,#app.ek3d .scenewrap #ring{pointer-events:none!important}
+.ek3dtime{display:none;flex:none;align-items:center;gap:10px;margin:8px 16px 4px;padding:8px 10px 8px 14px;border-radius:999px;background:linear-gradient(135deg,rgba(255,196,120,.14),rgba(110,140,230,.12));border:1.5px solid rgba(255,206,140,.35);box-shadow:0 8px 20px rgba(0,0,0,.28)}
+#app.ek3d .ek3dtime{display:flex}
+.ek3dtime svg{width:22px;height:22px;flex:none;fill:none;stroke:#FFC46B;stroke-width:1.8;stroke-linecap:round;filter:drop-shadow(0 0 6px rgba(255,180,90,.5))}
+.ek3dtime input{flex:1;min-width:0;accent-color:#F2A04A}
+.ek3dtl{flex:none;min-width:94px;font:800 12.5px var(--round);color:#FFE9C8;text-align:right}
+.ek3dnow{flex:none;min-height:34px;padding:0 12px;border-radius:999px;font:800 12.5px var(--round);color:#2A160B;background:linear-gradient(180deg,#FFD08A,#F2A04A)}
+
+
+/* ---------- scenes and Classic ---------- */
+.scenewrap{background-size:cover;background-position:center;background-repeat:no-repeat}
+#app.ekclassic .scenewrap>canvas.ekpaintcv,#app.ekclassic .ekhits{display:none!important}
+#app.ekclassic .scenewrap{background-image:none!important}
+
+
+
+/* ---------- the companion sheet: never taller than the screen; both buttons always in reach ---------- */
+.sheet.mateSheet{max-height:calc(100dvh - 16px);overflow-y:auto;overscroll-behavior:contain}
+.mateSheet .msNote{font-size:12.5px;line-height:1.45;padding:9px 12px;margin:8px 0 10px}
+.mateSheet .sitBtn{position:sticky;bottom:60px;z-index:3;margin-top:12px}
+.mateSheet>.close{position:sticky;bottom:0;z-index:3;background:inherit;margin-bottom:0;padding-bottom:max(10px,env(safe-area-inset-bottom))}
+
+/* Classic: the companions' cut-out fur edges, with no dark shadow around them */
+.mate img.cmp{filter:none!important}
+
+/* ---------- Embervale: fine editing on an item's card ---------- */
+.vlook{margin:12px 0 4px;padding:10px 12px;border-radius:16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,214,150,.18);display:grid;gap:8px}
+.vlrow{display:flex;align-items:center;gap:8px}
+.vlrow>span{flex:none;width:38px;font:800 12px var(--round);color:#E9C894;letter-spacing:.02em}
+.vlrow input[type=range]{flex:1;min-width:0;accent-color:#F2A04A}
+.vlrow b{flex:none;min-width:44px;text-align:right;font:800 12px var(--round);color:#FFE9C8}
+.vlook button{flex:none;min-width:38px;min-height:36px;padding:0 10px;border-radius:12px;font:800 13px var(--round);color:#FFE9C8;background:rgba(255,206,140,.12);border:1px solid rgba(255,206,140,.3)}
+.vlook button.on{background:linear-gradient(180deg,#FFD08A,#F2A04A);color:#2A160B}
+
+/* ---------- Home: the guide card, dropped down under the controls ---------- */
+.ekguide{flex:none;margin:0 16px;max-height:0;opacity:0;overflow:hidden;border-radius:22px;transform:translateY(-8px);transition:max-height .42s cubic-bezier(.2,.8,.2,1),opacity .3s,transform .42s cubic-bezier(.2,.8,.2,1),margin .3s;
+  background:linear-gradient(160deg,rgba(255,214,150,.13),rgba(120,100,200,.10) 60%,rgba(20,18,36,.85));border:1.5px solid rgba(255,206,140,.28);box-shadow:0 18px 40px rgba(0,0,0,.4);backdrop-filter:blur(10px)}
+.ekguide.on{max-height:640px;opacity:1;transform:none;margin:4px 16px 12px}
+.ekgtop{display:flex;align-items:center;gap:8px;padding:12px 12px 4px 14px}
+.ekgtabs{flex:1;display:flex;gap:6px;padding:4px;border-radius:999px;background:rgba(0,0,0,.25)}
+.ekgtabs button{flex:1;min-height:36px;border-radius:999px;font:800 13.5px var(--round);color:#E9D3B0}
+.ekgtabs button[aria-selected="true"]{background:linear-gradient(180deg,#FFD08A,#F2A04A);color:#2A160B}
+.ekgx{flex:none;width:38px;height:38px;border-radius:50%;font:700 22px/1 var(--round);color:#FFE9C8;background:rgba(255,255,255,.08)}
+.ekgslides{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.ekgslides::-webkit-scrollbar{display:none}
+.ekgslide{flex:0 0 100%;scroll-snap-align:start;padding:8px 16px 16px;box-sizing:border-box}
+.ekghow{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.ekghow li{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:16px;background:rgba(255,255,255,.05)}
+.ekghow svg{flex:none;width:30px;height:30px;padding:6px;border-radius:12px;box-sizing:border-box;fill:none;stroke:#FFC46B;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;background:rgba(255,196,107,.12)}
+.ekghow span{font:500 14px/1.35 var(--round);color:#EFE3D2}.ekghow b{font-weight:800;color:#FFE9C8;margin-right:5px}
+.ekglead{margin:4px 0 10px;font:500 14px/1.5 var(--round);color:#EFE3D2}.ekglead b{color:#FFD08A}
+.ekglinks{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 10px}
+.ekglinks button{min-height:38px;padding:0 14px;border-radius:999px;font:800 13px var(--round);color:#FFE9C8;background:rgba(255,206,140,.12);border:1px solid rgba(255,206,140,.3)}
+.ekgnote{margin:6px 0 0;font:500 12px/1.4 var(--round);color:rgba(239,227,210,.6)}
+@media (prefers-reduced-motion:reduce){.ekguide{transition:none}}
+
+.ekctrl [data-go="controls"][aria-expanded="true"],.ekctrl [data-go="about"][aria-expanded="true"]{background:linear-gradient(135deg,rgba(255,206,140,.32),rgba(255,160,80,.16))!important;border-color:rgba(255,206,140,.6)!important}
+
+/* ---------- the Scene menu ---------- */
+.ekstitle{flex:1;font:800 15px var(--round);color:#FFE9C8;padding-left:4px}
+.eksl{display:grid;gap:6px;padding:4px 12px 6px}
+.eksi{display:flex;align-items:center;gap:10px;min-height:54px;padding:8px 14px;border-radius:16px;text-align:left;background:rgba(255,255,255,.05);border:1px solid transparent}
+.eksi span{flex:1;display:grid;gap:2px}.eksi b{font:800 14.5px var(--round);color:#FFE9C8}.eksi small{font:500 12.5px var(--round);color:rgba(239,227,210,.7)}
+.eksi i{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font:800 14px/1 var(--round);font-style:normal;color:#2A160B}
+.eksi.on{background:linear-gradient(135deg,rgba(255,206,140,.2),rgba(150,110,220,.14));border-color:rgba(255,206,140,.5)}.eksi.on i{background:linear-gradient(180deg,#FFD08A,#F2A04A)}
+.ekgpad{padding:0 16px 14px}
+.ekchev{width:16px!important;height:16px!important;margin-left:2px;transition:transform .25s}.ekctrl [data-go="scene"][aria-expanded="true"] .ekchev{transform:rotate(180deg)}
+.ekctrl [data-go="scene"][aria-expanded="true"]{background:linear-gradient(135deg,rgba(255,206,140,.32),rgba(255,160,80,.16))!important;border-color:rgba(255,206,140,.6)!important}
+.scenewrap>canvas.ekmeteor{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+#app.ekclassic .scenewrap>canvas.ekmeteor,#app.ek3d .scenewrap>canvas.ekmeteor{display:none}
+
+/* 3D Embervale is night only: no time slider */
+#app.ek3d .ek3dtime{display:none!important}
+
+/* ---------- a companion's screen: a full page like the tabs, with gold arrows to the next ---------- */
+.sheet.mateSheet.ekfull{top:0;bottom:0;height:100dvh;max-height:none!important;max-width:none;border-radius:0;padding-top:calc(30px + env(safe-area-inset-top,0px));animation:ekpage .34s cubic-bezier(.2,.8,.2,1)}
+@keyframes ekpage{from{opacity:0;transform:translateX(-50%) translateX(36px)}to{opacity:1;transform:translateX(-50%)}}
+.sheet.mateSheet.ekmsr>*:not(.ekmarr){animation:ekmsr .3s cubic-bezier(.2,.8,.2,1)}.sheet.mateSheet.ekmsl>*:not(.ekmarr){animation:ekmsl .3s cubic-bezier(.2,.8,.2,1)}
+@keyframes ekmsr{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:none}}@keyframes ekmsl{from{opacity:0;transform:translateX(-30px)}to{opacity:1;transform:none}}
+.ekmarr{position:absolute;top:calc(64px + env(safe-area-inset-top,0px));width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:rgba(242,196,107,.1);border:1px solid rgba(242,196,107,.35);z-index:4}
+.ekmarr.l{left:8px}.ekmarr.r{right:8px}
+.ekmarr svg{width:18px;height:18px;fill:none;stroke:#F2C46B;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+@media (prefers-reduced-motion:reduce){.sheet.mateSheet.ekfull,.sheet.mateSheet.ekmsr>*,.sheet.mateSheet.ekmsl>*{animation:none!important}}
+/* the companion's page: a column with the buttons at the bottom, a larger portrait, the arrows together at top right */
+.sheet.mateSheet.ekfull.on{display:flex;flex-direction:column}
+.sheet.mateSheet.ekfull>*{flex:none}
+.sheet.mateSheet.ekfull>.sitBtn{margin-top:auto}
+.sheet.mateSheet.ekfull .msTop{padding-right:96px;min-height:120px;align-items:center}
+.sheet.mateSheet.ekfull #mateAv img{width:auto!important;height:116px!important;max-width:110px}
+.ekmarr{top:calc(34px + env(safe-area-inset-top,0px))}
+.ekmarr.l{left:auto;right:52px}.ekmarr.r{right:12px}
+/* ---------- Home's heading, easy to read over any scene: solid bright gold title, light cream lines, a soft
+   feathered darkness behind (no box) ---------- */
+.scenewrap .hero{position:relative;z-index:5;isolation:isolate}
+.scenewrap .hero::before{content:"";position:absolute;left:50%;top:-34px;transform:translateX(-50%);width:132%;height:calc(100% + 78px);background:radial-gradient(ellipse 50% 50% at 50% 48%,rgba(6,8,20,.58),rgba(6,8,20,.3) 58%,rgba(6,8,20,0) 100%);z-index:-1;pointer-events:none}
+.scenewrap .hero .title{background:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;-webkit-text-fill-color:#F8B63E!important;color:#F8B63E!important;font-weight:800!important;filter:none!important;
+  text-shadow:0 0 22px rgba(248,170,60,.38),0 2px 6px rgba(0,0,0,.6)!important}
+.scenewrap .hero .greet{color:#F3E2C0!important;opacity:1!important;text-shadow:0 1px 5px rgba(0,0,0,.75)!important}
+.scenewrap .hero .sub{color:#FBEBC8!important;opacity:1!important;text-shadow:0 1px 7px rgba(0,0,0,.8)!important}
+.scenewrap .hero .sub2{color:#F2DCAC!important;opacity:1!important;text-shadow:0 1px 6px rgba(0,0,0,.8)!important}
+/* the immersive companion screen: side hints that you can swipe (not buttons), a slide in from the side you swiped */
+.ekstory .ekhint{position:fixed;top:50%;transform:translateY(-50%);z-index:6;pointer-events:none;font:300 30px/1 var(--round);color:rgba(255,214,150,.62);text-shadow:0 0 10px rgba(0,0,0,.7)}
+.ekstory .ekhint.l{left:7px}.ekstory .ekhint.r{right:7px}
+.ekstory.ekfr .ekoin{animation:ekmsr .32s cubic-bezier(.2,.8,.2,1)}.ekstory.ekfl .ekoin{animation:ekmsl .32s cubic-bezier(.2,.8,.2,1)}
+.ekstory .ekonote{margin:6px 0 12px;padding:10px 12px;border-radius:14px;background:rgba(0,0,0,.28);font:500 12.5px/1.45 var(--round);color:rgba(239,227,210,.78)}
+.ekstory .ekhint{opacity:1!important;animation:none!important;transition:none!important;width:auto!important;margin:0!important}
+.ekstory .ekhint.l{left:7px!important;right:auto!important}.ekstory .ekhint.r{right:7px!important;left:auto!important}
+
+/* ================= Journal: a night writing scene; the page is frosted glass with soft ruled lines ================= */
+#view-track.ekjourn::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse 60% 42% at 12% 14%,rgba(255,176,90,.26),rgba(255,176,90,0) 70%),radial-gradient(ellipse 80% 60% at 50% 110%,rgba(110,80,180,.22),rgba(110,80,180,0) 70%),
+  radial-gradient(1px 1px at 22% 30%,rgba(255,255,255,.55),transparent 60%),radial-gradient(1px 1px at 68% 18%,rgba(255,255,255,.5),transparent 60%),radial-gradient(1.4px 1.4px at 84% 42%,rgba(255,255,255,.45),transparent 60%),radial-gradient(1px 1px at 40% 62%,rgba(255,255,255,.35),transparent 60%),radial-gradient(1px 1px at 92% 74%,rgba(255,255,255,.4),transparent 60%),radial-gradient(1.2px 1.2px at 8% 82%,rgba(255,255,255,.35),transparent 60%),
+  linear-gradient(180deg,#0B0A18 0%,#141029 45%,#0C0A16 100%)}
+#view-track.ekjourn::after{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 120% 90% at 50% 40%,rgba(0,0,0,0) 55%,rgba(0,0,0,.55) 100%)}
+#view-track.ekjourn>*{position:relative;z-index:1}
+
+/* ================= TASK BUDDY, redesigned: the lamplit room with your companion breathing in it; then a calm,
+   open column of controls floating on a plum-to-amber night (no boxes, no clutter) ================= */
+#view-focus .fpage{background:radial-gradient(ellipse 90% 50% at 50% 100%,rgba(242,160,74,.16),rgba(242,160,74,0) 70%),linear-gradient(180deg,#1A130E 0%,#241A12 38%,#1E1610 70%,#130E0A 100%)!important}
+#view-focus .fhero{height:44vh!important;min-height:260px;border-radius:0 0 46px 46px!important;overflow:hidden;margin:0 -16px 6px!important}
+#view-focus .fhero canvas.ekroom2{width:100%!important;height:100%!important;border-radius:0!important}
+#view-focus .fhtext{text-align:center}
+#view-focus p.lede{text-align:center;max-width:330px;margin:4px auto 18px!important;color:rgba(243,226,192,.78);font-size:14.5px;line-height:1.55}
+#view-focus .flabel{display:block;text-align:center;font:700 10.5px var(--round)!important;letter-spacing:.32em!important;color:rgba(233,200,148,.62)!important;margin-bottom:12px!important}
+#view-focus .fwhorow{margin-bottom:26px}
+#view-focus #fPick{display:flex!important;justify-content:center;gap:18px!important;overflow:visible!important}
+#view-focus #fPick>*{flex:none;width:64px!important;min-width:0!important;padding:0!important;background:none!important;border:none!important;box-shadow:none!important;display:flex;flex-direction:column;align-items:center;gap:6px}
+#view-focus #fPick>* img{width:58px!important;height:58px!important;object-fit:contain;border-radius:50%;padding:4px;background:radial-gradient(circle,rgba(255,214,150,.12),rgba(255,214,150,0) 70%);transition:transform .3s,filter .3s;opacity:.62}
+#view-focus #fPick>* :not(img){font:700 11px var(--round)!important;color:rgba(239,227,210,.6)!important}
+#view-focus #fPick>[aria-pressed="true"] img,#view-focus #fPick>.on img,#view-focus #fPick>.sel img{opacity:1;transform:scale(1.12);filter:drop-shadow(0 0 14px rgba(255,190,110,.55))}
+#view-focus #fPick>[aria-pressed="true"] :not(img),#view-focus #fPick>.on :not(img),#view-focus #fPick>.sel :not(img){color:#FFE2B0!important}
+#view-focus .fpanel{background:none!important;border:none!important;box-shadow:none!important;padding:0 6px!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+#view-focus .fpanel .fsec{border:none!important;padding:0!important;margin:0 0 34px!important;text-align:center}
+#view-focus .fs-task input,#view-focus .fs-task textarea{background:none!important;border:none!important;border-radius:0!important;text-align:center;font:500 20px var(--round)!important;color:#FFF1D8!important;padding:10px 4px!important;box-shadow:none!important;
+  background-image:linear-gradient(90deg,rgba(255,206,140,0),rgba(255,206,140,.6),rgba(255,206,140,0))!important;background-size:100% 1px!important;background-repeat:no-repeat!important;background-position:bottom!important}
+#view-focus .fs-task input::placeholder{color:rgba(239,227,210,.36);font-style:italic}
+#view-focus .fs-task button{background:none!important;border:none!important;box-shadow:none!important;margin:10px auto 0!important;font:700 13px var(--round)!important;color:#F2C46B!important;opacity:.85}
+#view-focus .fs-time :is(b,strong,output,.fval,.fmins,.fbig){display:block;text-align:center;font:200 44px/1.1 var(--round)!important;letter-spacing:-.01em;color:#FFF1D8!important;margin:2px 0 10px;text-shadow:0 0 24px rgba(255,180,90,.35)}
+#view-focus .fsec input[type=range]{-webkit-appearance:none;appearance:none;height:2px!important;background:linear-gradient(90deg,rgba(255,206,140,.15),rgba(255,180,90,.85),rgba(255,206,140,.15))!important;border-radius:2px;box-shadow:none!important}
+#view-focus .fsec input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#FFF6E4,#FFC872 55%,#E98A35);box-shadow:0 0 0 6px rgba(255,180,90,.14),0 0 22px rgba(255,170,80,.6);border:none}
+#view-focus .fs-sound :is(.chipsel,.fsounds,div):has(>button){display:flex;justify-content:center;flex-wrap:wrap;gap:14px 10px!important;overflow:visible!important;padding:0!important}
+#view-focus .fs-sound button:not([aria-label*="olume"]):not(.fvolbtn){flex-direction:column!important;width:66px;min-width:0!important;padding:0!important;background:none!important;border:none!important;box-shadow:none!important;gap:7px!important;font:700 10.5px var(--round)!important;color:rgba(239,227,210,.58)!important}
+#view-focus .fs-sound button:not([aria-label*="olume"]):not(.fvolbtn) svg{width:46px!important;height:46px!important;padding:13px;box-sizing:border-box;border-radius:50%;border:1px solid rgba(255,214,150,.2);background:rgba(255,255,255,.03);stroke:#E9C894}
+#view-focus .fs-sound button:is([aria-pressed="true"],.on,.sel) svg{background:radial-gradient(circle,rgba(255,196,110,.38),rgba(255,160,70,.12));border-color:rgba(255,206,140,.7);box-shadow:0 0 20px rgba(255,170,80,.4)}
+#view-focus .fs-sound button:is([aria-pressed="true"],.on,.sel){color:#FFE2B0!important}
+#view-focus .fs-spot{opacity:.75}
+#view-focus .fs-spot button,#view-focus .fs-spot a{background:none!important;border:none!important;box-shadow:none!important;padding:4px!important;margin:0 auto!important;font:700 12.5px var(--round)!important;color:#9FD7B0!important}
+#view-focus .fs-spot p{font-size:12px!important;max-width:300px;margin:6px auto 0!important;color:rgba(239,227,210,.45)!important}
+#view-focus .fstartbar{background:linear-gradient(180deg,rgba(18,12,24,0),rgba(18,12,24,.92) 50%)!important;display:flex;flex-direction:column;align-items:center}
+#view-focus #fStart{width:auto!important;min-width:62%;border-radius:999px!important;padding:0 34px!important;background:radial-gradient(circle at 50% 30%,#FFD596,#F2A04A 60%,#D97B2E)!important;color:#2A160B!important;font:800 16px var(--round)!important;letter-spacing:.02em;animation:ekhalo 4.5s ease-in-out infinite}
+@keyframes ekhalo{0%,100%{box-shadow:0 0 0 0 rgba(255,170,80,.35),0 10px 30px rgba(242,140,60,.35)}50%{box-shadow:0 0 0 12px rgba(255,170,80,0),0 10px 40px rgba(242,140,60,.5)}}
+#view-focus .fstartbar .quiet{text-align:center;font-size:12px!important;color:rgba(239,227,210,.5)!important;max-width:300px}
+
+/* ================= JOURNAL, redesigned: no box; the night itself is the page ================= */
+#view-track.ekjourn .tcard.ekjc{background:none!important;border:none!important;box-shadow:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;padding:6px 4px 0!important}
+#view-track.ekjourn .ekjhd{flex-direction:column;align-items:center!important;text-align:center;position:relative}
+#view-track.ekjourn .ekjhd :is(h2,h3,b,strong){font:300 30px/1.15 var(--round)!important;letter-spacing:.01em;color:#FFF1D8!important}
+#view-track.ekjourn .ekjhd :is(small,p,span){font:600 11px var(--round)!important;letter-spacing:.28em!important;text-transform:uppercase;color:rgba(233,200,148,.6)!important}
+#view-track.ekjourn .ekjhd button{position:absolute;right:0;top:0;background:none!important;border:1px solid rgba(255,214,150,.2)!important;opacity:.7}
+#view-track.ekjourn .tprompts{justify-content:flex-start;gap:20px!important;margin:16px 0 8px!important;padding:2px 2px 8px!important}
+#view-track.ekjourn .tprompts button{background:none!important;border:none!important;border-bottom:1px solid rgba(255,214,150,.22)!important;border-radius:0!important;padding:4px 0!important;font:italic 500 14px var(--round)!important;color:rgba(243,226,192,.75)!important;box-shadow:none!important;white-space:nowrap}
+#view-track.ekjourn .tprompts button:first-child{font-style:normal!important;font-weight:800!important;color:#F2C46B!important;border-bottom-color:rgba(242,196,107,.6)!important}
+#view-track.ekjourn #tJText{min-height:46vh!important;background-color:transparent!important;background-image:repeating-linear-gradient(180deg,transparent 0 35px,rgba(255,214,150,.07) 35px 36px)!important;background-attachment:local;line-height:36px!important;font:400 18px/36px var(--round)!important;color:#F6E9D2!important;border:none!important;box-shadow:none!important;padding:2px 2px!important}
+#view-track.ekjourn #tJText::placeholder{color:rgba(239,227,210,.34);font-style:italic}
+#view-track.ekjourn .ekjft{background:none!important;border:none!important;text-align:center;padding:6px 0 0!important}
+#view-track.ekjourn .ekjft button:has(svg,img),#view-track.ekjourn .ekjft [class*=face]{background:none!important;border:none!important;box-shadow:none!important}
+#view-track.ekjourn .ekjft :is(svg,img){filter:drop-shadow(0 0 6px rgba(255,200,130,.18))}
+#view-track.ekjourn .ekjft button:is([aria-pressed="true"],.on,.sel) :is(svg,img){filter:drop-shadow(0 0 14px rgba(255,190,110,.65));transform:scale(1.12)}
+#view-track.ekjourn .ekjft > button:last-child,#view-track.ekjourn .ekjft [class*=reflect]{background:none!important;border:none!important;box-shadow:none!important;color:#C9B8F2!important;font:700 14px var(--round)!important;text-shadow:0 0 14px rgba(170,140,240,.45)}
+#view-track.ekjourn #tJSave{display:block;width:auto!important;min-width:62%;margin:18px auto 6px!important;border-radius:999px!important;background:radial-gradient(circle at 50% 30%,#FFD596,#F2A04A 60%,#D97B2E)!important;animation:ekhalo 4.5s ease-in-out infinite}
+#view-track.ekjourn .ekjpriv{text-align:center;font-size:11.5px!important;color:rgba(239,227,210,.42)!important}
+/* precise targets for the new layouts */
+#view-focus #fPick button,#view-focus #fPick button::before,#view-focus #fPick button::after{background:none!important;border:0!important;box-shadow:none!important;outline:none!important}
+#view-focus #fPick button[aria-checked="true"] img{opacity:1;transform:scale(1.14);filter:drop-shadow(0 0 16px rgba(255,190,110,.6))}
+#view-focus #fPick button[aria-checked="true"] span{color:#FFE2B0!important}
+#view-focus .fs-time .fbrow{display:flex;flex-direction:column-reverse;align-items:center;gap:2px}
+#view-focus #fLenVal{font:200 46px/1.05 var(--round)!important;color:#FFF1D8!important;letter-spacing:-.01em;text-shadow:0 0 26px rgba(255,180,90,.38)}
+#view-focus .ftaskwrap{background:none!important;border:0!important;box-shadow:none!important;padding:0!important;display:flex;flex-direction:column;align-items:center}
+#view-focus .ftask{width:100%}
+#view-focus .fbreak{background:none!important;border:0!important;box-shadow:none!important;color:#F2C46B!important;font:700 13px var(--round)!important;margin-top:10px!important}
+#view-track.ekjourn .ekjhd .tq{font:300 32px/1.15 var(--round)!important;letter-spacing:.005em!important;text-transform:none!important;color:#FFF1D8!important;margin:0!important;text-shadow:0 0 24px rgba(255,190,110,.2)}
+#view-track.ekjourn .ekjhd .ekjdate{display:block;margin-top:6px;font:600 11px var(--round)!important;letter-spacing:.3em!important;text-transform:uppercase;color:rgba(233,200,148,.6)!important}
+html body #view-focus #fPick button[role="radio"],html body #view-focus #fPick button[role="radio"][aria-checked]{background:none!important;background-image:none!important;box-shadow:none!important;border:0!important}
+html body #view-focus #fPick button[role="radio"] img{background:none!important;background-image:radial-gradient(circle,rgba(255,214,150,.1),rgba(255,214,150,0) 70%)!important}
+html body #view-focus input#fTask.ftask{background-color:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;background-image:linear-gradient(90deg,rgba(255,206,140,0),rgba(255,206,140,.6),rgba(255,206,140,0))!important;background-size:100% 1px!important;background-repeat:no-repeat!important;background-position:bottom!important;text-align:center;font-size:20px!important}
+html body #view-focus span#fLenVal.bval{font-size:46px!important;font-weight:200!important;line-height:1.05!important}
+/* ===== Task buddy, calmer and cleaner: picture previews for sounds, bigger companions, a softer start ===== */
+html body #view-focus #fSnd{display:grid!important;grid-template-columns:repeat(3,1fr);gap:20px 8px!important;padding:6px 4px!important;overflow:visible!important;justify-items:center}
+html body #view-focus #fSnd button[data-s]{all:unset;box-sizing:border-box;display:flex!important;flex-direction:column;align-items:center;gap:9px;width:96px;cursor:pointer;text-align:center;font:700 12.5px var(--round);color:rgba(243,232,214,.8);-webkit-tap-highlight-color:transparent}
+html body #view-focus #fSnd button[data-s] svg{display:none!important}
+html body #view-focus #fSnd button[data-s]::before{content:"";display:block;width:80px;height:80px;border-radius:50%;background:var(--img) center/cover no-repeat;border:2px solid color-mix(in srgb,var(--c) 42%,transparent);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1),0 8px 18px rgba(0,0,0,.35);transition:transform .25s,box-shadow .25s,border-color .25s}
+html body #view-focus #fSnd button[data-s][aria-pressed="true"]{color:#fff}
+html body #view-focus #fSnd button[data-s][aria-pressed="true"]::before{border-color:var(--c);transform:scale(1.06);box-shadow:0 0 0 4px color-mix(in srgb,var(--c) 20%,transparent),0 0 24px color-mix(in srgb,var(--c) 55%,transparent)}
+#fSnd button[data-s=quiet]{--img:url(../img/tb/quiet.webp);--c:#A9B4FF}#fSnd button[data-s=fire]{--img:url(../img/tb/fire.webp);--c:#FFB15C}#fSnd button[data-s=rain]{--img:url(../img/tb/rain.webp);--c:#6FC3FF}
+#fSnd button[data-s=ocean]{--img:url(../img/tb/ocean.webp);--c:#4FE0D2}#fSnd button[data-s=forest]{--img:url(../img/tb/forest.webp);--c:#8EE07A}#fSnd button[data-s=brown]{--img:url(../img/tb/brown.webp);--c:#C59BFF}
+html body #view-focus #fPick button[role="radio"] img{width:76px!important;height:76px!important}
+html body #view-focus #fPick{gap:10px!important}html body #view-focus #fPick button[role="radio"]{width:80px!important}
+html body #view-focus span#fLenVal.bval{font-size:34px!important}
+html body #view-focus #fStart{width:88%!important;min-height:58px!important;border-radius:20px!important;background:linear-gradient(180deg,#F3C797,#E2A06C)!important;color:#2B1A10!important;font:800 17px var(--round)!important;letter-spacing:.01em;box-shadow:0 10px 26px rgba(226,150,90,.25)!important;animation:none!important}
+html body #view-focus .fpanel{padding-bottom:160px!important}
+html body #view-focus .fstartbar{background:linear-gradient(180deg,rgba(18,12,24,0),rgba(18,12,24,.95) 38%)!important}
+html body #view-focus .fs-spot,html body #view-focus .fs-spot *{text-align:center!important}
+html body #view-focus .fs-spot p{margin-left:auto!important;margin-right:auto!important}
+html body #view-focus #fSnd button[data-s],html body #view-focus #fSnd button[data-s][aria-pressed]{background:none!important;background-image:none!important;border:0!important;box-shadow:none!important;padding:0!important;min-height:0!important;height:auto!important;border-radius:0!important;white-space:nowrap;width:104px!important}
+html body #view-focus #fSnd button[data-s][aria-pressed="true"],html body #view-focus #fSnd button[data-s][aria-pressed="true"] *{color:#FFFFFF!important;-webkit-text-fill-color:#FFFFFF!important;opacity:1!important}
+/* 3.8.7 polish */
+html body #view-focus #fPick button[role="radio"] img{width:90px!important;height:90px!important}
+html body #view-focus #fPick button[role="radio"]{width:84px!important}
+html body #view-focus #fPick{gap:4px!important}
+html body #view-focus #fSnd button[data-s]::before{width:70px!important;height:70px!important}
+html body #view-focus .fs-spot p{width:100%!important;max-width:none!important;padding:0 18px!important;box-sizing:border-box!important;margin:8px 0 0!important;text-align:center!important}
+html body #view-focus .fstartbar{background:none!important;box-shadow:none!important;border:0!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+html body #view-focus .fstartbar .quiet{text-align:center!important;width:100%;margin-left:auto!important;margin-right:auto!important}
+html body #view-focus #fStart{background:linear-gradient(180deg,#F7B565,#EA9440)!important;color:#2A1608!important;box-shadow:0 10px 26px rgba(234,148,64,.3)!important}
+
+/* 3.8.8: the original companion + clone effect restored (my override removed); the companion is much bigger in the room;
+   the title is clear; Start together sits at the end of the page */
+html body #view-focus .fhero .fbuddy img{height:190px!important}
+html body #view-focus .fhero .fbuddy .g1{--gx:-96px}html body #view-focus .fhero .fbuddy .g2{--gx:96px}html body #view-focus .fhero .fbuddy .g3{--gy:-44px}
+html body #view-focus .fhero .fbuddy{left:72%!important;bottom:16px!important}
+html body #view-focus .fhero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:42%;pointer-events:none;background:linear-gradient(180deg,rgba(18,14,34,0),rgba(18,14,34,.55));z-index:1}
+html body #view-focus .fhero .fbuddy{z-index:2}
+html body #view-focus .fhero .fhtext{position:absolute!important;left:22px!important;right:auto!important;top:auto!important;bottom:20px!important;z-index:3;background:none!important;box-shadow:none!important;padding:0!important;margin:0!important;text-align:left!important;width:auto!important}
+html body #view-focus .fhero .fhtext :is(h1,h2,h3,b,strong,.ftitle){font-size:36px!important;margin:0!important;line-height:1.05!important;color:#FFF3DE!important;opacity:1!important;-webkit-text-fill-color:#FFF3DE!important;text-shadow:0 2px 14px rgba(0,0,0,.85),0 0 30px rgba(255,190,110,.25)!important}
+html body #view-focus .fstartbar{position:static!important;margin-top:4px!important;padding-bottom:14px!important}
+html body #view-focus .fpanel{padding-bottom:0!important}
+html body #view-focus .fpanel .fs-spot{margin-bottom:22px!important}
+html body #view-focus #fPick button[role="radio"] img{width:98px!important;height:98px!important}
+html body #view-focus #fPick button[role="radio"]{width:92px!important}
+html body #view-focus #fPick{gap:0!important}
+
+/* ================= 3.8.9 Embervale: Flip and Size in Arrange mode, glass controls at the bottom ================= */
+.evlookbar{position:absolute;left:12px;right:12px;z-index:4;display:flex;flex-direction:column;align-items:center;gap:8px;padding:10px 12px 12px;border-radius:22px;
+  background:linear-gradient(160deg,rgba(40,32,58,.55),rgba(14,11,24,.7));-webkit-backdrop-filter:blur(16px) saturate(1.2);backdrop-filter:blur(16px) saturate(1.2);border:1px solid rgba(255,214,150,.22);box-shadow:0 12px 30px rgba(0,0,0,.4)}
+.evlookbar[hidden]{display:none}
+.evlkname{font:700 12px var(--round);letter-spacing:.06em;color:rgba(243,226,192,.8);max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.evlkrow{display:flex;align-items:center;gap:8px;width:100%}
+.evlk{flex:none;height:40px;min-width:40px;padding:0 16px;border-radius:999px;border:1px solid rgba(255,214,150,.28);background:rgba(255,255,255,.07);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:#F6EEE2;font:700 14px var(--round);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.evlk.evlks{padding:0;width:40px;font-size:18px}
+.evlk.evlkflip.on{background:linear-gradient(180deg,rgba(247,181,101,.35),rgba(234,148,64,.28));border-color:rgba(247,181,101,.75);color:#FFE7C2}
+.evlk:active{transform:scale(.96)}
+.evlkrow input[type=range]{flex:1;min-width:0;accent-color:#EA9440}
+.evlkrow b{flex:none;width:44px;text-align:right;font:700 13px var(--round);color:#FFE7C2}

@@ -1,0 +1,93 @@
+/* ===== 3.0.5: one modern, rounded, colourful look across the app =====
+   One typeface everywhere (Nunito, rounded and calm), confident headings, and Embervale's info panels and
+   build menus redesigned: a big picture card, the name and a chip, then tidy sections that are easy on the eye. */
+:root{--display:"Nunito","Figtree",system-ui,sans-serif;--serif:"Nunito","Figtree",system-ui,sans-serif}
+h1,h2,h3,.title,.sheet h2,.sheet h3,.evpanel h3{font-family:var(--round)!important;font-weight:800;letter-spacing:-.01em}
+h4,.evh4{font-family:var(--round)!important}
+
+/* ---------- Embervale info panels ---------- */
+#evInfo{padding:0 0 calc(env(safe-area-inset-bottom,0px) + 18px)!important;background:linear-gradient(180deg,#1D1B36 0%,#131528 100%)!important}
+.excard{--tint:#E3A857}
+.exh{position:relative;display:grid;place-items:center;padding:24px 16px 16px;border-radius:22px 22px 0 0;background:#2A2340;
+  background:radial-gradient(110% 85% at 50% 18%,color-mix(in srgb,var(--tint) 60%,transparent),transparent 72%),linear-gradient(180deg,color-mix(in srgb,var(--tint) 26%,#1D1B36),#1D1B36)}
+.exart{width:min(70vw,300px);aspect-ratio:112/88;display:grid;place-items:center;border-radius:22px;background:rgba(255,255,255,.07);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12),0 16px 34px rgba(0,0,0,.28)}
+.exart img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 8px 14px rgba(0,0,0,.25))}
+.exart .exface{transform:scale(2.6)}
+.exx{position:absolute;top:12px;right:12px;width:40px;height:40px;display:grid;place-items:center;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(12,12,26,.5);color:#fff;font:400 24px/1 var(--round);cursor:pointer;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.exhead{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;padding:16px 18px 0}
+.exhead h3{margin:0;font-size:24px;line-height:1.2;color:#FFF4E6}
+.exchip{display:inline-flex;align-items:center;gap:5px;padding:5px 11px;border-radius:999px;font:800 12.5px/1 var(--round);color:#2A1B08;background:linear-gradient(180deg,#FFD996,#F2A541);box-shadow:0 3px 10px rgba(242,165,65,.28)}
+.exchip svg,.exchip img{width:14px;height:14px}
+.exlede{margin:8px 18px 0;font:600 14.5px/1.45 var(--round);color:rgba(255,236,214,.74)}
+.exsecs{display:grid;gap:10px;padding:16px 16px 2px}
+.exsec{display:grid;grid-template-columns:38px 1fr;gap:12px;align-items:start;padding:13px 14px;border-radius:18px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.08)}
+.exic{width:38px;height:38px;display:grid;place-items:center;border-radius:13px;color:#FFE2B8;background:rgba(227,168,87,.22);background:color-mix(in srgb,var(--tint) 28%,transparent)}
+.exic svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.exsec h4{margin:1px 0 5px;font:800 11.5px/1.2 var(--round);letter-spacing:.09em;text-transform:uppercase;color:rgba(255,222,176,.88)}
+.exsec p{margin:0;font:500 15px/1.5 var(--round);color:rgba(255,245,234,.9)}
+.exsec p+p{margin-top:6px}.exsub{font-weight:800!important;color:#FFF4E6!important;margin-bottom:8px!important}
+.exsec .evlv{margin:2px 0 10px}.exsec .evnext{margin:0;border-radius:14px}.exsec .evnext img{width:72px;height:56px;object-fit:contain}
+#evInfo .evgoRow,#evInfo .evnav{padding:12px 16px 0}#evInfo .ractions{display:grid;gap:10px;padding:14px 16px 0}
+#evInfo .big,#evHow .big,#evPanel .big{min-height:52px;border-radius:16px;font:800 16.5px/1 var(--round);color:#2A1606;background:linear-gradient(180deg,#FFCB7A,#F29A3A);border:0;box-shadow:0 8px 20px rgba(242,154,58,.3)}
+#evInfo .big:disabled{filter:saturate(.4) brightness(.75);box-shadow:none}
+#evInfo .ybtn,#evPanel .ybtn{min-height:46px;border-radius:14px;font:800 15px/1 var(--round);color:#FFF1DE;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18)}
+.evmirror{margin-top:8px!important;padding:8px 12px;border-radius:12px;background:rgba(120,200,160,.14);color:#BFF0D4!important;font-weight:700!important}
+
+/* ---------- the build bar ---------- */
+.evtab{font:800 13px/1 var(--round)!important;color:#F4EADB!important;background:rgba(255,255,255,.07)!important;border:1px solid rgba(255,255,255,.16)!important}
+.evtab.on{color:#2A1606!important;background:linear-gradient(180deg,#FFCB7A,#F29A3A)!important;border-color:transparent!important;box-shadow:0 4px 14px rgba(242,154,58,.35)}
+.evcard{position:relative!important;border-radius:18px!important;background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.035))!important;border:1px solid rgba(255,255,255,.13)!important;box-shadow:0 6px 16px rgba(0,0,0,.18)}
+.evcard .evcm{font-family:var(--round)!important}.evcard .evcm b{font:800 14px/1.2 var(--round)!important;color:#FFF4E6}
+.evcard .evcm small{font:700 12px/1.2 var(--round)!important;color:rgba(255,226,184,.86)}
+.evcard.off{opacity:.62}.evcard.off .evcm small{color:rgba(255,236,214,.6)}
+.evci{position:absolute!important;top:6px!important;right:6px!important;left:auto!important;bottom:auto!important;margin:0!important;width:32px!important;height:32px!important;
+  display:grid!important;place-items:center;padding:0!important;border-radius:50%!important;font:800 14px/1 var(--round)!important;color:#fff!important;background:rgba(12,12,26,.62)!important;border:1px solid rgba(255,255,255,.32)!important;z-index:3;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+
+/* ---------- the guide, growth and celebration panels ---------- */
+.evpanel h3{font-size:22px!important;color:#FFF4E6}.evpanel .evsub{font:800 11.5px/1.2 var(--round)!important;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,222,176,.85)}
+.evhow{list-style:none;counter-reset:st;display:grid;gap:10px;padding:0!important;margin:12px 0 0!important}
+.evhow li{counter-increment:st;position:relative;padding:12px 14px 12px 54px;border-radius:16px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.08);font:500 14.5px/1.5 var(--round);color:rgba(255,245,234,.9)}
+.evhow li::before{content:counter(st);position:absolute;left:14px;top:12px;width:28px;height:28px;display:grid;place-items:center;border-radius:10px;font:800 14px/1 var(--round);color:#2A1606;background:linear-gradient(180deg,#FFCB7A,#F29A3A)}
+.evhow li b{display:block;margin-bottom:2px;font-weight:800;color:#FFF4E6}
+.evcele h3{font-size:26px!important}.evgain{font:800 18px/1.2 var(--round)!important}
+.exart img{transform:scale(1.18)}
+/* About Emberkind: each feature and companion in its own tidy card */
+.ekab-card h2{font-family:var(--round)!important;font-weight:800!important;color:#FFE7C2!important}
+.ekab-card .ekab-lede{font:600 15.5px/1.5 var(--round);color:rgba(255,240,222,.86)}
+.ekab-card h3{margin:22px 0 6px!important;font:800 11.5px/1.2 var(--round)!important;letter-spacing:.1em;color:rgba(255,222,176,.88)!important}
+.ekab-card p:not(.ekab-lede){margin:8px 0;padding:12px 14px;border-radius:16px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.08);font:500 14.5px/1.5 var(--round);color:rgba(255,245,234,.9)}
+.ekab-card p:not(.ekab-lede)>b:first-child{display:block;margin-bottom:3px;font-size:15px;font-weight:800;color:#FFE2B8}
+/* ===== 3.0.7 ===== */
+/* About: the guide card reads clearly (dark text on gold), title above its line */
+.tutbtn{display:grid!important;grid-template-columns:1fr auto;align-items:center;row-gap:2px}
+.tutbtn b,.tutbtn small,.tutbtn span{color:#2A160B!important;text-shadow:none!important}
+.tutbtn b{grid-column:1;display:block!important;margin:0!important;font-size:17px!important}.tutbtn small{grid-column:1;opacity:.82}.tutbtn span{grid-column:2;grid-row:1/3}
+/* "What would help right now": its words always sit above the art, clearly, in every state */
+.fy .fytx{position:relative!important;z-index:2!important;opacity:1!important;visibility:visible!important}
+.fy .fyt{color:#FFF4E6!important;text-shadow:0 1px 10px rgba(0,0,0,.35)}.fy .fyd{color:rgba(255,240,224,.88)!important;text-shadow:0 1px 8px rgba(0,0,0,.3)}
+.fy .fyart{z-index:1}
+/* Tools: a larger, easier check-in */
+/* Home: the practice and tool cards as bright, living tiles */
+#view-fire .hsec{font:800 12.5px/1 var(--round)!important;letter-spacing:.16em;text-transform:uppercase;color:#F2B160!important;margin:28px 2px 12px!important}
+.hx{position:relative!important;overflow:hidden!important;isolation:isolate;min-height:160px!important;padding:18px 16px 16px!important;border:0!important;border-radius:24px!important;
+  background:var(--hxg)!important;box-shadow:0 16px 30px -14px var(--hxs),inset 0 1px 0 rgba(255,255,255,.24)!important;transition:transform .18s ease}
+.hx::before{content:"";position:absolute;z-index:-2;right:-34px;bottom:-44px;width:160px;height:160px;border-radius:50%;background:var(--hxo)}
+.hx::after{content:"";position:absolute;z-index:-1;inset:0;background:linear-gradient(115deg,transparent 32%,rgba(255,255,255,.18) 47%,transparent 60%);transform:translateX(-130%);animation:hxsheen 7s ease-in-out infinite}
+.hx:nth-child(2n)::after{animation-delay:1.6s}@keyframes hxsheen{0%,72%{transform:translateX(-130%)}100%{transform:translateX(130%)}}
+.hx .hi{width:46px!important;height:46px!important;border-radius:15px!important;background:rgba(255,255,255,.22)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.38),0 6px 14px rgba(0,0,0,.16);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.hx .hi svg{stroke:#fff!important}.hx b{font-size:18px!important;color:#fff!important;text-shadow:0 1px 8px rgba(0,0,0,.22)}
+.hx small{font-size:13.5px!important;color:rgba(255,255,255,.9)!important;text-shadow:0 1px 6px rgba(0,0,0,.2);max-width:92%}
+.hxd{position:absolute;z-index:-1;right:8px;bottom:8px;width:74px;height:74px;opacity:.5;animation:hxfloat 5.5s ease-in-out infinite alternate;pointer-events:none}
+.hxd svg{width:100%;height:100%;fill:none;stroke:#fff;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}@keyframes hxfloat{to{transform:translateY(-6px) rotate(3deg)}}
+.x-breathe{--hxg:linear-gradient(150deg,#FFB067 0%,#F0703F 55%,#C8462F 100%);--hxs:rgba(240,112,63,.65);--hxo:radial-gradient(circle,rgba(255,226,140,.9),rgba(255,170,90,0) 70%)}
+.x-med{--hxg:linear-gradient(150deg,#B79BFF 0%,#7C5BE6 55%,#4B3AA8 100%);--hxs:rgba(124,91,230,.65);--hxo:radial-gradient(circle,rgba(230,215,255,.85),rgba(160,130,255,0) 70%)}
+.x-check{--hxg:linear-gradient(150deg,#86D6FF 0%,#4AA3E8 55%,#E9A94F 135%);--hxs:rgba(74,163,232,.6);--hxo:radial-gradient(circle,rgba(255,236,150,.95),rgba(255,210,100,0) 68%)}
+.x-journal{--hxg:linear-gradient(150deg,#9BBEFF 0%,#5B7FE8 55%,#3B4FB8 100%);--hxs:rgba(91,127,232,.6);--hxo:radial-gradient(circle,rgba(205,222,255,.8),rgba(150,180,255,0) 70%)}
+.x-buddy{--hxg:linear-gradient(150deg,#86E8C6 0%,#33B38A 55%,#1F7F68 100%);--hxs:rgba(51,179,138,.6);--hxo:radial-gradient(circle,rgba(215,255,232,.8),rgba(120,230,180,0) 70%)}
+.x-atlas{--hxg:linear-gradient(150deg,#EED97F 0%,#BE9E40 50%,#6E7A3A 100%);--hxs:rgba(190,158,64,.6);--hxo:radial-gradient(circle,rgba(255,242,184,.85),rgba(230,200,110,0) 70%)}
+@media (prefers-reduced-motion:reduce){.hx::after,.hxd{animation:none}}
+.hxd{opacity:.32!important;width:64px!important;height:64px!important;right:6px!important;bottom:6px!important}
+/* 3.0.8: generous tap areas for the crisis numbers (the most important taps in the app) and the on/off switches */
+#crisisSheet a[href^="tel:"],#crisisSheet a[href^="sms:"]{position:relative;display:inline-block;padding:9px 6px;margin:-9px -6px;border-radius:10px}
+#crisisSheet a[href^="tel:"]:active,#crisisSheet a[href^="sms:"]:active{background:rgba(255,255,255,.08)}
+.gl{color:#F2B160!important;text-decoration-color:rgba(242,177,96,.55)!important}

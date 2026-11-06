@@ -1,0 +1,117 @@
+/* ===== 3.3.0: immersive Check-in, Journal and Task buddy ===== */
+/* ---------- Check-in: the living inner-weather sky ---------- */
+#ciSky{position:absolute;inset:0;overflow:hidden}
+#ciSky>canvas.ekfx,.ekskycard>canvas.ekfx,#evSky>canvas.ekfx{position:absolute;inset:0;width:100%;height:100%;display:block}
+#ciSky .ekscrim{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(6,8,20,.46) 0%,rgba(6,8,20,.12) 34%,rgba(6,8,20,.16) 60%,rgba(6,8,20,.62) 100%)}
+#ciFlow .cik,#ciFlow h2,#ciFlow .cisub,#ciFlow .ciwx b,#ciFlow .cilead{text-shadow:0 2px 16px rgba(0,0,0,.5)}
+#ciFlow .ciart svg{filter:drop-shadow(0 10px 34px rgba(0,0,0,.4)) drop-shadow(0 0 22px rgba(255,236,190,.25))}
+#ciFlow .cirow button{opacity:.8;background:rgba(255,255,255,.08);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+#ciFlow .cirow button[aria-checked="true"]{opacity:1;background:rgba(255,255,255,.24);box-shadow:inset 0 0 0 2px rgba(255,236,190,.9),0 0 26px rgba(255,220,150,.5);transform:translateY(-5px) scale(1.06)}
+#ciFlow .cien button i{display:block;width:20px;border-radius:999px;background:linear-gradient(180deg,rgba(255,236,190,.5),rgba(255,180,90,.2));box-shadow:0 0 12px rgba(255,200,120,.25);transition:all .25s}
+#ciFlow .cien button[aria-checked="true"] i{background:linear-gradient(180deg,#FFF3C8,#F2A04A);box-shadow:0 0 24px rgba(255,200,100,.8)}
+#ciFlow .cien button[aria-checked="true"]{color:#FFF6E6;text-shadow:0 0 12px rgba(255,220,150,.6)}
+#ciFlow .cictx button,#ciFlow .cifl button{background:rgba(255,255,255,.1)!important;color:#FFF8EE!important;box-shadow:inset 0 0 0 1px rgba(255,255,255,.22)!important;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+#ciFlow .cictx button[aria-pressed="true"],#ciFlow .cifl button[aria-pressed="true"]{background:rgba(255,226,170,.28)!important;box-shadow:inset 0 0 0 1.5px rgba(255,230,180,.95),0 0 18px rgba(255,210,140,.45)!important}
+#ciFlow .cinote{background:rgba(10,12,26,.42)!important;color:#FFF8EE!important;border:0!important;box-shadow:inset 0 0 0 1px rgba(255,255,255,.22)!important;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+#ciFlow .cicard{background:rgba(255,255,255,.12)!important;box-shadow:inset 0 0 0 1px rgba(255,255,255,.22),0 16px 40px rgba(0,0,0,.3)!important;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+#ciFlow .cicheck{filter:drop-shadow(0 0 22px rgba(255,226,160,.7))}
+/* ---------- Today: a sky window behind the mood picker ---------- */
+.tcard.ekskycard{position:relative;overflow:hidden;isolation:isolate;min-height:176px;background:#1A2240!important;border:0!important;box-shadow:0 14px 30px rgba(0,0,0,.38),inset 0 0 0 1px rgba(255,255,255,.1)!important}
+.tcard.ekskycard>canvas.ekfx{z-index:-2}
+.tcard.ekskycard::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(8,10,24,.42),rgba(8,10,24,.12) 45%,rgba(8,10,24,.6))}
+.tcard.ekskycard .tq{color:#FFF!important;font-weight:900;font-size:19px;text-shadow:0 2px 12px rgba(0,0,0,.5)}
+.tcard.ekskycard .tfine{color:rgba(255,248,236,.9)!important;text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.tcard.ekskycard #tMoods .mo{border-radius:16px;background:rgba(255,255,255,.08);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:transform .18s}
+.tcard.ekskycard #tMoods .mo:active{transform:scale(.94)}
+.tcard.ekskycard #tMoods .mo small,.tcard.ekskycard #tMoods .mo span:not(.mic){color:#FFF6E6!important;text-shadow:0 1px 6px rgba(0,0,0,.6)}
+/* ---------- Journal: a real notebook ---------- */
+.tcard.ekpaper{position:relative;overflow:hidden;padding-left:36px!important;border:0!important;color:#2A1D12;background-color:#F5EBD5!important;
+  background-image:radial-gradient(circle at 12% 18%,rgba(150,110,60,.12) 0 1px,transparent 2px),radial-gradient(circle at 63% 72%,rgba(150,110,60,.09) 0 1px,transparent 2px),radial-gradient(120% 95% at 50% 40%,transparent 60%,rgba(140,100,50,.24) 100%)!important;
+  background-size:7px 9px,11px 13px,100% 100%!important;box-shadow:0 16px 34px rgba(0,0,0,.42),inset 0 0 0 1px rgba(120,90,50,.28)!important}
+.tcard.ekpaper::before{content:"";position:absolute;left:24px;top:0;bottom:0;width:1.5px;background:rgba(214,92,92,.5)}
+.tcard.ekpaper .tq{color:#2A1D12!important;font-weight:900!important;font-size:20px!important}
+.tcard.ekpaper #tPrompts button{background:transparent!important;color:#5A4630!important;box-shadow:none!important;border:1px dashed rgba(90,70,48,.5)!important;font-style:italic}
+.tcard.ekpaper #tPrompts button[aria-pressed="true"]{background:rgba(90,70,48,.12)!important;border-style:solid!important}
+.tcard.ekpaper .tnote{background-color:transparent!important;background-image:repeating-linear-gradient(transparent 0 27px,rgba(96,128,170,.36) 27px 28px)!important;background-attachment:local!important;border:0!important;box-shadow:none!important;outline:none;
+  color:#22304E!important;font-size:16px!important;line-height:28px!important;padding:0 4px!important;min-height:170px;caret-color:#B5452E}
+.tcard.ekpaper .tnote::placeholder{color:#8A7660;font-style:italic}
+.tcard.ekpaper #tJSave{background:linear-gradient(180deg,#3A4E76,#22304E)!important;color:#F5EBD5!important;box-shadow:0 8px 18px rgba(34,48,78,.35)!important}
+.jpencil{position:absolute;right:16px;top:58px;width:58px;height:14px;transform:rotate(-16deg);transform-origin:right center;opacity:.9;pointer-events:none;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 14'%3E%3Cpath d='M6 4h40v6H6z' fill='%23F2C744'/%3E%3Cpath d='M6 4h40v2H6z' fill='%23F8DA6A'/%3E%3Cpath d='M46 4l10 3-10 3z' fill='%23E8C9A0'/%3E%3Cpath d='M53 6l3 1-3 1z' fill='%233A3A3A'/%3E%3Cpath d='M0 4h6v6H0z' fill='%23E88A9A'/%3E%3Cpath d='M5 4h2v6H5z' fill='%23BFC4CC'/%3E%3C/svg%3E") center/contain no-repeat;filter:drop-shadow(0 3px 3px rgba(0,0,0,.25))}
+.tcard.ekpaper.writing .jpencil{animation:jwrite .32s ease-in-out infinite alternate}
+@keyframes jwrite{from{transform:rotate(-16deg) translate(0,0)}to{transform:rotate(-22deg) translate(-6px,2px)}}
+.tcard.ekpaper.inked::after{content:"";position:absolute;left:50%;top:60%;width:20px;height:20px;margin:-10px;border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(34,48,78,.5),rgba(34,48,78,0) 70%);animation:jink 1s ease-out forwards}
+@keyframes jink{from{transform:scale(1);opacity:1}to{transform:scale(40);opacity:0}}
+#tJList .tentry{position:relative;display:grid;grid-template-columns:22px 1fr;gap:12px;margin:18px 4px;padding:18px 16px 14px!important;border:0!important;border-radius:6px 6px 12px 12px;color:#2A1D12;
+  background:#F3E8D0;background-image:repeating-linear-gradient(transparent 0 23px,rgba(96,128,170,.22) 23px 24px);box-shadow:0 10px 22px rgba(0,0,0,.38);transform:rotate(-.5deg)}
+#tJList .tentry:nth-child(even){transform:rotate(.6deg)}
+#tJList .tentry::before{content:"";position:absolute;top:-9px;left:50%;width:68px;height:18px;margin-left:-34px;transform:rotate(-3deg);opacity:.88;background:repeating-linear-gradient(45deg,rgba(242,160,74,.8) 0 6px,rgba(255,214,150,.8) 6px 12px)}
+#tJList .tentry:nth-child(3n+2)::before{background:repeating-linear-gradient(45deg,rgba(150,180,230,.8) 0 6px,rgba(205,220,245,.8) 6px 12px);transform:rotate(2deg)}
+#tJList .tentry:nth-child(3n)::before{background:repeating-linear-gradient(45deg,rgba(160,210,150,.8) 0 6px,rgba(215,238,205,.8) 6px 12px)}
+#tJList .tentry small{color:#8A5A2E!important;font-weight:800;font-size:11.5px!important;letter-spacing:.05em;text-transform:uppercase}
+#tJList .tentry p{color:#2A2018!important;font-size:15px!important;line-height:24px!important;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+#tJList .tentry.pagein{animation:jpage .7s cubic-bezier(.2,.8,.2,1)}
+@keyframes jpage{from{opacity:0;transform:perspective(600px) rotateX(-70deg) translateY(-14px);transform-origin:top center}to{opacity:1;transform:rotate(-.5deg)}}
+/* ---------- a journal entry, opened ---------- */
+#evSky{overflow:hidden}
+#evNote{position:relative;padding:14px 16px 16px 36px!important;border-radius:14px;color:#22304E!important;font-size:16px!important;line-height:28px!important;white-space:pre-wrap;
+  background:#F5EBD5;background-image:repeating-linear-gradient(transparent 0 27px,rgba(96,128,170,.32) 27px 28px);background-position:0 14px;box-shadow:0 14px 30px rgba(0,0,0,.35)}
+#evNote::before{content:"";position:absolute;left:24px;top:0;bottom:0;width:1.5px;background:rgba(214,92,92,.5)}
+#evNote .quiet{color:#7A6650!important}
+/* ---------- Task buddy: the lamplit room ---------- */
+.fhero{position:relative;height:232px;margin:8px 0 16px;border-radius:26px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.45),inset 0 0 0 1px rgba(255,214,150,.14)}
+.fhero>canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.fhero .fbuddy{position:absolute;left:56%;bottom:14px;width:0;height:0}
+.fhero .fbuddy img{position:absolute;left:0;bottom:0;height:106px;width:auto;transform:translateX(-50%)}
+.fhero .fbuddy .me{filter:drop-shadow(0 10px 18px rgba(0,0,0,.5));animation:fbreath 6s ease-in-out infinite}
+.fhero .fbuddy .g{opacity:0;filter:brightness(1.3) saturate(1.3) drop-shadow(0 0 10px rgba(150,220,255,.85));animation:fghost 5.4s ease-out infinite}
+.fhero .fbuddy .g1{--gx:-58px}.fhero .fbuddy .g2{--gx:58px;animation-delay:1.8s}.fhero .fbuddy .g3{--gx:0px;--gy:-26px;animation-delay:3.6s}
+@keyframes fbreath{0%,100%{transform:translateX(-50%) scale(1)}50%{transform:translateX(-50%) scale(1.035)}}
+@keyframes fghost{0%{opacity:.55;transform:translateX(-50%) translate(0,0) scale(1)}100%{opacity:0;transform:translateX(-50%) translate(var(--gx),var(--gy,0)) scale(.8)}}
+#fPick button{border-radius:20px!important;background:rgba(255,255,255,.05)!important;box-shadow:inset 0 0 0 1px rgba(255,255,255,.1)!important;transition:transform .18s,box-shadow .2s}
+#fPick button[aria-checked="true"]{background:radial-gradient(circle at 50% 35%,rgba(255,214,150,.22),rgba(255,255,255,.06))!important;box-shadow:inset 0 0 0 2px rgba(255,214,150,.85),0 0 22px rgba(255,200,120,.35)!important;transform:translateY(-3px)}
+#fTask{background:rgba(255,255,255,.06)!important;border:1px solid rgba(255,214,150,.28)!important;border-radius:16px!important;color:#FFF6E6!important}
+#fTask:focus{outline:none;box-shadow:0 0 0 3px rgba(255,200,120,.25),0 0 22px rgba(255,200,120,.25)!important}
+.fbreak{box-shadow:inset 0 0 0 1px rgba(255,214,150,.45),0 0 16px rgba(255,200,120,.12)!important}
+#fLen{accent-color:#F2A04A}
+#fSnd button[aria-pressed="true"]{box-shadow:inset 0 0 0 1.5px rgba(255,214,150,.9),0 0 16px rgba(255,200,120,.35)!important}
+/* the session: the room fills the screen; the companion breathes inside a glowing ring */
+#view-focus .fpage{position:relative}
+#view-focus .fpage>canvas.ekroom{position:absolute;inset:0;width:100%;height:100%;display:none;z-index:0;pointer-events:none}
+#view-focus.frunning .fpage{min-height:100%}
+#view-focus.frunning .fpage>canvas.ekroom{display:block}
+#view-focus.frunning .fpage>*:not(canvas){position:relative;z-index:1}
+#view-focus .fav{min-height:212px;align-items:center;cursor:pointer;-webkit-tap-highlight-color:transparent}
+#view-focus .fav .fring{position:absolute;left:50%;top:50%;width:204px;height:204px;transform:translate(-50%,-50%);overflow:visible;pointer-events:none}
+.fring .trk{fill:none;stroke:rgba(255,255,255,.1);stroke-width:4}
+.fring .arc{fill:none;stroke:url(#ekRg);stroke-width:5.5;stroke-linecap:round;transform:rotate(-90deg);transform-origin:100px 100px;filter:drop-shadow(0 0 6px rgba(255,200,110,.75));transition:stroke-dashoffset .2s linear}
+.fring .hd{fill:#FFF6D8;filter:drop-shadow(0 0 8px rgba(255,226,160,1))}
+#view-focus #fAv img{animation:fbreath2 6s ease-in-out infinite;filter:drop-shadow(0 12px 22px rgba(0,0,0,.5))}
+@keyframes fbreath2{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+.fghost{position:absolute;left:50%;top:50%;width:0;height:0;pointer-events:none}
+.fghost img{position:absolute;left:0;top:0;height:112px;width:auto;opacity:0;transform:translate(-50%,-50%);filter:brightness(1.3) saturate(1.3) drop-shadow(0 0 12px rgba(150,220,255,.85));animation:fghost3 7s ease-out infinite}
+.fghost img:last-child{animation-delay:3.5s;--gx:64px}.fghost img:first-child{--gx:-64px}
+@keyframes fghost3{0%{opacity:.5;transform:translate(-50%,-50%) scale(1)}60%,100%{opacity:0;transform:translate(calc(-50% + var(--gx)),-56%) scale(.82)}}
+.fwhisper{position:absolute;left:50%;top:-2px;z-index:3;transform:translate(-50%,-100%);max-width:240px;padding:9px 14px;border-radius:16px 16px 16px 4px;font:700 14.5px/1.3 var(--round);color:#2A1D12;background:rgba(255,250,240,.95);box-shadow:0 10px 24px rgba(0,0,0,.35);white-space:nowrap;animation:fwh .3s ease}
+.fwhisper:empty{display:none}
+@keyframes fwh{from{opacity:0;transform:translate(-50%,-80%)}to{opacity:1;transform:translate(-50%,-100%)}}
+#view-focus .fav.ping::after{content:"";position:absolute;left:50%;top:50%;width:120px;height:120px;margin:-60px;border-radius:50%;box-shadow:0 0 0 2px rgba(255,226,160,.8);animation:fping .9s ease-out forwards;pointer-events:none}
+@keyframes fping{from{transform:scale(.8);opacity:1}to{transform:scale(1.9);opacity:0}}
+#view-focus.frunning .ftime{text-shadow:0 0 24px rgba(255,214,150,.35),0 2px 10px rgba(0,0,0,.5)}
+#view-focus.frunning .fwho,#view-focus.frunning .fline{text-shadow:0 1px 10px rgba(0,0,0,.6)}
+#view-focus.frunning .fbar{opacity:.45}
+#view-focus.frunning .vgo2{background:rgba(255,255,255,.08)!important;box-shadow:inset 0 0 0 1px rgba(255,214,150,.3)!important;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+#view-focus.fpaused .fring .arc{animation:fpz 1.6s ease-in-out infinite}@keyframes fpz{0%,100%{opacity:1}50%{opacity:.35}}
+#view-focus.fpaused #fAv img{animation-play-state:paused}
+/* the end of a session: a paper lantern rises into the night */
+.flantern{display:block;position:relative;height:170px;margin:0 auto 6px;overflow:visible}
+.flantern i{position:absolute;left:50%;top:100%;width:46px;height:58px;margin-left:-23px;border-radius:16px 16px 12px 12px;background:radial-gradient(circle at 50% 40%,#FFF1C8,#FFB04A 55%,#E0602A);
+  box-shadow:0 0 30px 12px rgba(255,170,80,.55),0 0 80px 30px rgba(255,150,60,.25);animation:flrise 6s cubic-bezier(.25,.6,.3,1) forwards,flsway 3.2s ease-in-out infinite}
+.flantern i::before{content:"";position:absolute;left:8px;right:8px;top:-5px;height:6px;border-radius:3px;background:#5A3A22}
+.flantern i::after{content:"";position:absolute;left:50%;bottom:-4px;width:10px;height:6px;margin-left:-5px;border-radius:50%;background:#FFE7A0;box-shadow:0 0 10px #FFD06A}
+@keyframes flrise{from{top:100%;opacity:0}12%{opacity:1}to{top:8px;opacity:1}}
+@keyframes flsway{0%,100%{margin-left:-27px}50%{margin-left:-19px}}
+@media (prefers-reduced-motion:reduce){.fhero *,#view-focus .fav *,.flantern i,.jpencil,.tcard.ekpaper::after,#tJList .tentry{animation:none!important}.flantern i{top:8px}}
+.simple .fhero *,.simple #view-focus .fav *,.simple .flantern i,.simple .jpencil{animation:none!important}.simple .flantern i{top:8px}
+/* bright skies (Glowing, Radiant): a deeper scrim keeps every word clear */
+#ciFlow[data-mood="5"] #ciSky .ekscrim,#ciFlow[data-mood="6"] #ciSky .ekscrim{background:linear-gradient(180deg,rgba(20,10,30,.55) 0%,rgba(20,10,30,.3) 34%,rgba(20,10,30,.32) 60%,rgba(20,10,30,.66) 100%)}

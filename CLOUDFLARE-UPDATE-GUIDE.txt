@@ -1,0 +1,63 @@
+EMBERKIND: CLOUDFLARE UPDATE GUIDE
+==================================
+For: API server 2.9 (emberkind-api) and app Release 3.5.1 (emberkind).
+Update the server first, then the app. The app's new photo and file sharing needs server 2.9; everything else in
+the app works with the older server too.
+
+YOU NEED
+  - Emberkind-API-Worker-2.9.zip   (the server)
+  - Emberkind-Release-3.5.1.zip    (the app)
+  - Your Cloudflare login (emberkindai@gmail.com)
+
+STEP 1: UPDATE THE API SERVER (about 2 minutes)
+  1. Unzip Emberkind-API-Worker-2.9.zip.
+  2. Open dash.cloudflare.com > Workers & Pages > emberkind-api.
+  3. Click Edit code (top right).
+  4. In the editor, open src/index.js (or the only file, index.js). Click inside it, select everything
+     (Ctrl+A on a computer, or long-press > Select all), and delete it.
+  5. Open src/index.js from the zip in a text editor, select everything, copy it, and paste it into the Cloudflare editor.
+  6. Click Deploy (top right). Wait for "Deployed".
+  7. Check it worked: open https://emberkind-api.emberkindai.workers.dev/health
+     You should see "ok": true and "build": "2.9".
+  Nothing else needs changing: your secrets (ANTHROPIC_API_KEY), settings, KV namespaces, D1 database and cron trigger
+  all stay exactly as they are.
+
+STEP 2: UPDATE THE APP (about 2 minutes)
+  1. Unzip Emberkind-Release-3.5.1.zip. You get a folder. It includes a hidden folder named .well-known
+     (needed for Google Play). On a Mac press Cmd+Shift+. to see hidden files; on Windows, View > Show > Hidden items.
+  2. dash.cloudflare.com > Workers & Pages > emberkind.
+  3. Choose the option to upload new files for this Worker (Deployments > Upload, or the "Upload assets" area),
+     drag the whole unzipped folder in, including .well-known, and click Deploy.
+  4. Check it worked: open https://emberkind.emberkindai.workers.dev, close the tab completely, and open it again
+     (or pull to refresh in the installed app). Go to You: the bottom says Release 3.5.1.
+     If it still shows the old number, close and reopen once more. The offline copy updates on the next visit.
+
+STEP 3: QUICK CHECKS ON YOUR PHONE
+  - Open a chat with any companion: you see the Chats, New chat and Save as Ember buttons under their name.
+  - Tap the paperclip, add a photo, send it: your companion replies about it.
+  - Tap New chat, then Chats: both conversations are listed, and the first gets a title after its first reply.
+  - On Home, "Continue a conversation" shows your latest chats.
+
+USING THE COMMAND LINE INSTEAD (optional, for the server)
+  In the unzipped worker folder (it has wrangler.toml):
+    npx wrangler login
+    npx wrangler deploy
+  Secrets are set once with:  npx wrangler secret put ANTHROPIC_API_KEY
+  Your existing secrets and settings stay in place when you deploy.
+
+IF SOMETHING GOES WRONG
+  - /health shows an error or an old build: repeat Step 1 and make sure the whole file was replaced.
+  - Companions say they can't connect: check ANTHROPIC_API_KEY is still set
+    (emberkind-api > Settings > Variables and Secrets), and that ALLOWED_ORIGINS includes
+    https://emberkind.emberkindai.workers.dev
+  - Photos fail but text works: the server is still on 2.8. Repeat Step 1.
+  - To roll back: emberkind-api (or emberkind) > Deployments > choose the previous version > Rollback.
+
+FIRST-TIME SETUP FROM SCRATCH
+  See SETUP-GUIDE.txt (full walkthrough) and SETUP.txt in the worker zip (every setting, binding and secret).
+
+BEFORE THE GOOGLE PLAY CLOSED TEST
+  - Google sign-in: create the OAuth client in Google Cloud, add your app's SHA-256 signing fingerprints,
+    then set GOOGLE_CLIENT_ID on emberkind-api (see SETUP-GUIDE.txt). /health then shows google_client true.
+  - Play Console > App content > Data safety: add "Photos" and "Files and docs": collected, optional,
+    for app functionality, encrypted in transit, not shared (Anthropic processes them on your behalf).

@@ -1,0 +1,26 @@
+/* ===== 3.2.0 ===== */
+/* achievement frames follow each card's own arch (the old square frame inside the picture was cut by it) */
+.bcard2[data-tier="3"]:not(.locked){box-shadow:inset 0 0 0 1.5px rgba(216,224,238,.62),0 12px 26px rgba(0,0,0,.45)!important}
+.bcard2[data-tier="4"]:not(.locked){box-shadow:inset 0 0 0 2px rgba(232,180,74,.95),0 12px 26px rgba(0,0,0,.45)!important}
+.bcard2[data-tier="5"]:not(.locked){box-shadow:inset 0 0 0 2px #F2C25A,inset 0 0 16px rgba(255,200,100,.35),0 0 18px rgba(242,194,90,.3),0 12px 26px rgba(0,0,0,.45)!important}
+.bcard2[data-tier="6"]:not(.locked){box-shadow:inset 0 0 0 2.5px #FFD98A,inset 0 0 0 5px rgba(255,217,138,.2),inset 0 0 22px rgba(255,200,100,.45),0 0 26px rgba(255,200,90,.45),0 12px 26px rgba(0,0,0,.45)!important}
+.bcard2[data-tier="6"]:not(.locked)::after{box-shadow:inset 0 0 0 1px rgba(255,225,160,.5)!important}
+.bcard2 .bnum b{text-shadow:0 2px 14px rgba(0,0,0,.6),0 0 22px rgba(0,0,0,.35)}
+/* About Emberkind: one card per section, fully detailed inside (paragraphs are no longer cards of their own) */
+.ekab-sec{margin:12px 0;padding:14px 16px 12px;border-radius:20px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09)}
+.ekab-card .ekab-sec h3{margin:0 0 6px!important}
+.ekab-card .ekab-sec p{margin:6px 0!important;padding:0!important;background:none!important;border:0!important;border-radius:0!important;font:500 14.5px/1.55 var(--round)!important;color:rgba(255,245,234,.9)!important}
+.ekab-sec .ekrow2{padding:10px 0;border-top:1px solid rgba(255,255,255,.08)}.ekab-sec .ekrow2:first-of-type{border-top:0;padding-top:4px}
+.ekab-sec .ekrow2>b{display:block;margin-bottom:2px;font:800 15.5px/1.3 var(--round);color:#FFE2B8}
+.ekab-sec .ekrow2 p{margin:4px 0 0!important}
+.ekab-sec.warn{background:rgba(242,160,74,.08);border-color:rgba(242,160,74,.3)}
+/* the companions sit inside their one section, separated by dividers rather than cards of their own */
+.ekab-sec .ekcomp,.tutsec .ekcomp{gap:0}
+.ekab-sec .ekcp,.tutsec .ekcp{padding:14px 0 12px!important;border-radius:0!important;background:none!important;box-shadow:none!important;border-top:1px solid rgba(255,255,255,.08)}
+.ekab-sec .ekcp:first-child,.tutsec .ekcp:first-child{border-top:0;padding-top:4px!important}
+.ekab-sec .ekcp p,.tutsec .ekcp p{margin:8px 0 0!important}
+.ekab-card .ekab-sec p>b:first-child{display:inline!important;margin:0!important;font-size:inherit!important}
+
+/* 3.2.1: reduce motion and Calm mode also still the twinkling stars and the companions' gentle sitting motion */
+@media (prefers-reduced-motion:reduce){.tw,.mate img.cmp,.lbl2 b{animation:none!important}}
+.simple .tw,.simple .mate img.cmp,.simple .lbl2 b{animation:none!important}

@@ -1,0 +1,81 @@
+EMBERKIND 3.5.1 + SERVER 2.9: COMPLETE SETUP
+============================================
+One app, used for the Google Play closed test now and for the full release later. No purchases yet.
+
+FILES
+  Emberkind-Release-3.5.1.zip ..... the app. Upload to the Cloudflare Worker "emberkind".
+  emberkind-api-index.js .......... the server code. Paste into the Cloudflare Worker "emberkind-api".
+  Emberkind-API-Worker-2.9.zip .... the same server code, plus companion texts and notes (a backup copy).
+  Emberkind-Store-Pack-2.7.0.zip .. Google Play: listing text, Data safety answers, graphics, Play steps.
+
+PART A: UPDATE THE SERVER (emberkind-api)
+ 1. Workers & Pages > emberkind-api > Edit code > select all > delete > paste emberkind-api-index.js > Deploy.
+    Your keys and bindings stay as they are.
+ 2. Open https://emberkind-api.emberkindai.workers.dev/health  It should show "build": "2.9".
+
+PART B: STORAGE (emberkind-api > Settings > Bindings)
+ KV namespaces (create in Storage & Databases > KV, then Add > KV namespace):
+   LIMITS      -> emberkind-limits        (already there)
+   COMPANIONS  -> emberkind-companions    (already there)
+   REPORTS     -> emberkind-reports       (already there)
+   PUSH        -> emberkind-push          (already there. Never delete the key named "vapid" inside it.)
+   SYNC        -> emberkind-sync          NEW: create it, then bind it
+ D1 database (create in Storage & Databases > D1, then Add > D1 database):
+   DB          -> emberkind-db            NEW. Its tables create themselves.
+ Press Deploy.
+
+PART C: VARIABLES AND SECRETS (emberkind-api > Settings > Variables and Secrets)
+   ANTHROPIC_API_KEY ... Secret (already there)
+   ALLOWED_ORIGINS ..... Text: https://emberkind.emberkindai.workers.dev   (remove any old beta addresses)
+   GOOGLE_CLIENT_ID .... Text: your Client ID from Part E
+   DEFAULT_MODEL ....... claude-sonnet-5-5      EFFORT ... low        MAX_TOKENS ... 1600
+   DAILY_LIMIT ......... 60      DAILY_LIMIT_IP ... 200      DAILY_LIMIT_TOTAL ... 1500
+   Optional: RESEND_API_KEY (Secret) and REPORT_EMAIL (Text) for report emails.
+ Press Deploy.
+
+PART D: REMINDERS TIMER
+ emberkind-api > Settings > Triggers > Cron Triggers: * * * * *   (every minute). Save.
+
+PART E: GOOGLE SIGN-IN CLIENT (once)
+ 1. console.cloud.google.com > create a project named Emberkind.
+ 2. Google Auth Platform (or OAuth consent screen): app name Emberkind, support email emberkindai@gmail.com,
+    audience External, privacy policy https://emberkind.emberkindai.workers.dev/privacy.html
+    Only the basic scopes (openid, email, profile). Publish it ("In production"), or only test users can sign in.
+ 3. Clients (or Credentials) > Create client > Web application > Authorised JavaScript origins:
+      https://emberkind.emberkindai.workers.dev
+    Save, and copy the Client ID (ends in .apps.googleusercontent.com) into GOOGLE_CLIENT_ID (Part C).
+
+PART F: CHECK THE SERVER
+ /health should show: "build": "2.9", "ok": true, "reports_connected": true, "push_connected": true,
+ "accounts_connected": true, "sync_connected": true.
+
+PART G: UPLOAD THE APP (emberkind)
+ 1. Unzip Emberkind-Release-3.5.1.zip. Keep the hidden folder ".well-known" (Google Play needs it).
+ 2. Workers & Pages > emberkind > upload a new version with the whole unzipped folder.
+ 3. Check these open in a normal browser:
+      https://emberkind.emberkindai.workers.dev                  (bottom of You says Emberkind Release 3.5.1)
+      https://emberkind.emberkindai.workers.dev/privacy.html
+      https://emberkind.emberkindai.workers.dev/terms.html
+      https://emberkind.emberkindai.workers.dev/delete-account.html
+      https://emberkind.emberkindai.workers.dev/delete-data.html
+      https://emberkind.emberkindai.workers.dev/.well-known/assetlinks.json
+    If assetlinks.json doesn't open, the hidden folder didn't upload. Tell me and we'll fix it.
+ 4. If the app still shows an older version, close it fully and reopen it.
+ 5. If you made an "emberkind-beta" Worker, delete it. It isn't needed.
+
+PART H: TEST ON YOUR PHONE
+ 1. After the 18+ screen, the sign-in prompt appears. Sign in with Google.
+ 2. Do a check-in, wait 10 seconds, then sign in again in a private tab. Your check-in is there.
+ 3. You > Account > Change photo. Then Sign out and sign back in.
+ 4. You > Your data > Delete my data. You stay signed in, and nothing comes back when you sign in elsewhere.
+ 5. Last: You > Account > Delete my account.
+
+PART I: CLOUDFLARE PLAN
+ Move to Workers Paid (about US$5 a month) before testers start. The free plan only allows 1,000 storage
+ writes a day, and saving accounts uses them.
+
+PART J: GOOGLE PLAY
+ Follow Google-Play-steps.txt in the Store Pack (Part 2 onwards).
+ When Play Console shows your SHA-256 fingerprints (App integrity > App signing), send them to me together with
+ the PWABuilder signing key fingerprint. I'll fill in .well-known/assetlinks.json and you upload the app again.
+ Until then, the Play app shows a browser address bar at the top. Everything else works.

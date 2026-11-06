@@ -1,0 +1,27 @@
+EMBERKIND: FUTURE PRODUCT DIRECTION
+(A direction to explore later. Nothing here is built, and none of it is part of the current release.)
+
+The vision
+  A fully realised 3D Emberkind Village: one continuous world where each tab of the app leads to a place in it.
+  Home is the fire where the companions sit; Regulate leads to the elemental places (the hearth, the river, the
+  open sky, the earth and the night sky above the valley); Embervale is the village itself, growing with you;
+  Tools and You live in buildings of their own. Moving between tabs means moving through the world.
+
+Why it isn't built now
+  The current app draws its world in 2D (Canvas and DOM), with one small WebGL layer for the night sky and the
+  wormhole into meditation. Convincing camera travel through a believable world needs real 3D assets, lighting
+  and a camera that moves through geometry. Faking that in 2D read as zooms and fades rather than travel, so in
+  2.7.3 those transitions were removed in favour of stability and simplicity. Only the rise into the night sky
+  when a meditation begins remains.
+
+What it would likely take
+  - A dedicated 3D rendering architecture, for example React Native with a suitable 3D engine (or a web engine
+    such as three.js or Babylon.js, or a game engine), chosen after prototyping and benchmarking on mid-range phones.
+  - Real 3D art: terrain, the village buildings at each level, the companions, water, sky and weather, day and night.
+  - A world/scene manager that keeps one camera, one clock (time of day and season) and one audio mix across tabs.
+  - Performance budgets per device class, with a simple 2D fallback that keeps every practice usable.
+  - A staged path: prototype one place (the hearth) end to end, measure it on real phones, then extend.
+
+Ground rules when it happens
+  Practices, timers, audio and the companions must keep working exactly as now at every stage. The world serves
+  the practices, never the other way round.

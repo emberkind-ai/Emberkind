@@ -1,0 +1,54 @@
+/* ===== 3.4.1: the You page's heroes (a big number, one line, one action, a soft glow) and Home's gentle nudge ===== */
+.eygrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 12px}
+.eyh,.eknudge{position:relative;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;gap:7px;padding:16px 16px 15px;border-radius:22px;
+  background:linear-gradient(160deg,#2B2016,#1D150F);box-shadow:inset 0 0 0 1px rgba(255,255,255,.07),0 12px 26px rgba(0,0,0,.28)}
+.eyh{min-height:172px}
+.eyh::after,.eknudge::after{content:"";position:absolute;z-index:-1;right:-46px;top:-46px;width:150px;height:150px;border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(255,160,80,.34),transparent 70%)}
+.eyh[data-k="r"]::after{background:radial-gradient(circle,rgba(130,165,255,.32),transparent 70%)}
+.eymon::after{background:radial-gradient(circle,rgba(255,214,120,.3),transparent 70%)}
+.eycoin::after{background:radial-gradient(circle,rgba(255,196,80,.36),transparent 70%)}
+.eknudge::after{background:radial-gradient(circle,rgba(150,190,255,.3),transparent 70%)}
+.eyk{font:800 11.5px var(--round);letter-spacing:.12em;text-transform:uppercase;color:rgba(255,226,190,.72)}
+.eyb{display:flex;align-items:baseline;gap:7px;font-family:var(--round);white-space:nowrap}
+.eyb b{font-size:clamp(34px,10.5vw,46px);font-weight:900;line-height:1;color:#FFF3E2;letter-spacing:-.01em}
+.eyb i{font-style:normal;font-size:20px;font-weight:700;color:rgba(255,226,190,.45)}
+.eyb span{font-size:clamp(16px,4.6vw,20px);font-weight:800;color:rgba(255,226,190,.55)}
+.eyl{margin:0;flex:1;font:600 13.5px/1.42 var(--round);color:rgba(232,226,242,.76)}
+.eygo{align-self:flex-start;min-height:40px;padding:0 16px;border-radius:999px;font:800 13.5px var(--round);color:#2A160B;background:linear-gradient(180deg,#FFD08A,#F2A04A);box-shadow:0 6px 14px rgba(242,160,74,.3)}
+.eyok{font:800 13px var(--round);color:#9BE3B2}
+.eyh.done .eyb b{color:#FFE2B0}
+.eybar{height:6px;border-radius:6px;background:rgba(255,255,255,.1);overflow:hidden}.eybar i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,#F2A04A,#FFD08A)}
+.eybadge{position:absolute;right:14px;top:14px;padding:3px 8px;border-radius:8px;font:900 10.5px var(--round);letter-spacing:.08em;color:#2A160B;background:#FFD08A}
+.eylink{display:inline;padding:0;border:0;background:none;color:#FFD9A0;font:700 13px var(--round);text-decoration:underline;text-underline-offset:3px}
+#ekYouSec{display:none!important}
+#ekStreaks{display:block}
+.eknudge{margin:0 0 14px}
+.eknb{margin:0;font:900 21px/1.25 var(--round);color:#FFF3E2}
+.eknr{display:flex;align-items:center;gap:14px;margin-top:4px}
+.eknx{padding:8px 4px;border:0;background:none;font:700 13.5px var(--round);color:rgba(232,226,242,.65)}
+/* the "Need a person?" bubble: a little pop as it tucks into a dot when you scroll, and pops back out
+   (the journey's fade on #helpBtn had been replacing this transition since 2.7; both now work together) */
+#helpBtn.person{transition:opacity .5s ease,font-size .24s ease,padding .24s ease,border-radius .24s ease,top .24s ease,right .24s ease;transform-origin:88% 50%}
+#app.person-mini #helpBtn.person{animation:ekpdot .46s cubic-bezier(.3,1.5,.5,1)}
+#app:not(.person-mini) #helpBtn.person{animation:ekpbig .44s cubic-bezier(.3,1.5,.5,1)}
+@keyframes ekpdot{0%{transform:scale(1.16,.84)}40%{transform:scale(.62)}72%{transform:scale(1.16)}100%{transform:scale(1)}}
+@keyframes ekpbig{0%{transform:scale(.55)}55%{transform:scale(1.08,.94)}80%{transform:scale(.98,1.03)}100%{transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){#helpBtn.person{animation:none!important}}
+.simple #helpBtn.person{animation:none!important}
+#helpBtn.person{white-space:nowrap;overflow:hidden}
+/* 3.4.5: popups and messages always fit the screen. They wrap onto more lines instead of running off the edges */
+.toast{white-space:normal!important;width:max-content;max-width:calc(100vw - 32px);box-sizing:border-box;text-align:center;line-height:1.4;border-radius:18px!important;overflow-wrap:break-word}
+.ekpop{width:max-content;max-width:calc(100vw - 32px);box-sizing:border-box;border-radius:18px!important}.ekpop span{min-width:0;overflow-wrap:break-word}
+.evhint{white-space:normal!important;box-sizing:border-box;line-height:1.35}
+/* the breathing cues fit beside the circle on smaller phones, wrapping rather than running off the edges */
+.bside{width:min(150px,calc(50% - 62px))!important;box-sizing:border-box}.bside b,.bside span{white-space:normal!important;overflow-wrap:break-word}
+#nameIn{text-overflow:ellipsis}
+
+/* 3.4.5 (carried into 3.5.2): Home in weather keeps its heading and names readable; the check-in cards' rain and snow
+   are drawn as real drops and flakes (the CSS patterns underneath are switched off so nothing doubles) */
+#app[data-weather] .greet,#app[data-weather] .sub,#app[data-weather] .sub2,#app[data-weather] #nowBtn{text-shadow:0 1px 3px rgba(10,20,40,.6),0 0 16px rgba(10,20,40,.5)!important}
+#app[data-weather] h1.title{text-shadow:0 2px 6px rgba(10,20,40,.45),0 0 20px rgba(10,20,40,.35)}
+#app[data-weather] .lbl2 b,#app[data-weather] .lbl2 small,#app[data-weather] .lbl2 span{text-shadow:0 1px 3px rgba(10,20,40,.55),0 0 12px rgba(10,20,40,.4)}
+#app[data-weather=rain] .crain{background:none!important;animation:none!important}
+#app[data-weather=snow] .csnow{opacity:1;background:none!important;animation:none!important}
+.crain>canvas,.csnow>canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
